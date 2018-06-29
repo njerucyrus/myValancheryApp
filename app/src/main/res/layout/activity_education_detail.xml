@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".majery_activities.EducationDetailActivity">
+
+    <ImageView
+        android:id="@+id/img_education_detail_icon"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:contentDescription="Education Details"
+        android:src="@drawable/no_barner" />
+
+    <TextView
+        android:background="@color/colorLightGrey"
+        android:id="@+id/tv_education_detail_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/img_education_detail_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="160dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="Title"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="14sp"
+        android:fontFamily="@font/century_gothic"
+        android:textStyle="normal" />
+    <ScrollView
+        android:layout_below="@+id/img_education_detail_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:fontFamily="@font/century_gothic"
+            android:textColor="@color/colorPrimaryText"
+            android:id="@+id/tv_education_content"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+</RelativeLayout>

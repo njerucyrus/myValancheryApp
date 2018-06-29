@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hudutech.mymanjeri">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBnShwO0hQS2SSjLxZVRfldmwW_G-ZGJRI" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".majery_activities.BloodBankActivity" />
+        <activity android:name=".BecomeDonorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
+        </activity>
+        <activity android:name=".BloodGroupListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
+        </activity>
+        <activity android:name=".AdminBarnersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.MainActivity" />
+        </activity>
+        <activity android:name=".AddBloodDonorAdminActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
+        </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.LoginActivity" />
+        </activity>
+        <activity android:name=".EditBannerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.AdminBarnersActivity" />
+        </activity>
+        <activity android:name=".majery_activities.NewsActivity" />
+        <activity android:name=".majery_activities.TourismActivity" />
+        <activity android:name=".majery_activities.HistoryActivity" />
+        <activity android:name=".majery_activities.ShoppingActivity" />
+        <activity android:name=".majery_activities.EducationActivity" />
+        <activity android:name=".conctact_activities.VehicleActivity" />
+        <activity android:name=".conctact_activities.EmergencyActivity" />
+        <activity android:name=".conctact_activities.GeneralActivity" />
+        <activity android:name=".conctact_activities.MpActivity" />
+        <activity android:name=".conctact_activities.MlaActivity" />
+        <activity android:name=".conctact_activities.PoliticsActivity" />
+        <activity android:name=".conctact_activities.MediaActivity" />
+        <activity android:name=".conctact_activities.ArtAndCultureActivity" />
+        <activity android:name=".conctact_activities.MunicipalityActivity" />
+        <activity android:name=".conctact_activities.BanksActivity" />
+        <activity android:name=".conctact_activities.ProfessionalsActivity" />
+        <activity android:name=".conctact_activities.LabouresActivity" />
+        <activity android:name=".conctact_activities.InstitutionsActivity" />
+        <activity android:name=".timing_and_booking_activities.BusActivity" />
+        <activity android:name=".timing_and_booking_activities.TrainActivity" />
+        <activity android:name=".timing_and_booking_activities.FilmActivity" />
+        <activity android:name=".timing_and_booking_activities.HotelsActivity" />
+        <activity android:name=".timing_and_booking_activities.TravelsActivity" />
+        <activity android:name=".timing_and_booking_activities.RestaurantsActivity" />
+        <activity android:name=".classifields_activities.RealEstateActivity" />
+        <activity android:name=".classifields_activities.VehicleActivity" />
+        <activity android:name=".classifields_activities.ElectronicsActivity" />
+        <activity android:name=".classifields_activities.PetsActivity" />
+        <activity android:name=".classifields_activities.OthersActivity" />
+        <activity android:name=".medical_activities.HospitalsActivity" />
+        <activity android:name=".medical_activities.DoctorsActivity" />
+        <activity android:name=".medical_activities.LabsActivity" />
+        <activity android:name=".medical_activities.MedicalShopsActivity" />
+        <activity android:name=".medical_activities.OpticalActivity" />
+        <activity android:name=".admin.DataEntryActivity" />
+        <activity android:name=".majery_activities.NotificationActivity" />
+        <activity android:name=".majery_activities.NewsDetailActivity" />
+        <activity android:name=".majery_activities.EducationDetailActivity" />
+        <activity android:name=".majery_activities.CustomNotificationDetailActivity" />
+        <activity android:name=".majery_activities.ShopMenuDetailActivity" />
+        <activity android:name=".digital_activities.DigitalWebViewActivity" />
+        <activity android:name=".digital_activities.SBAdminPanelActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.MainActivity" />
+        </activity>
+        <activity android:name=".digital_activities.CreateAccountActivity" />
+        <activity android:name=".digital_activities.DepositActivity" />
+        <activity android:name=".digital_activities.WithdrawActivity">
+        </activity>
+        <activity android:name=".digital_activities.BalancesActivity" />
+        <activity android:name=".digital_activities.StatementsActivity"></activity>
+    </application>
+
+</manifest>

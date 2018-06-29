@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">My App</string>
+    <string name="action_settings">Admin</string>
+    <string name="manjeri">Manjeri</string>
+    <string name="app_burner">App burner</string>
+    <string name="fullname_n_phone_number_nlocation">Fullname\nPhone Number\nLocation</string>
+    <string-array name="blood_groups">
+        <item>Select Blood Group</item>
+        <item>A+</item>
+        <item>B+</item>
+        <item>O+</item>
+        <item>AB+</item>
+        <item>A-</item>
+        <item>B-</item>
+        <item>O-</item>
+        <item>AB-</item>
+    </string-array>
+
+    <string-array name="shop_types">
+        <item>Select Shop Type</item>
+        <item>Ice Cream</item>
+        <item>Super Market</item>
+        <item>Cafe</item>
+        <item>Textile</item>
+        <item>Vegetables</item>
+        <item>Bakery</item>
+        <item>Electronics</item>
+        <item>Builders</item>
+        <item>Flex&amp;Print</item>
+        <item>Furniture</item>
+        <item>General Stores</item>
+        <item>Jewellery</item>
+        <item>Fancy&amp;Foot-Wear</item>
+        <item>Home Appliances</item>
+        <item>Electrical Shop</item>
+        <item>Butcher Shop</item>
+        <item>Hardware&amp;Tools</item>
+        <item>Stationary</item>
+        <item>Paints</item>
+        <item>Mobile Shop</item>
+        <item>Beauty Parlour&amp;Salon</item>
+        <item>Computer Shop</item>
+        <item>Sport Shop</item>
+        <item>Studio</item>
+        <item>Tiles&amp;Sanitary</item>
+        <item>Catering</item>
+
+    </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
