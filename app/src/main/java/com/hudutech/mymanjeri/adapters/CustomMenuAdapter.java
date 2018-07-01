@@ -45,6 +45,7 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
 
                 mContext.startActivity(new Intent(mContext, menu.getGotoGlass())
                         .putExtra("menuName", menu.getMenuName())
+                        .putExtra("url", menu.getOptionalUrl())
                 );
             }
         });

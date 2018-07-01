@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBg"
-    tools:context=".majery_activities.NewsActivity">
+    tools:context=".digital_activities.WithdrawsFragment">
+
     <LinearLayout
+        android:background="@color/colorBg"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/news_banner_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@color/colorBg" />
         <TextView
+
             android:layout_margin="32dp"
-            android:text="No News Yet!"
+            android:text="No Data!"
             android:gravity="center"
             android:textColor="@color/colorWhite"
             android:fontFamily="sans-serif-condensed"
@@ -25,18 +21,14 @@
             android:layout_gravity="center"
             android:visibility="gone"
             android:background="@drawable/no_data"
-            android:id="@+id/tv_no_news"
+            android:id="@+id/tv_no_withdraws"
             android:layout_width="140dp"
             android:layout_height="140dp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/news_recyclerview"
+            android:id="@+id/withdraw_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-
-
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

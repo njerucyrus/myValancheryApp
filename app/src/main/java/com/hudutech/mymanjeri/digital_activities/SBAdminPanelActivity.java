@@ -57,10 +57,10 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
                 showActivity(WithdrawActivity.class);
                 break;
             case R.id.card_view_sb_balances:
-                showActivity(BalancesActivity.class);
+                showActivity(ManageSBAccountsActivity.class);
                 break;
             case R.id.card_view_sb_statements:
-                showActivity(StatementsActivity.class);
+                showActivity(SelectAccountActivity.class);
                 break;
         }
     }

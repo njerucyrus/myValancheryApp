@@ -278,11 +278,13 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                                                         SBankAccount account = new SBankAccount(
                                                                 docKey,
+                                                                mAuth2.getCurrentUser().getUid(),
                                                                 photoUrl,
                                                                 batchNo,
                                                                 customerName,
                                                                 accountNo,
-                                                                email
+                                                                email,
+                                                                0f
 
                                                         );
 

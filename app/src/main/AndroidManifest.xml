@@ -110,10 +110,11 @@
         </activity>
         <activity android:name=".digital_activities.CreateAccountActivity" />
         <activity android:name=".digital_activities.DepositActivity" />
-        <activity android:name=".digital_activities.WithdrawActivity">
-        </activity>
-        <activity android:name=".digital_activities.BalancesActivity" />
-        <activity android:name=".digital_activities.StatementsActivity"></activity>
+        <activity android:name=".digital_activities.WithdrawActivity" />
+        <activity android:name=".digital_activities.ManageSBAccountsActivity" />
+        <activity android:name=".digital_activities.StatementsActivity" />
+        <activity android:name=".digital_activities.SelectAccountActivity" />
+        <activity android:name=".digital_activities.EnterPasswordActivity"></activity>
     </application>
 
 </manifest>

@@ -33,12 +33,15 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Account No."
+                    android:inputType="text"
+                    android:id="@+id/txt_sb_withdraw_account_no"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/tv_sb_withdraw_account_holder"
                 android:visibility="gone"
                 android:layout_margin="8dp"
                 android:text="Account Holder Name"
@@ -51,6 +54,8 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Amount"
+                    android:inputType="number"
+                    android:id="@+id/txt_sb_withdraw_amount"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -62,6 +67,8 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Purpose"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/txt_sb_withdraw_purpose"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -73,6 +80,7 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Date"
+                    android:id="@+id/txt_sb_withdraw_date"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -83,6 +91,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/button_ui_primary"
                 android:text="Withdraw Funds"
+                android:id="@+id/btn_withdraw"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp"
                 android:fontFamily="@font/century_gothic"

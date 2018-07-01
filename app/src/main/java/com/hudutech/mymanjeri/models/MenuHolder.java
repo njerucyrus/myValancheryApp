@@ -17,6 +17,7 @@ import com.hudutech.mymanjeri.conctact_activities.MunicipalityActivity;
 import com.hudutech.mymanjeri.conctact_activities.PoliticsActivity;
 import com.hudutech.mymanjeri.conctact_activities.ProfessionalsActivity;
 import com.hudutech.mymanjeri.conctact_activities.VehicleActivity;
+import com.hudutech.mymanjeri.digital_activities.DigitalWebViewActivity;
 import com.hudutech.mymanjeri.digital_activities.SBAdminPanelActivity;
 import com.hudutech.mymanjeri.majery_activities.BloodBankActivity;
 import com.hudutech.mymanjeri.majery_activities.EducationActivity;
@@ -318,10 +319,41 @@ public class MenuHolder {
     private void initDigital() {
         List<CategoryMenu> digitalMenu = new ArrayList<>();
 
+        CategoryMenu certificate = new CategoryMenu(
+                "Digital", "Certificate", DigitalWebViewActivity.class, R.drawable.no_icon_48
+        );
+        certificate.setOptionalUrl("https://cr.lsgkerala.gov.in/");
+        digitalMenu.add(certificate);
+
+
+        CategoryMenu psc = new CategoryMenu(
+                "Digital", "Psc Registration", DigitalWebViewActivity.class, R.drawable.no_icon_48
+        );
+
+        psc.setOptionalUrl("https://thulasi.psc.kerala.gov.in/thulasi/");
+        digitalMenu.add(psc);
+
+
+        CategoryMenu railway = new CategoryMenu(
+                "Digital", "Railway", DigitalWebViewActivity.class, R.drawable.no_icon_48
+        );
+        railway.setOptionalUrl("https://enquiry.indianrail.gov.in/ntes/index.html");
+        digitalMenu.add(railway);
+
+        CategoryMenu results = new CategoryMenu(
+                "Digital", "Results", DigitalWebViewActivity.class, R.drawable.no_icon_48
+        );
+
+        results.setOptionalUrl("http://www.results.itschool.gov.in/");
+        digitalMenu.add(results);
+
+
+
         CategoryMenu sbBank = new CategoryMenu(
                 "Digital", "S Bank", LoginActivity.class, R.drawable.no_icon_48
         );
         digitalMenu.add(sbBank);
+
 
         this.menuHashMap.put(CATEGORY_DIGITAL, digitalMenu);
     }

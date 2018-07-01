@@ -7,6 +7,7 @@ public class CategoryMenu implements java.io.Serializable {
     private String menuCategory;
     private String menuName;
     private Class<?> gotoGlass;
+    private String optionalUrl;
     private int iconResId;
 
     private List<CategoryMenu> menuList;
@@ -59,6 +60,14 @@ public class CategoryMenu implements java.io.Serializable {
 
     public void setMenuList(List<CategoryMenu> menuList) {
         this.menuList = menuList;
+    }
+
+    public String getOptionalUrl() {
+        return optionalUrl;
+    }
+
+    public void setOptionalUrl(String optionalUrl) {
+        this.optionalUrl = optionalUrl;
     }
 
     @Override

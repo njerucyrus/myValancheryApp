@@ -26,12 +26,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.digital_activities.SBAdminPanelActivity;
 import com.hudutech.mymanjeri.digital_activities.StatementsActivity;
 import com.hudutech.mymanjeri.models.User;
+import com.hudutech.mymanjeri.models.digital_models.SBankAccount;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -39,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mUsername;
     private TextInputEditText mPassword;
     private ProgressDialog mProgress;
+
+    private SBankAccount account;
 
 
     @Override
@@ -153,21 +158,23 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            if (mProgress.isShowing()) {
-                mProgress.dismiss();
-            }
-
             if (getIntent().getStringExtra("menuName").equals("S Bank")) {
+                if (mProgress.isShowing()) {
+                    mProgress.dismiss();
+                }
 
                 if (isAdmin() || isSBAdmin()) {
                     startActivity(new Intent(this, SBAdminPanelActivity.class)
                             .putExtra("menuName", getIntent().getStringExtra("menuName")));
 
                 } else {
-                    startActivity(new Intent(this, StatementsActivity.class));
+
+                    goToAccount(user);
 
                 }
 
+            } else {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
         } else {
@@ -175,6 +182,33 @@ public class LoginActivity extends AppCompatActivity {
                 mProgress.dismiss();
             }
         }
+    }
+
+    private void goToAccount(FirebaseUser user) {
+        CollectionReference ref = FirebaseFirestore.getInstance().collection("sb_accounts");
+        ref.whereEqualTo("userUid", user.getUid())
+                .limit(1)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.getDocuments().size() > 0) {
+
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                                account = snapshot.toObject(SBankAccount.class);
+                            }
+                            startActivity(new Intent(getApplicationContext(), StatementsActivity.class)
+                                    .putExtra("account", account)
+                            );
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (mProgress.isShowing()) mProgress.dismiss();
+                    }
+                });
     }
 
     private boolean validateInput() {
@@ -250,4 +284,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }
