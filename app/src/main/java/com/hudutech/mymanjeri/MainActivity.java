@@ -9,16 +9,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuAdapter;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,6 +41,7 @@ import com.hudutech.mymanjeri.models.Banner;
 import com.hudutech.mymanjeri.models.CategoryMenu;
 import com.hudutech.mymanjeri.models.MenuHolder;
 import com.hudutech.mymanjeri.models.User;
+import com.hudutech.mymanjeri.user.UserPanelActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Valanchery");
+
+        getSupportActionBar().setTitle("\t\t\t\tMy Valanchery");
+        getSupportActionBar().setIcon(R.drawable.ic_person_white_24dp);
+
 
 
         mRootRef = FirebaseFirestore.getInstance().collection("barners");
@@ -275,6 +283,8 @@ public class MainActivity extends AppCompatActivity {
             showActivity(DataEntryActivity.class);
         } else if (id == R.id.action_logout) {
             signOut();
+        } else if (id == R.id.action_test_user_panel){
+            showActivity(UserPanelActivity.class);
         }
 
         return super.onOptionsItemSelected(item);

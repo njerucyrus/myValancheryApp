@@ -75,7 +75,7 @@ public class MenuHolder {
         ArrayList<CategoryMenu> majeryMenus = new ArrayList<>();
 
         CategoryMenu notificationMenu = new CategoryMenu(
-                "Majery", "Notification", NotificationActivity.class, R.drawable.no_icon_48
+                "Majery", "Notification", NotificationActivity.class, R.drawable.notification_48
         );
         majeryMenus.add(notificationMenu);
 
@@ -132,7 +132,7 @@ public class MenuHolder {
         contact1Menus.add(emmergency);
 
         CategoryMenu general = new CategoryMenu(
-                "Contact1", "General", GeneralActivity.class, R.drawable.no_icon_48
+                "Contact1", "General", GeneralActivity.class, R.drawable.general_48
         );
         contact1Menus.add(general);
 
@@ -149,19 +149,19 @@ public class MenuHolder {
 
 
         CategoryMenu politics = new CategoryMenu(
-                "Contact1", "Politics", PoliticsActivity.class, R.drawable.no_icon_48
+                "Contact1", "Politics", PoliticsActivity.class, R.drawable.politics_48
         );
         contact1Menus.add(politics);
 
 
         CategoryMenu media = new CategoryMenu(
-                "Contact1", "Media", MediaActivity.class, R.drawable.no_icon_48
+                "Contact1", "Media", MediaActivity.class, R.drawable.media_48
         );
         contact1Menus.add(media);
 
 
         CategoryMenu art_and_culture = new CategoryMenu(
-                "Contact1", "Art & Culture", ArtAndCultureActivity.class, R.drawable.no_icon_48
+                "Contact1", "Art & Culture", ArtAndCultureActivity.class, R.drawable.art_and_culture_48
         );
         contact1Menus.add(art_and_culture);
 
@@ -173,7 +173,7 @@ public class MenuHolder {
 
         List<CategoryMenu> contact2 = new ArrayList<>();
         CategoryMenu municipality = new CategoryMenu(
-                "Contact2", "Municipality", MunicipalityActivity.class, R.drawable.no_icon_48
+                "Contact2", "Municipality", MunicipalityActivity.class, R.drawable.municipality_48
         );
         contact2.add(municipality);
 
@@ -184,7 +184,7 @@ public class MenuHolder {
         contact2.add(banks);
 
         CategoryMenu professionals = new CategoryMenu(
-                "Contact2", "Professionals", ProfessionalsActivity.class, R.drawable.no_icon_48
+                "Contact2", "Professionals", ProfessionalsActivity.class, R.drawable.proffesional_48
         );
 
         contact2.add(professionals);
@@ -259,7 +259,7 @@ public class MenuHolder {
         classfields.add(vehicle);
 
         CategoryMenu electronics = new CategoryMenu(
-                "Classifieds", "Electronics", FilmActivity.class, R.drawable.no_icon_48
+                "Classifieds", "Electronics", FilmActivity.class, R.drawable.electronics_48
         );
 
         classfields.add(electronics);
@@ -272,7 +272,7 @@ public class MenuHolder {
 
 
         CategoryMenu others = new CategoryMenu(
-                "Classifieds", "Others", OthersActivity.class, R.drawable.no_icon_48
+                "Classifieds", "Others", OthersActivity.class, R.drawable.others_48
         );
         classfields.add(others);
 
@@ -327,7 +327,7 @@ public class MenuHolder {
 
 
         CategoryMenu psc = new CategoryMenu(
-                "Digital", "Psc Registration", DigitalWebViewActivity.class, R.drawable.no_icon_48
+                "Digital", "Psc Registration", DigitalWebViewActivity.class, R.drawable.sdac_48
         );
 
         psc.setOptionalUrl("https://thulasi.psc.kerala.gov.in/thulasi/");
@@ -335,7 +335,7 @@ public class MenuHolder {
 
 
         CategoryMenu railway = new CategoryMenu(
-                "Digital", "Railway", DigitalWebViewActivity.class, R.drawable.no_icon_48
+                "Digital", "Railway", DigitalWebViewActivity.class, R.drawable.train_48
         );
         railway.setOptionalUrl("https://enquiry.indianrail.gov.in/ntes/index.html");
         digitalMenu.add(railway);
@@ -350,7 +350,7 @@ public class MenuHolder {
 
 
         CategoryMenu sbBank = new CategoryMenu(
-                "Digital", "S Bank", LoginActivity.class, R.drawable.no_icon_48
+                "Digital", "S Bank", LoginActivity.class, R.drawable.sbank_48
         );
         digitalMenu.add(sbBank);
 

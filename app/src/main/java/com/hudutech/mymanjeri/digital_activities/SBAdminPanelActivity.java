@@ -1,11 +1,19 @@
 package com.hudutech.mymanjeri.digital_activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.hudutech.mymanjeri.MainActivity;
 import com.hudutech.mymanjeri.R;
 
@@ -17,7 +25,7 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_sbadmin_panel);
         getSupportActionBar().setTitle("SBank Admin");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        invalidateOptionsMenu();
         CardView createAccount = findViewById(R.id.card_view_sb_create_acc);
         createAccount.setOnClickListener(this);
 
@@ -68,4 +76,70 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
     private void showActivity(Class<?> klass) {
         startActivity(new Intent(this, klass));
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem item1 = menu.findItem(R.id.action_settings);
+        MenuItem item2 = menu.findItem(R.id.action_enter_data);
+        MenuItem item3 = menu.findItem(R.id.action_add_barner);
+        item1.setVisible(false);
+        item2.setVisible(false);
+        item3.setVisible(false);
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+      if (id == R.id.action_logout) {
+            signOut();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void signOut() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure you want to logout?");
+        builder.setMessage("You will be logged out");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                SharedPreferences sharedPrefs = getSharedPreferences("AUTH_DATA",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor sharedPrefEditor = sharedPrefs.edit();
+                sharedPrefEditor.putBoolean("isAdmin",false);
+                sharedPrefEditor.putBoolean("isSBAdmin", false);
+                sharedPrefEditor.apply();
+                sharedPrefEditor.commit();
+                Toast.makeText(SBAdminPanelActivity.this, "You Are logged out", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SBAdminPanelActivity.this, MainActivity.class));
+                finish();
+
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+
+    }
+
 }

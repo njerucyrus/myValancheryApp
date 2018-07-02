@@ -7,14 +7,18 @@
 <ImageView
     android:layout_gravity="center"
     android:foregroundGravity="center"
-    android:layout_margin="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="16dp"
     android:id="@+id/img_menu_icon"
     android:scaleType="fitXY"
     android:layout_width="32dp"
     android:layout_height="32dp" />
     <TextView
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="2dp"
         android:text="Menu Item"
         android:gravity="center"
         android:fontFamily="@font/century_gothic"

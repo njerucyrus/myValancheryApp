@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,10 +21,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +42,7 @@ public class EnterPasswordActivity extends AppCompatActivity {
     private CollectionReference mAccountsRef;
     private SBankAccount account;
     private ProgressDialog mProgress;
+    private Button mButtonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class EnterPasswordActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
         account = (SBankAccount) getIntent().getSerializableExtra("account");
         mPassword = findViewById(R.id.txt_enter_password_to_delete);
-        Button mButtonDelete = findViewById(R.id.btn_confirm_delete_account);
+        mButtonDelete = findViewById(R.id.btn_confirm_delete_account);
 
 
         //used to get the instace of firebase auth that we can sign out after creating account
@@ -157,7 +161,18 @@ public class EnterPasswordActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Toast.makeText(EnterPasswordActivity.this, "Error Occurred! Failed to delete account", Toast.LENGTH_SHORT).show();
+
+                        if (e instanceof FirebaseAuthInvalidCredentialsException){
+                            Toast.makeText(EnterPasswordActivity.this, "Invalid Password!", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(mButtonDelete, "Invalid Password!", Snackbar.LENGTH_LONG).show();
+                            mPassword.setError("Invalid Password");
+
+                        }else {
+                            Toast.makeText(EnterPasswordActivity.this, "Unable to validate this account. please try again later", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(mButtonDelete, "Unable to validate this account. please try again later", Snackbar.LENGTH_LONG).show();
+
+                        }
+
                     }
                 });
     }

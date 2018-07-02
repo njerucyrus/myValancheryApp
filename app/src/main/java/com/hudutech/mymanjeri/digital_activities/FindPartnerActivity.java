@@ -1,10 +1,8 @@
-package com.hudutech.mymanjeri.admin;
-
+package com.hudutech.mymanjeri.digital_activities;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -15,20 +13,23 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,72 +38,72 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.majery_models.News;
+import com.hudutech.mymanjeri.models.digital_models.Partner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class AddNewsFragment extends Fragment implements View.OnClickListener {
-
-    private static final String TAG = "AddNewsFragment";
-    private static final int IMAGE_PICK = 100;
+public class FindPartnerActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "FindPartnerActivity";
+    private static final int IMAGE_PICK = 1;
+    private static final String MALE = "Male";
+    private static final String FEMALE = "Female";
+    private Button mUploadPhoto;
+    private RadioGroup mRadioGroupGender;
+    private TextInputEditText mName;
+    private TextInputEditText mPlace;
+    private TextInputEditText mReligion;
+    private TextInputEditText mAge;
+    private TextInputEditText mPhoneNumber;
+    private TextInputEditText mMoreDetails;
     private Button mSubmit;
-    private Button mChooseImage;
-    private TextInputEditText mNewsHeading;
-    private TextInputEditText mNews;
     private ImageView mSelectedPhoto;
-    private Context mContext;
-    private ProgressDialog mProgress;
-    private StorageReference mStorageRef;
-    private CollectionReference mNewsRef;
     private Uri photoUri;
+    private ProgressDialog mProgress;
 
-    public AddNewsFragment() {
-        // Required empty public constructor
-    }
+    private StorageReference mStorageRef;
+    private CollectionReference mPartnersRef;
+    private FirebaseUser mCurrentUser;
+    private String gender;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_news, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_find_partner);
+        mUploadPhoto = findViewById(R.id.btn_upload_findpartner_photo);
+        mRadioGroupGender = findViewById(R.id.radio_group_findpartner_gender);
+        mName = findViewById(R.id.txt_findpartner_name);
+        mPlace = findViewById(R.id.txt_findpartner_religion);
+        mAge = findViewById(R.id.txt_findpartner_age);
+        mPhoneNumber = findViewById(R.id.txt_findpartner_phonenumber);
+        mMoreDetails = findViewById(R.id.txt_findpartner_moredetails);
+        mSelectedPhoto = findViewById(R.id.img_findpartner_selected_image);
+        mSubmit = findViewById(R.id.btn_findpartner_submit);
 
-        mContext = getContext();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        mNewsRef = FirebaseFirestore.getInstance().collection("news");
-
-        mProgress = new ProgressDialog(getContext());
-
-        mChooseImage = view.findViewById(R.id.btn_add_news_photo);
-        mNewsHeading = view.findViewById(R.id.txt_news_heading);
-        mNews = view.findViewById(R.id.txt_news);
-        mSelectedPhoto= view.findViewById(R.id.img_news);
-        mSubmit = view.findViewById(R.id.btn_submit_news);
-        mChooseImage.setOnClickListener(this);
+        mProgress = new ProgressDialog(this);
         mSubmit.setOnClickListener(this);
+        mUploadPhoto.setOnClickListener(this);
 
-        return view;
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mPartnersRef = FirebaseFirestore.getInstance().collection("partners");
+
+        mRadioGroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radio_male) {
+                    gender = MALE;
+                } else if (checkedId == R.id.radio_female) {
+                    gender = FEMALE;
+                }
+            }
+        });
     }
 
     @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.btn_add_news_photo) {
-            openImageChooser();
-        } else if (id == R.id.btn_submit_news) {
-            submitData(photoUri, mNewsHeading.getText().toString().trim(), mNews.getText().toString().trim());
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
 
         if (requestCode == IMAGE_PICK && resultCode == Activity.RESULT_OK) {
 
@@ -110,22 +111,25 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                 photoUri = data.getData();
                 mSelectedPhoto.setVisibility(View.VISIBLE);
                 RequestOptions requestOptions = new RequestOptions()
-                        .placeholder(R.drawable.no_barner);
+                        .placeholder(R.drawable.user_96);
 
-                Glide.with(mContext)
+                Glide.with(this)
                         .load(photoUri)
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }
 
     }
 
-
-    private void submitData(Uri photoUri, final String newsHeading, final String newsText) {
+    private void submitData(Uri photoUri, final String mGender,
+                            final String name, final String place,
+                            final String religion, final int age,
+                            final String phoneNumber,
+                            final String moreDetails) {
 
         mProgress.setMessage("Submitting data please wait...");
         mProgress.setCanceledOnTouchOutside(false);
@@ -153,28 +157,34 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mNewsRef.document();
-                    News news = new News(
+                    DocumentReference docRef = mPartnersRef.document();
+                    Partner partner = new Partner(
                             imageUrl,
-                            newsHeading,
-                            newsText,
+                            mGender,
+                            name,
+                            place,
+                            religion,
+                            age,
+                            phoneNumber,
+                            moreDetails,
+                            mCurrentUser.getUid(),
                             docRef.getId(),
-                            new Date(),
-                            true
+                            false
                     );
-                    docRef.set(news)
+
+                    docRef.set(partner)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FindPartnerActivity.this, "Data submitted successfully", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Error occurred! please try again later", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FindPartnerActivity.this, "Error occurred! please try again later", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -219,7 +229,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         // one row. There's no need to filter, sort, or select fields, since we want
         // all fields for one document.
 
-        try (Cursor cursor = mContext.getContentResolver()
+        try (Cursor cursor = this.getContentResolver()
                 .query(uri, null, null, null, null, null)) {
             // moveToFirst() returns false if the cursor has 0 rows.  Very handy for
             // "if there's anything to look at, look at it" conditionals.
@@ -256,7 +266,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
-                mContext.getContentResolver().openFileDescriptor(uri, "r");
+                this.getContentResolver().openFileDescriptor(uri, "r");
 
         FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
@@ -264,5 +274,78 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         return image;
     }
 
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.btn_upload_findpartner_photo) {
+            openImageChooser();
+        } else if (id == R.id.btn_findpartner_submit) {
+            if (validateInputs()) {
+                submitData(
+                        photoUri,
+                        gender,
+                        mName.getText().toString().trim(),
+                        mPlace.getText().toString().trim(),
+                        mReligion.getText().toString().trim(),
+                        Integer.parseInt(mAge.getText().toString()),
+                        mPhoneNumber.getText().toString(),
+                        mMoreDetails.getText().toString()
+                );
+            } else {
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
 
+
+    private boolean validateInputs() {
+        boolean valid = true;
+        if (TextUtils.isEmpty(mName.getText().toString().trim())) {
+            valid = false;
+            mName.setError("*Required");
+        } else {
+            mName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPlace.getText().toString().trim())) {
+            valid = false;
+            mPlace.setError("*Required");
+        } else {
+            mPlace.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mReligion.getText().toString().trim())) {
+            valid = false;
+            mReligion.setError("*Required");
+        } else {
+            mReligion.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mAge.getText().toString().trim())) {
+            valid = false;
+            mAge.setError("*Required");
+        } else {
+            mAge.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
+            valid = false;
+            mPhoneNumber.setError("*Required");
+        } else {
+            mPhoneNumber.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mMoreDetails.getText().toString().trim())) {
+            valid = false;
+            mMoreDetails.setError("*Required");
+        } else {
+            mMoreDetails.setError(null);
+        }
+
+        if (TextUtils.isEmpty(gender)) {
+            valid = false;
+            Toast.makeText(this, "Select Gender", Toast.LENGTH_SHORT).show();
+        }
+        return valid;
+    }
 }

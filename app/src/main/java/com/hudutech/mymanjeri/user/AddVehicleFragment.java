@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.admin;
+package com.hudutech.mymanjeri.user;
 
 
 import android.annotation.TargetApi;
@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,8 +16,10 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,32 +40,33 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.majery_models.News;
+import com.hudutech.mymanjeri.models.Vehicle;
+import com.hudutech.mymanjeri.models.majery_models.TourismPlace;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddNewsFragment extends Fragment implements View.OnClickListener {
-
-    private static final String TAG = "AddNewsFragment";
+public class AddVehicleFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "AddVehicleFragment";
     private static final int IMAGE_PICK = 100;
     private Button mSubmit;
     private Button mChooseImage;
-    private TextInputEditText mNewsHeading;
-    private TextInputEditText mNews;
+    private TextInputEditText mPlace;
+    private TextInputEditText mName;
+    private TextInputEditText mPhoneNumber;
+    private TextInputEditText mVehicleType;
     private ImageView mSelectedPhoto;
     private Context mContext;
     private ProgressDialog mProgress;
     private StorageReference mStorageRef;
-    private CollectionReference mNewsRef;
+    private CollectionReference mVehiclesRef;
     private Uri photoUri;
 
-    public AddNewsFragment() {
+    public AddVehicleFragment() {
         // Required empty public constructor
     }
 
@@ -70,19 +74,21 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_vehicle, container, false);
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mNewsRef = FirebaseFirestore.getInstance().collection("news");
+        mVehiclesRef = FirebaseFirestore.getInstance().collection("vehicles");
 
         mProgress = new ProgressDialog(getContext());
 
-        mChooseImage = view.findViewById(R.id.btn_add_news_photo);
-        mNewsHeading = view.findViewById(R.id.txt_news_heading);
-        mNews = view.findViewById(R.id.txt_news);
-        mSelectedPhoto= view.findViewById(R.id.img_news);
-        mSubmit = view.findViewById(R.id.btn_submit_news);
+        mChooseImage = view.findViewById(R.id.btn_upload_vehicle_photo);
+        mPlace = view.findViewById(R.id.txt_vehicle_place);
+        mName = view.findViewById(R.id.txt_vehicle_name);
+        mPhoneNumber = view.findViewById(R.id.txt_vehicle_phone_number);
+        mVehicleType = view.findViewById(R.id.txt_vehicle_type);
+        mSelectedPhoto = view.findViewById(R.id.img_vehicle_photo);
+        mSubmit = view.findViewById(R.id.btn_submit_vehicle);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
@@ -92,10 +98,20 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_add_news_photo) {
+        if (id == R.id.btn_upload_vehicle_photo) {
             openImageChooser();
-        } else if (id == R.id.btn_submit_news) {
-            submitData(photoUri, mNewsHeading.getText().toString().trim(), mNews.getText().toString().trim());
+        } else if (id == R.id.btn_submit_vehicle) {
+            if (validateInputs()) {
+                submitData(
+                        photoUri,
+                        mPlace.getText().toString().trim(),
+                        mName.getText().toString().trim(),
+                        mPhoneNumber.getText().toString().trim(),
+                        mVehicleType.getText().toString().trim()
+                );
+            } else {
+                Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -117,7 +133,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }
@@ -125,7 +141,13 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void submitData(Uri photoUri, final String newsHeading, final String newsText) {
+    private void submitData(
+            Uri photoUri,
+            final String place,
+            final String name,
+            final String phoneNumber,
+            final String vehicleType
+    ) {
 
         mProgress.setMessage("Submitting data please wait...");
         mProgress.setCanceledOnTouchOutside(false);
@@ -153,16 +175,19 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mNewsRef.document();
-                    News news = new News(
-                            imageUrl,
-                            newsHeading,
-                            newsText,
+                    DocumentReference docRef = mVehiclesRef.document();
+                    Vehicle vehicle = new Vehicle(
                             docRef.getId(),
-                            new Date(),
-                            true
+                            name,
+                            place,
+                            phoneNumber,
+                            vehicleType,
+                            imageUrl,
+                            isAdmin()
                     );
-                    docRef.set(news)
+
+
+                    docRef.set(vehicle)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -208,7 +233,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Images"), IMAGE_PICK);
     }
 
 
@@ -264,5 +289,46 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         return image;
     }
 
+    private boolean validateInputs() {
+        boolean valid = true;
+        if (TextUtils.isEmpty(mName.getText().toString().trim())){
+            valid = false;
+            mName.setError("*Required!");
+        }else {
+            mName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPlace.getText().toString().trim())){
+            valid = false;
+            mPlace.setError("*Required!");
+        }else {
+            mPlace.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())){
+            valid = false;
+            mPhoneNumber.setError("*Required!");
+        }else {
+           mPhoneNumber.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mVehicleType.getText().toString().trim())){
+            valid = false;
+            mVehicleType.setError("*Required!");
+
+        }else {
+            mVehicleType.setError(null);
+        }
+
+        return valid;
+    }
+
+    private boolean isAdmin() {
+
+        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
+                Context.MODE_PRIVATE);
+        return sharedPrefs.getBoolean("isAdmin", false);
+
+    }
 
 }
