@@ -164,7 +164,7 @@ public class AddShoppingFragment extends Fragment implements View.OnClickListene
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
         try {
-            mProgress.setMessage("Opening Location Picker Please wait...");
+            mProgress.setMessage("Opening Map Please wait...");
             mProgress.show();
 
             Intent intent = builder.build(getActivity());
