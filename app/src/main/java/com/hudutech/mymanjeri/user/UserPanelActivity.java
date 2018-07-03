@@ -25,6 +25,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.user_panel_add_blood_bank).setOnClickListener(this);
         findViewById(R.id.user_panel_add_shops).setOnClickListener(this);
         findViewById(R.id.user_panel_add_vehicles).setOnClickListener(this);
+        findViewById(R.id.user_panel_add_professional).setOnClickListener(this);
         layout = findViewById(R.id.layout_userpanel_menu_ui);
     }
 
@@ -53,6 +54,14 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 FragmentTransaction addVehicleTxn = getSupportFragmentManager().beginTransaction();
                 addVehicleTxn.replace(R.id.user_panel_container, addVehicleFragment);
                 addVehicleTxn.commit();
+                break;
+
+            case R.id.user_panel_add_professional:
+                layout.setVisibility(View.GONE);
+                Fragment addProfessionalFragment = new AddProfessionalFragment();
+                FragmentTransaction addProfTxn = getSupportFragmentManager().beginTransaction();
+                addProfTxn.replace(R.id.user_panel_container, addProfessionalFragment);
+                addProfTxn.commit();
                 break;
         }
     }

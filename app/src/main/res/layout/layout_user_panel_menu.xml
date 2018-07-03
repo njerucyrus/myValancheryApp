@@ -85,6 +85,7 @@
 
 
     <LinearLayout
+        android:id="@+id/user_panel_add_professional"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,6 +111,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/user_panel_add_labourers"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,6 +137,7 @@
 
 
     <LinearLayout
+        android:id="@+id/user_panel_add_hotel"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -160,6 +163,7 @@
 
 
     <LinearLayout
+        android:id="@+id/user_panel_add_restaurant"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,6 +189,7 @@
 
 
     <LinearLayout
+        android:id="@+id/user_panel_add_classifieds"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -209,6 +214,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/user_panel_findpartner"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
