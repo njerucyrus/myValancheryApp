@@ -74,8 +74,9 @@ public class FindPartnerActivity extends AppCompatActivity implements View.OnCli
         mUploadPhoto = findViewById(R.id.btn_upload_findpartner_photo);
         mRadioGroupGender = findViewById(R.id.radio_group_findpartner_gender);
         mName = findViewById(R.id.txt_findpartner_name);
-        mPlace = findViewById(R.id.txt_findpartner_religion);
+        mPlace = findViewById(R.id.txt_findpartner_place);
         mAge = findViewById(R.id.txt_findpartner_age);
+        mReligion = findViewById(R.id.txt_findpartner_religion);
         mPhoneNumber = findViewById(R.id.txt_findpartner_phonenumber);
         mMoreDetails = findViewById(R.id.txt_findpartner_moredetails);
         mSelectedPhoto = findViewById(R.id.img_findpartner_selected_image);
