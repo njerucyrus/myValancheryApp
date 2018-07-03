@@ -113,7 +113,13 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.user_panel_findpartner:
-                startActivity(new Intent(this, FindPartnerActivity.class));
+                layout.setVisibility(View.GONE);
+                actionBar.setTitle("Find Partner");
+                Fragment findPartnerFragment = new FindPartnerFragment();
+                FragmentTransaction partnerTxn = getSupportFragmentManager().beginTransaction();
+                partnerTxn.replace(R.id.user_panel_container, findPartnerFragment);
+                partnerTxn.addToBackStack(null);
+                partnerTxn.commit();
                 break;
         }
     }
@@ -126,6 +132,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         }
         layout.setVisibility(View.VISIBLE);
         actionBar.setTitle("User Panel");
+
         super.onBackPressed();
     }
 }
