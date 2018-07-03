@@ -1,10 +1,10 @@
 package com.hudutech.mymanjeri.user;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -13,8 +13,9 @@ import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.admin.AddBloodBankFragment;
 import com.hudutech.mymanjeri.admin.AddShoppingFragment;
 
-public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener{
+public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.user_panel_add_shops).setOnClickListener(this);
         findViewById(R.id.user_panel_add_vehicles).setOnClickListener(this);
         findViewById(R.id.user_panel_add_professional).setOnClickListener(this);
+        findViewById(R.id.user_panel_add_labourers).setOnClickListener(this);
         layout = findViewById(R.id.layout_userpanel_menu_ui);
     }
 
@@ -62,6 +64,14 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 FragmentTransaction addProfTxn = getSupportFragmentManager().beginTransaction();
                 addProfTxn.replace(R.id.user_panel_container, addProfessionalFragment);
                 addProfTxn.commit();
+                break;
+
+            case R.id.user_panel_add_labourers:
+                layout.setVisibility(View.GONE);
+                Fragment addLabourerFragment = new AddLabourerFragment();
+                FragmentTransaction addLabourerTxn = getSupportFragmentManager().beginTransaction();
+                addLabourerTxn.replace(R.id.user_panel_container, addLabourerFragment);
+                addLabourerTxn.commit();
                 break;
         }
     }

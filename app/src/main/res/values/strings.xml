@@ -46,9 +46,9 @@
         <item>Catering</item>
 
     </string-array>
-    
+
     <string-array name="professional_category">
-        <item>Choose Prefession</item>
+        <item>Choose Profession</item>
         <item>Driver</item>
         <item>Electrical</item>
         <item>Fridge&amp;Ac</item>
@@ -64,7 +64,19 @@
         <item>Doctors</item>
     </string-array>
 
+    <string-array name="labourer_category">
+        <item>Choose Category</item>
+        <item>Contractors</item>
+        <item>Tailoring</item>
+        <item>Electrical</item>
+        <item>Fridge&amp;AC</item>
+        <item>Chef</item>
+        <item>Industrial Work</item>
+        <item>Curtain&amp;Sofa</item>
+        <item>Fabrication&amp;Glass</item>
+        <item>Labourers</item>
+        <item>Painting</item>
+    </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
