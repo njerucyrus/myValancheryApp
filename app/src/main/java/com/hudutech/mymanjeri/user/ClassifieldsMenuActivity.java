@@ -89,9 +89,8 @@ public class ClassifieldsMenuActivity extends AppCompatActivity implements View.
     public void onBackPressed() {
         int count = getFragmentManager().getBackStackEntryCount();
         if (count > 0) {
-            getFragmentManager().popBackStack();
+            getFragmentManager().popBackStackImmediate();
         }
-
         layout.setVisibility(View.VISIBLE);
         actionBar.setTitle("Classifieds");
         super.onBackPressed();

@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.models;
+package com.hudutech.mymanjeri.models.contact_models;
 
 public class Vehicle implements java.io.Serializable {
     private static final long serialVersionUID = 1L;

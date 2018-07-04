@@ -40,8 +40,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.Vehicle;
-import com.hudutech.mymanjeri.models.majery_models.TourismPlace;
+import com.hudutech.mymanjeri.models.contact_models.Vehicle;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;

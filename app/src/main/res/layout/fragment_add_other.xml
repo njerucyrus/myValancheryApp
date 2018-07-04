@@ -5,10 +5,135 @@
     android:layout_height="match_parent"
     tools:context=".user.AddOtherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/century_gothic"
+                android:gravity="center"
+                android:text="NB: Select At least 1 image and maximum of 5  images"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/btn_choose_other_images"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/image_chooser_bg_primary"
+                android:src="@drawable/ic_add_a_photo_black_24dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorDivider" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_other_selected_imgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/century_gothic"
+                android:text="Selected Images"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+            <android.support.v4.view.ViewPager
+                android:visibility="gone"
+                android:layout_margin="8dp"
+                android:id="@+id/selected_other_viewpager_images"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Amount"
+                    android:inputType="number"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_other_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_other_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Location"
+                    android:inputType="text"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_other_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Heading"
+                    android:inputType="textMultiLine"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_other_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Description"
+                    android:inputType="number"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_other_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_submit_other"
+                android:layout_margin="8dp"
+                android:background="@drawable/button_ui_primary"
+                android:fontFamily="@font/century_gothic"
+                android:textColor="@color/colorWhite"
+                android:text="Submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
