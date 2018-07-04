@@ -24,8 +24,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -57,7 +59,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
     private TextInputEditText mPlace;
     private TextInputEditText mName;
     private TextInputEditText mPhoneNumber;
-    private TextInputEditText mVehicleType;
+    private String mVehicleType;
     private ImageView mSelectedPhoto;
     private Context mContext;
     private ProgressDialog mProgress;
@@ -85,9 +87,22 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
         mPlace = view.findViewById(R.id.txt_vehicle_place);
         mName = view.findViewById(R.id.txt_vehicle_name);
         mPhoneNumber = view.findViewById(R.id.txt_vehicle_phone_number);
-        mVehicleType = view.findViewById(R.id.txt_vehicle_type);
         mSelectedPhoto = view.findViewById(R.id.img_vehicle_photo);
         mSubmit = view.findViewById(R.id.btn_submit_vehicle);
+
+        Spinner vehicle = view.findViewById(R.id.spinner_vehicle_type);
+        vehicle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                mVehicleType = position > 0 ? adapterView.getItemAtPosition(position).toString(): null;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
@@ -106,7 +121,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
                         mPlace.getText().toString().trim(),
                         mName.getText().toString().trim(),
                         mPhoneNumber.getText().toString().trim(),
-                        mVehicleType.getText().toString().trim()
+                        mVehicleType
                 );
             } else {
                 Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
@@ -311,12 +326,10 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
            mPhoneNumber.setError(null);
         }
 
-        if (TextUtils.isEmpty(mVehicleType.getText().toString().trim())){
+        if (TextUtils.isEmpty(mVehicleType)){
             valid = false;
-            mVehicleType.setError("*Required!");
+            Toast.makeText(mContext, "Select vehicle type", Toast.LENGTH_SHORT).show();
 
-        }else {
-            mVehicleType.setError(null);
         }
 
         return valid;

@@ -14,8 +14,8 @@ import com.hudutech.mymanjeri.admin.AddBloodBankFragment;
 import com.hudutech.mymanjeri.admin.AddShoppingFragment;
 
 public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener {
-    private LinearLayout layout;
     ActionBar actionBar;
+    private LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +127,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 layout.setVisibility(View.GONE);
                 actionBar.setTitle("Classifieds");
                 startActivity(new Intent(this, ClassifieldsMenuActivity.class));
+
                 break;
 
             case R.id.user_panel_about:
@@ -144,13 +145,16 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onBackPressed() {
         int count = getFragmentManager().getBackStackEntryCount();
-        if (count > 0) {
+        if (count == 1) {
             getFragmentManager().popBackStack();
+            moveTaskToBack(false);
+        } else {
+            super.onBackPressed();
         }
         layout.setVisibility(View.VISIBLE);
         actionBar.setTitle("User Panel");
 
-        super.onBackPressed();
+
     }
 
 

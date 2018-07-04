@@ -87,12 +87,21 @@ public class ClassifieldsMenuActivity extends AppCompatActivity implements View.
 
     @Override
     public void onBackPressed() {
+
+
         int count = getFragmentManager().getBackStackEntryCount();
-        if (count > 0) {
-            getFragmentManager().popBackStackImmediate();
+        if (count == 1) {
+           finish();
+        } else if (count > 1) {
+            getFragmentManager().popBackStack();
+            moveTaskToBack(false);
+
+        }else {
+            layout.setVisibility(View.VISIBLE);
+            actionBar.setTitle("Classifieds");
+            super.onBackPressed();
         }
-        layout.setVisibility(View.VISIBLE);
-        actionBar.setTitle("Classifieds");
-        super.onBackPressed();
+
+
     }
 }

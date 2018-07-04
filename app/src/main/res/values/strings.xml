@@ -78,6 +78,15 @@
         <item>Painting</item>
     </string-array>
 
+    <string-array name="vehicle_type">
+        <item>Select Vehicle Type</item>
+        <item>Pickup</item>
+        <item>Auto</item>
+        <item>Goods</item>
+        <item>JCB</item>
+        <item>Taxi</item>
+    </string-array>
+
     <string-array name="fuel">
         <item>Select Fuel</item>
         <item>Diesel</item>

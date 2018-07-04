@@ -43,7 +43,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Labourer;
-import com.hudutech.mymanjeri.models.Professional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;

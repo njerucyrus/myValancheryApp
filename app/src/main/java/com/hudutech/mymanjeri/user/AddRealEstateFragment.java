@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,23 +15,36 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.SelectedImagesViewPagerAdapter;
 import com.hudutech.mymanjeri.models.SelectedImage;
+import com.hudutech.mymanjeri.models.classifields_models.RealEstate;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,8 +53,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddRealEstateFragment extends Fragment {
+public class AddRealEstateFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "AddRealEstateFragment";
+
     private static final int IMAGE_PICK = 100;
     private Context mContext;
     private Uri[] imageUris = new Uri[0];
@@ -49,12 +64,20 @@ public class AddRealEstateFragment extends Fragment {
     private ProgressDialog mProgress;
     private List<String> imageDownloadUrls;
     private StorageReference mStorageRef;
-    private CollectionReference mHotelsRef;
-    private TextView mSelectedPinPoint;
+    private CollectionReference mRealEstateRef;
+
+    private TextInputEditText mAmount;
+    private boolean hasWater;
+    private boolean hasElectricity;
+    private TextInputEditText mPhoneNumber;
+    private TextInputEditText mLocation;
+    private TextInputEditText mHeading;
+    private TextInputEditText mDesc;
 
     public AddRealEstateFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -63,7 +86,58 @@ public class AddRealEstateFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_add_real_estate, container, false);
         mContext = getContext();
+        mImageViewPager = v.findViewById(R.id.selected_real_estate_viewpager_images);
+        tvSelectedImgs = v.findViewById(R.id.tv_real_estate_selected_imgs);
+        mAmount = v.findViewById(R.id.txt_real_estate_amount);
+        mPhoneNumber = v.findViewById(R.id.txt_real_estate_phone_number);
+        mLocation = v.findViewById(R.id.txt_real_estate_location);
+        mHeading = v.findViewById(R.id.txt_real_estate_heading);
+        mDesc = v.findViewById(R.id.txt_real_estate_desc);
+
+        CheckBox electricity = v.findViewById(R.id.checkbox_electricity);
+        electricity.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hasElectricity = isChecked;
+            }
+        });
+
+        CheckBox water = v.findViewById(R.id.checkbox_water);
+        water.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hasWater = isChecked;
+            }
+        });
+
+        v.findViewById(R.id.btn_choose_real_estate_images).setOnClickListener(this);
+        v.findViewById(R.id.btn_submit_real_estate).setOnClickListener(this);
+
+        mProgress = new ProgressDialog(getContext());
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mRealEstateRef = FirebaseFirestore.getInstance().collection("classifields_real_estate");
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.btn_choose_real_estate_images) {
+            openImageChooser();
+        } else if (id==R.id.btn_submit_real_estate) {
+            if (validateInputs()) {
+                submitData(
+                        imageUris,
+                        Double.parseDouble(mAmount.getText().toString()),
+                        mPhoneNumber.getText().toString(),
+                        mLocation.getText().toString(),
+                        mHeading.getText().toString(),
+                        mDesc.getText().toString()
+                );
+            } else {
+                Snackbar.make(v,  "Fix the errors above", Snackbar.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
@@ -175,5 +249,166 @@ public class AddRealEstateFragment extends Fragment {
         parcelFileDescriptor.close();
         return image;
     }
+
+    private boolean validateInputs() {
+        boolean valid = true;
+        if (imageUris.length <= 0) {
+            valid = false;
+            Toast.makeText(mContext, "Select at least one image", Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(mAmount.getText().toString().trim())) {
+            valid = false;
+            mAmount.setError("*Required!");
+        } else {
+            mAmount.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
+            valid = false;
+            mPhoneNumber.setError("*Required!");
+        } else {
+            mPhoneNumber.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mHeading.getText().toString().trim())) {
+            valid = false;
+            mHeading.setError("*Required!");
+        } else {
+            mHeading.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mLocation.getText().toString().trim())) {
+            valid = false;
+            mLocation.setError("*Required!");
+        } else {
+            mLocation.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mDesc.getText().toString().trim())) {
+            valid = false;
+            mDesc.setError("*Required!");
+        } else {
+            mDesc.setError(null);
+        }
+
+        return valid;
+    }
+
+    private boolean isAdmin() {
+
+        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
+                Context.MODE_PRIVATE);
+        return sharedPrefs.getBoolean("isAdmin", false);
+
+    }
+
+
+    private void submitData(
+            Uri[] uris,
+            final double amount,
+            final String phoneNumber,
+            final String location,
+            final String heading,
+            final String desc
+    ) {
+        mProgress.setMessage("Working please wait...");
+        mProgress.setCanceledOnTouchOutside(false);
+
+        mProgress.show();
+        imageDownloadUrls = new ArrayList<>();
+
+        for (Uri uri : uris) {
+
+            try {
+                Bitmap bitmapImage = getBitmapFromUri(uri);
+
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmapImage.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                final byte[] thumbnailBytes = baos.toByteArray();
+
+                //get the filename. ensure to overwrite the existing file
+                //with the same name this saves on firebase storage. by removing duplicates
+                //get the filename. ensure to overwrite the existing file
+
+                String fileName = getFileName(uri);
+
+                UploadTask uploadTask = mStorageRef.child("images")
+                        .child(fileName)
+                        .putBytes(thumbnailBytes);
+
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        imageDownloadUrls.add(taskSnapshot.getDownloadUrl().toString());
+
+                        if (imageDownloadUrls.size() == imageUris.length) {
+                            mProgress.setMessage("Saving other details..");
+
+                            DocumentReference docRef = mRealEstateRef.document();
+
+                            RealEstate realEstate = new RealEstate(
+                                    docRef.getId(),
+                                    imageDownloadUrls,
+                                    amount,
+                                    hasWater,
+                                    hasElectricity,
+                                    phoneNumber,
+                                    location,
+                                    heading,
+                                    desc,
+                                    isAdmin()
+                            );
+
+
+                            docRef.set(realEstate)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            if (mProgress.isShowing()) mProgress.dismiss();
+                                            Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "onFailure: " + e.getMessage());
+                                            Toast.makeText(mContext, "Error occurred while saving detail please try again later", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                        }
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: ");
+                        Toast.makeText(mContext, "Error occurred while uploading images", Toast.LENGTH_SHORT).show();
+                        if (mProgress.isShowing()) mProgress.dismiss();
+
+                    }
+
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        long percent = (100 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        // if (percent == 100) mProgress.dismiss();
+                        mProgress.setMessage(String.valueOf(percent) + "% uploading images please wait...");
+                    }
+                });
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
 
 }

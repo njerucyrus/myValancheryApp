@@ -40,7 +40,6 @@ import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.SelectedImagesViewPagerAdapter;
 import com.hudutech.mymanjeri.models.SelectedImage;
-import com.hudutech.mymanjeri.models.classifields_models.Electronic;
 import com.hudutech.mymanjeri.models.classifields_models.Pet;
 
 import java.io.ByteArrayOutputStream;

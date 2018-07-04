@@ -93,6 +93,19 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:fontFamily="@font/century_gothic"
+                    android:id="@+id/txt_real_estate_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_margin="8dp"
@@ -134,7 +147,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_add_real_estate"
+                android:id="@+id/btn_submit_real_estate"
                 android:layout_margin="8dp"
                 android:background="@drawable/button_ui_primary"
                 android:fontFamily="@font/century_gothic"
