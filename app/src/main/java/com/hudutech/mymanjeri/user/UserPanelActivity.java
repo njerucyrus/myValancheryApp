@@ -1,6 +1,5 @@
 package com.hudutech.mymanjeri.user;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.admin.AddBloodBankFragment;
 import com.hudutech.mymanjeri.admin.AddShoppingFragment;
-import com.hudutech.mymanjeri.digital_activities.FindPartnerActivity;
 
 public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout layout;
@@ -34,6 +32,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.user_panel_add_hotel).setOnClickListener(this);
         findViewById(R.id.user_panel_add_restaurant).setOnClickListener(this);
         findViewById(R.id.user_panel_findpartner).setOnClickListener(this);
+        findViewById(R.id.user_panel_about).setOnClickListener(this);
 
         layout = findViewById(R.id.layout_userpanel_menu_ui);
     }
@@ -120,6 +119,16 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 partnerTxn.replace(R.id.user_panel_container, findPartnerFragment);
                 partnerTxn.addToBackStack(null);
                 partnerTxn.commit();
+                break;
+
+            case R.id.user_panel_about:
+                layout.setVisibility(View.GONE);
+                actionBar.setTitle("About");
+                Fragment aboutFragment = new AboutFragment();
+                FragmentTransaction aboutTxn = getSupportFragmentManager().beginTransaction();
+                aboutTxn.replace(R.id.user_panel_container, aboutFragment);
+                aboutTxn.addToBackStack(null);
+                aboutTxn.commit();
                 break;
         }
     }

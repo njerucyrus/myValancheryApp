@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -84,8 +83,6 @@ public class DepositsFragment extends Fragment {
          SharedPreferences sharedPrefs = mContext.getSharedPreferences("SELECTED_ACC_USER",
                 Context.MODE_PRIVATE);
         final String userUid = sharedPrefs.getString("userUid", null);
-
-        Toast.makeText(mContext, ""+userUid, Toast.LENGTH_SHORT).show();
 
         CollectionReference ref = FirebaseFirestore.getInstance().collection("sb_transactions");
         ref.orderBy("date", Query.Direction.DESCENDING)

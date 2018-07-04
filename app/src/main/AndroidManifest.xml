@@ -3,6 +3,7 @@
     package="com.hudutech.mymanjeri">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -118,7 +119,6 @@
         <activity android:name=".digital_activities.StatementsActivity" />
         <activity android:name=".digital_activities.SelectAccountActivity" />
         <activity android:name=".digital_activities.EnterPasswordActivity" />
-        <activity android:name=".digital_activities.FindPartnerActivity" />
         <activity android:name=".user.UserPanelActivity"></activity>
     </application>
 

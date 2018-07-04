@@ -86,7 +86,6 @@ public class WithdrawsFragment extends Fragment {
                 Context.MODE_PRIVATE);
         final String userUid = sharedPrefs.getString("userUid", null);
 
-        Toast.makeText(mContext, "" + userUid, Toast.LENGTH_SHORT).show();
 
         CollectionReference ref = FirebaseFirestore.getInstance().collection("sb_transactions");
         ref.orderBy("date", Query.Direction.DESCENDING)

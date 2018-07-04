@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,11 +65,15 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateInput()) {
-                    signIn();
-                } else {
-                    Snackbar.make(view, "Please correct the errors above to continue",
-                            Snackbar.LENGTH_LONG).show();
+                if (isNetworkAvailable()) {
+                    if (validateInput()) {
+                        signIn();
+                    } else {
+                        Snackbar.make(view, "Please correct the errors above to continue",
+                                Snackbar.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(LoginActivity.this, "No internet connection please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -283,6 +290,17 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager !=null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }else {
+            return false;
+        }
     }
 
 

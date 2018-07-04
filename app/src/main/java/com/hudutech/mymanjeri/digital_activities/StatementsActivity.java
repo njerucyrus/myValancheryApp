@@ -17,15 +17,13 @@ import com.hudutech.mymanjeri.models.digital_models.SBankAccount;
 
 public class StatementsActivity extends AppCompatActivity {
 
-    private SBankAccount account;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statements);
         getSupportActionBar().setTitle("My Account Profile");
 
-        account = (SBankAccount) getIntent().getSerializableExtra("account");
+        SBankAccount account = (SBankAccount) getIntent().getSerializableExtra("account");
 
         ImageView profileImage = findViewById(R.id.img_sb_account_profile);
         TextView tvBalance = findViewById(R.id.tv_sb_account_balance);
@@ -33,10 +31,10 @@ public class StatementsActivity extends AppCompatActivity {
         TextView tvAccountNo = findViewById(R.id.tv_sb_profile_account_no);
         TextView tvBatchNo = findViewById(R.id.tv_sb_profile_batch_no);
 
-        String bal = "Acc Balance: INR "+account.getBalance();
-        String holderName = "Holder Name: "+account.getCustomerName();
-        String holderAccountNo = "Account No: "+account.getAccountNo();
-        String holderBatchNo = "Batch No: "+account.getBatchNo();
+        String bal = "Acc Balance: INR "+ account.getBalance();
+        String holderName = "Holder Name: "+ account.getCustomerName();
+        String holderAccountNo = "Account No: "+ account.getAccountNo();
+        String holderBatchNo = "Batch No: "+ account.getBatchNo();
 
 
         tvBalance.setText(bal);
