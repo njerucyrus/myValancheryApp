@@ -9,20 +9,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuAdapter;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.adapters.CustomMenuAdapter;
 import com.hudutech.mymanjeri.adapters.ImageViewPagerAdapter;
+import com.hudutech.mymanjeri.admin.AdminPanelActivity;
 import com.hudutech.mymanjeri.admin.DataEntryActivity;
 import com.hudutech.mymanjeri.models.Banner;
 import com.hudutech.mymanjeri.models.CategoryMenu;
@@ -86,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("\t\t\t\tMy Valanchery");
         getSupportActionBar().setIcon(R.drawable.ic_person_white_24dp);
-
 
 
         mRootRef = FirebaseFirestore.getInstance().collection("barners");
@@ -283,8 +278,11 @@ public class MainActivity extends AppCompatActivity {
             showActivity(DataEntryActivity.class);
         } else if (id == R.id.action_logout) {
             signOut();
-        } else if (id == R.id.action_test_user_panel){
+        } else if (id == R.id.action_test_user_panel) {
             showActivity(UserPanelActivity.class);
+        } else if (id == R.id.action_test_admin_panel) {
+
+            showActivity(AdminPanelActivity.class);
         }
 
         return super.onOptionsItemSelected(item);
@@ -383,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences sharedPrefs = getSharedPreferences("AUTH_DATA",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor sharedPrefEditor = sharedPrefs.edit();
-                sharedPrefEditor.putBoolean("isAdmin",false);
+                sharedPrefEditor.putBoolean("isAdmin", false);
                 sharedPrefEditor.putBoolean("isSBAdmin", false);
                 sharedPrefEditor.apply();
                 sharedPrefEditor.commit();
