@@ -9,7 +9,7 @@ public class Vehicle implements java.io.Serializable {
     private double amount;
     private String brand;
     private String model;
-    private String year;
+    private int year;
     private double kmDriven;
     private String fuel;
     private String phoneNumber;
@@ -21,7 +21,7 @@ public class Vehicle implements java.io.Serializable {
     public Vehicle() {
     }
 
-    public Vehicle(String docKey, List<String> photoUrls, double amount, String brand, String model, String year, double kmDriven, String fuel, String phoneNumber, String location, String heading, String description, boolean isValidated) {
+    public Vehicle(String docKey, List<String> photoUrls, double amount, String brand, String model, int year, double kmDriven, String fuel, String phoneNumber, String location, String heading, String description, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrls = photoUrls;
         this.amount = amount;
@@ -77,11 +77,11 @@ public class Vehicle implements java.io.Serializable {
         this.model = model;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

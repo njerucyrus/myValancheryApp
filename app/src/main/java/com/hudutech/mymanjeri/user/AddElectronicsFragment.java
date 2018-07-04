@@ -258,6 +258,20 @@ public class AddElectronicsFragment extends Fragment implements View.OnClickList
             mBrand.setError(null);
         }
 
+        if (TextUtils.isEmpty(mModel.getText().toString().trim())) {
+            valid = false;
+            mModel.setError("*Required!");
+        } else {
+            mModel.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mYear.getText().toString().trim())) {
+            valid = false;
+            mYear.setError("*Required!");
+        } else {
+            mYear.setError(null);
+        }
+
         if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
             valid = false;
             mPhoneNumber.setError("*Required!");

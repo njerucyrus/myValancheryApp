@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Description"
-                    android:inputType="number"
+                    android:inputType="textMultiLine"
                     android:fontFamily="@font/century_gothic"
                     android:id="@+id/txt_other_desc"
                     android:layout_width="match_parent"

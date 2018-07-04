@@ -79,6 +79,7 @@
     </string-array>
 
     <string-array name="fuel">
+        <item>Select Fuel</item>
         <item>Diesel</item>
         <item>Petrol</item>
         <item>Electricity</item>

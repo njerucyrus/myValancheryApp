@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,8 +15,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +28,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.SelectedImagesViewPagerAdapter;
 import com.hudutech.mymanjeri.models.SelectedImage;
+import com.hudutech.mymanjeri.models.classifields_models.Electronic;
+import com.hudutech.mymanjeri.models.classifields_models.Pet;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +52,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddPetsFragment extends Fragment {
+public class AddPetsFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "AddRealEstateFragment";
     private static final int IMAGE_PICK = 100;
     private Context mContext;
@@ -48,6 +63,14 @@ public class AddPetsFragment extends Fragment {
     private List<String> imageDownloadUrls;
     private StorageReference mStorageRef;
     private CollectionReference mPetsRef;
+
+    private TextInputEditText mAmount;
+    private TextInputEditText mBread;
+    private TextInputEditText mAge;
+    private TextInputEditText mPhoneNumber;
+    private TextInputEditText mLocation;
+    private TextInputEditText mHeading;
+    private TextInputEditText mDesc;
 
 
     public AddPetsFragment() {
@@ -61,7 +84,47 @@ public class AddPetsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_add_petsragment, container, false);
         mContext = getContext();
+        mImageViewPager = v.findViewById(R.id.selected_pets_viewpager_images);
+        tvSelectedImgs = v.findViewById(R.id.tv_pets_selected_imgs);
+        mAmount = v.findViewById(R.id.txt_pets_amount);
+        mBread = v.findViewById(R.id.txt_pets_bread);
+        mAge = v.findViewById(R.id.txt_pets_age);
+        mPhoneNumber = v.findViewById(R.id.txt_pets_phone_number);
+        mLocation = v.findViewById(R.id.txt_pets_location);
+        mHeading = v.findViewById(R.id.txt_pets_heading);
+        mDesc = v.findViewById(R.id.txt_pets_desc);
+
+        v.findViewById(R.id.btn_choose_pets_images).setOnClickListener(this);
+        v.findViewById(R.id.btn_submit_pets).setOnClickListener(this);
+
+        mProgress = new ProgressDialog(getContext());
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mPetsRef = FirebaseFirestore.getInstance().collection("classifields_pets");
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.btn_choose_pets_images) {
+            openImageChooser();
+        } else if (id==R.id.btn_submit_pets) {
+            if (validateInputs()) {
+                submitData(
+                        imageUris,
+                        Double.parseDouble(mAmount.getText().toString()),
+                        mBread.getText().toString(),
+                        Integer.parseInt(mAge.getText().toString()),
+                        mPhoneNumber.getText().toString(),
+                        mLocation.getText().toString(),
+                        mHeading.getText().toString(),
+                        mDesc.getText().toString()
+                );
+            } else {
+                Snackbar.make(v,  "Fix the errors above", Snackbar.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
@@ -172,6 +235,183 @@ public class AddPetsFragment extends Fragment {
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
         return image;
+    }
+
+
+    private boolean validateInputs() {
+        boolean valid = true;
+        if (imageUris.length <= 0) {
+            valid = false;
+            Toast.makeText(mContext, "Select at least one image", Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(mAmount.getText().toString().trim())) {
+            valid = false;
+            mAmount.setError("*Required!");
+        } else {
+            mAmount.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mBread.getText().toString().trim())) {
+            valid = false;
+            mBread.setError("*Required!");
+        } else {
+            mBread.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mAge.getText().toString().trim())) {
+            valid = false;
+            mAge.setError("*Required!");
+        } else {
+            mAge.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
+            valid = false;
+            mPhoneNumber.setError("*Required!");
+        } else {
+            mPhoneNumber.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mHeading.getText().toString().trim())) {
+            valid = false;
+            mHeading.setError("*Required!");
+        } else {
+            mHeading.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mLocation.getText().toString().trim())) {
+            valid = false;
+            mLocation.setError("*Required!");
+        } else {
+            mLocation.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mDesc.getText().toString().trim())) {
+            valid = false;
+            mDesc.setError("*Required!");
+        } else {
+            mDesc.setError(null);
+        }
+
+        return valid;
+    }
+
+    private boolean isAdmin() {
+
+        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
+                Context.MODE_PRIVATE);
+        return sharedPrefs.getBoolean("isAdmin", false);
+
+    }
+
+
+    private void submitData(
+            Uri[] uris,
+            final double amount,
+            final String bread,
+            final int age,
+            final String phoneNumber,
+            final String location,
+            final String heading,
+            final String desc
+    ) {
+        mProgress.setMessage("Working please wait...");
+        mProgress.setCanceledOnTouchOutside(false);
+
+        mProgress.show();
+        imageDownloadUrls = new ArrayList<>();
+
+        for (Uri uri : uris) {
+
+            try {
+                Bitmap bitmapImage = getBitmapFromUri(uri);
+
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmapImage.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                final byte[] thumbnailBytes = baos.toByteArray();
+
+                //get the filename. ensure to overwrite the existing file
+                //with the same name this saves on firebase storage. by removing duplicates
+                //get the filename. ensure to overwrite the existing file
+
+                String fileName = getFileName(uri);
+
+                UploadTask uploadTask = mStorageRef.child("images")
+                        .child(fileName)
+                        .putBytes(thumbnailBytes);
+
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        imageDownloadUrls.add(taskSnapshot.getDownloadUrl().toString());
+
+                        if (imageDownloadUrls.size() == imageUris.length) {
+                            mProgress.setMessage("Saving other details..");
+
+                            DocumentReference docRef = mPetsRef.document();
+
+                            Pet pet = new Pet(
+                                    docRef.getId(),
+                                    imageDownloadUrls,
+                                    amount,
+                                    bread,
+                                    age,
+                                    phoneNumber,
+                                    location,
+                                    heading,
+                                    desc,
+                                    isAdmin()
+                            );
+
+
+                            docRef.set(pet)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            if (mProgress.isShowing()) mProgress.dismiss();
+                                            Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "onFailure: " + e.getMessage());
+                                            Toast.makeText(mContext, "Error occurred while saving detail please try again later", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                        }
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: ");
+                        Toast.makeText(mContext, "Error occurred while uploading images", Toast.LENGTH_SHORT).show();
+                        if (mProgress.isShowing()) mProgress.dismiss();
+
+                    }
+
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        long percent = (100 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        // if (percent == 100) mProgress.dismiss();
+                        mProgress.setMessage(String.valueOf(percent) + "% uploading images please wait...");
+                    }
+                });
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
 }
