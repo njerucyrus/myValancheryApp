@@ -119,7 +119,8 @@
         <activity android:name=".digital_activities.StatementsActivity" />
         <activity android:name=".digital_activities.SelectAccountActivity" />
         <activity android:name=".digital_activities.EnterPasswordActivity" />
-        <activity android:name=".user.UserPanelActivity"></activity>
+        <activity android:name=".user.UserPanelActivity" />
+        <activity android:name=".user.ClassifieldsMenuActivity"></activity>
     </application>
 
 </manifest>

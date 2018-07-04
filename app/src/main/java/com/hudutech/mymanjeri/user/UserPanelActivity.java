@@ -1,5 +1,6 @@
 package com.hudutech.mymanjeri.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -32,6 +33,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.user_panel_add_hotel).setOnClickListener(this);
         findViewById(R.id.user_panel_add_restaurant).setOnClickListener(this);
         findViewById(R.id.user_panel_findpartner).setOnClickListener(this);
+        findViewById(R.id.user_panel_add_classifieds).setOnClickListener(this);
         findViewById(R.id.user_panel_about).setOnClickListener(this);
 
         layout = findViewById(R.id.layout_userpanel_menu_ui);
@@ -119,6 +121,12 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
                 partnerTxn.replace(R.id.user_panel_container, findPartnerFragment);
                 partnerTxn.addToBackStack(null);
                 partnerTxn.commit();
+                break;
+
+            case R.id.user_panel_add_classifieds:
+                layout.setVisibility(View.GONE);
+                actionBar.setTitle("Classifieds");
+                startActivity(new Intent(this, ClassifieldsMenuActivity.class));
                 break;
 
             case R.id.user_panel_about:
