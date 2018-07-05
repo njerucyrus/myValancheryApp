@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.admin;
+package com.hudutech.mymanjeri.admin_majery;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;

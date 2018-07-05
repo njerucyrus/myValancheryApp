@@ -1,4 +1,5 @@
-package com.hudutech.mymanjeri.admin;
+package com.hudutech.mymanjeri.admin_majery;
+
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -36,14 +37,17 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.majery_models.TourismPlace;
+import com.hudutech.mymanjeri.models.majery_models.History;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
-public class AddTourismFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "AddTourismFragment";
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class AddHistoryFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "AddHistoryFragment";
     private static final int IMAGE_PICK = 100;
     private Button mSubmit;
     private Button mChooseImage;
@@ -53,10 +57,10 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
     private Context mContext;
     private ProgressDialog mProgress;
     private StorageReference mStorageRef;
-    private CollectionReference mTourismRef;
+    private CollectionReference mHistoryRef;
     private Uri photoUri;
 
-    public AddTourismFragment() {
+    public AddHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -64,19 +68,19 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_add_tourism, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_history, container, false);
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mTourismRef = FirebaseFirestore.getInstance().collection("tourism");
+        mHistoryRef = FirebaseFirestore.getInstance().collection("history");
 
         mProgress = new ProgressDialog(getContext());
 
-        mChooseImage = view.findViewById(R.id.btn_upload_tourism_place_photo);
-        mPlaneName = view.findViewById(R.id.txt_place_name);
-        mDesc = view.findViewById(R.id.txt_place_desc);
-        mSelectedPhoto= view.findViewById(R.id.img_tourism_selected_place);
-        mSubmit = view.findViewById(R.id.btn_submit_tourism);
+        mChooseImage = view.findViewById(R.id.btn_history_upload_place_photo);
+        mPlaneName = view.findViewById(R.id.txt_history_place_name);
+        mDesc = view.findViewById(R.id.txt_history_place_desc);
+        mSelectedPhoto= view.findViewById(R.id.img_history);
+        mSubmit = view.findViewById(R.id.btn_submit_history);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
@@ -86,9 +90,9 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_upload_tourism_place_photo) {
+        if (id == R.id.btn_history_upload_place_photo) {
             openImageChooser();
-        } else if (id == R.id.btn_submit_tourism) {
+        } else if (id == R.id.btn_submit_history) {
             submitData(photoUri, mPlaneName.getText().toString().trim(), mDesc.getText().toString().trim());
         }
     }
@@ -147,15 +151,15 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mTourismRef.document();
-                    TourismPlace place = new TourismPlace(
+                    DocumentReference docRef = mHistoryRef.document();
+                    History history = new History(
                             imageUrl,
                             placeName,
                             desc,
                             docRef.getId(),
                             true
                     );
-                    docRef.set(place)
+                    docRef.set(history)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -259,4 +263,3 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
 
 
 }
-

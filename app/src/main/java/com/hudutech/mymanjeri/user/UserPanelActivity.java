@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.admin.AddBloodBankFragment;
-import com.hudutech.mymanjeri.admin.AddShoppingFragment;
+import com.hudutech.mymanjeri.admin_majery.AddBloodBankFragment;
+import com.hudutech.mymanjeri.admin_majery.AddShoppingFragment;
 
 public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener {
     ActionBar actionBar;

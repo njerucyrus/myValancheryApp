@@ -1,5 +1,4 @@
-package com.hudutech.mymanjeri.admin;
-
+package com.hudutech.mymanjeri.admin_majery;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -15,15 +14,19 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -38,67 +41,105 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.majery_models.Education;
+import com.hudutech.mymanjeri.models.majery_models.BloodDonor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class AddEducationFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "AddEducationFragment";
-    private static final int IMAGE_PICK = 100;
-    private Button mSubmit;
-    private Button mChooseImage;
-    private TextInputEditText mPlaneName;
-    private TextInputEditText mDesc;
+public class AddBloodBankFragment extends Fragment implements View.OnClickListener {
+
+    private static final String TAG = "AddBloodBankFragment";
+    private static final int IMAGE_PICK = 1;
+    private Spinner mSpinner;
+    private TextInputEditText mFullName;
+    private TextInputEditText mPhoneNumber;
+    private TextInputEditText mAddress;
+    private TextInputEditText mOtherInfo;
+    private String bloodGroup;
     private ImageView mSelectedPhoto;
-    private Context mContext;
+    private CollectionReference donorsRef;
     private ProgressDialog mProgress;
-    private StorageReference mStorageRef;
-    private CollectionReference mEduRef;
+    private Button mButtonUploadImg;
+    private Button mSubmit;
+    private Context mContext;
+
     private Uri photoUri;
+    private StorageReference mStorageRef;
+    private String imageDownloadUrl = null;
 
 
-    public AddEducationFragment() {
+    public AddBloodBankFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_education, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_add_blood_bank, container, false);
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mEduRef = FirebaseFirestore.getInstance().collection("education");
+        mSpinner = view.findViewById(R.id.spinner_blood_group_admin);
+        mFullName = view.findViewById(R.id.txt_fullname_admin);
+        mPhoneNumber = view.findViewById(R.id.txt_phone_number_admin);
+        mAddress = view.findViewById(R.id.txt_address);
+        mOtherInfo = view.findViewById(R.id.txt_other_details);
+        mSubmit = view.findViewById(R.id.btn_done_admin);
+        mButtonUploadImg = view.findViewById(R.id.btn_upload_avator);
+        mSelectedPhoto = view.findViewById(R.id.img_uploaded_profile_donor);
 
-        mProgress = new ProgressDialog(getContext());
-
-        mChooseImage = view.findViewById(R.id.btn_upload_education_place_photo);
-        mPlaneName = view.findViewById(R.id.txt_education_place_name);
-        mDesc = view.findViewById(R.id.txt__education_place_desc);
-        mSelectedPhoto = view.findViewById(R.id.img_education_selected_place);
-        mSubmit = view.findViewById(R.id.btn_submit_education);
-        mChooseImage.setOnClickListener(this);
+        mButtonUploadImg.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
-        return view;
-    }
+        mProgress = new ProgressDialog(getContext());
+        donorsRef = FirebaseFirestore.getInstance().collection("donors");
 
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i > 0) {
+                    bloodGroup = adapterView.getItemAtPosition(i).toString();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                bloodGroup = null;
+
+            }
+        });
+
+        return view;
+
+    }
 
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_upload_education_place_photo) {
+        if (id == R.id.btn_upload_avator) {
             openImageChooser();
-        } else if (id == R.id.btn_submit_education) {
-            submitData(photoUri, mPlaneName.getText().toString().trim(), mDesc.getText().toString().trim());
+        } else if (id == R.id.btn_done_admin) {
+            if (validateInput()) {
+                submitDonorData(
+                        photoUri,
+                        mFullName.getText().toString(),
+                        mPhoneNumber.getText().toString().trim(),
+                        bloodGroup,
+                        mOtherInfo.getText().toString(),
+                        mAddress.getText().toString(),
+                        imageDownloadUrl,
+                        true
+                );
+            } else {
+                Snackbar.make(v, "Fix errors above", Snackbar.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -120,16 +161,14 @@ public class AddEducationFragment extends Fragment implements View.OnClickListen
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }
 
     }
 
-
-    private void submitData(Uri photoUri, final String placeName, final String desc) {
-
+    private void submitDonorData(Uri photoUri, final String fullName, final String phoneNumber, final String bloodGroup, final String otherInfo, final String address, String imageDownloadUrl, final boolean isValidated) {
         mProgress.setMessage("Submitting data please wait...");
         mProgress.setCanceledOnTouchOutside(false);
         mProgress.show();
@@ -156,15 +195,17 @@ public class AddEducationFragment extends Fragment implements View.OnClickListen
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mEduRef.document();
-                    Education education = new Education(
+                    DocumentReference docRef = donorsRef.document();
+                    BloodDonor donor = new BloodDonor(
+                            fullName,
+                            phoneNumber,
+                            bloodGroup,
+                            otherInfo,
+                            address,
                             imageUrl,
-                            placeName,
-                            desc,
-                            docRef.getId(),
-                            true
+                            isValidated
                     );
-                    docRef.set(education)
+                    docRef.set(donor)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -203,8 +244,8 @@ public class AddEducationFragment extends Fragment implements View.OnClickListen
             e.printStackTrace();
         }
 
-
     }
+
 
     private void openImageChooser() {
         Intent intent = new Intent();
@@ -265,4 +306,30 @@ public class AddEducationFragment extends Fragment implements View.OnClickListen
         parcelFileDescriptor.close();
         return image;
     }
+
+    private boolean validateInput() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(mFullName.getText().toString().trim())) {
+            mFullName.setError("*Required");
+            valid = false;
+        } else {
+            mFullName.setError(null);
+        }
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
+            mPhoneNumber.setError("*Required");
+            valid = false;
+        } else {
+            mPhoneNumber.setError(null);
+        }
+
+        if (TextUtils.isEmpty(bloodGroup)) {
+            valid = false;
+            Toast.makeText(mContext, "Select Blood Group", Toast.LENGTH_SHORT).show();
+        }
+
+        return valid;
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.admin;
+package com.hudutech.mymanjeri.admin_majery;
 
 import android.app.ProgressDialog;
 import android.content.Context;

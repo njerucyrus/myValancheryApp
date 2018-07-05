@@ -4,13 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hudutech.mymanjeri.admin.AddBloodBankFragment;
-import com.hudutech.mymanjeri.admin.AddEducationFragment;
-import com.hudutech.mymanjeri.admin.AddHistoryFragment;
-import com.hudutech.mymanjeri.admin.AddNewsFragment;
-import com.hudutech.mymanjeri.admin.AddNotificationFragment;
-import com.hudutech.mymanjeri.admin.AddShoppingFragment;
-import com.hudutech.mymanjeri.admin.AddTourismFragment;
+import com.hudutech.mymanjeri.admin_majery.AddBloodBankFragment;
+import com.hudutech.mymanjeri.admin_majery.AddEducationFragment;
+import com.hudutech.mymanjeri.admin_majery.AddHistoryFragment;
+import com.hudutech.mymanjeri.admin_majery.AddNewsFragment;
+import com.hudutech.mymanjeri.admin_majery.AddNotificationFragment;
+import com.hudutech.mymanjeri.admin_majery.AddShoppingFragment;
+import com.hudutech.mymanjeri.admin_majery.AddTourismFragment;
 
 
 public class AdminSectionAdapter extends FragmentPagerAdapter {

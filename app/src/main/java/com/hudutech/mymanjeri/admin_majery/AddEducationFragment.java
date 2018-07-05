@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.admin;
+package com.hudutech.mymanjeri.admin_majery;
 
 
 import android.annotation.TargetApi;
@@ -37,65 +37,67 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.majery_models.News;
+import com.hudutech.mymanjeri.models.majery_models.Education;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddNewsFragment extends Fragment implements View.OnClickListener {
-
-    private static final String TAG = "AddNewsFragment";
+public class AddEducationFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "AddEducationFragment";
     private static final int IMAGE_PICK = 100;
     private Button mSubmit;
     private Button mChooseImage;
-    private TextInputEditText mNewsHeading;
-    private TextInputEditText mNews;
+    private TextInputEditText mPlaneName;
+    private TextInputEditText mDesc;
     private ImageView mSelectedPhoto;
     private Context mContext;
     private ProgressDialog mProgress;
     private StorageReference mStorageRef;
-    private CollectionReference mNewsRef;
+    private CollectionReference mEduRef;
     private Uri photoUri;
 
-    public AddNewsFragment() {
+
+    public AddEducationFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_education, container, false);
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mNewsRef = FirebaseFirestore.getInstance().collection("news");
+        mEduRef = FirebaseFirestore.getInstance().collection("education");
 
         mProgress = new ProgressDialog(getContext());
 
-        mChooseImage = view.findViewById(R.id.btn_add_news_photo);
-        mNewsHeading = view.findViewById(R.id.txt_news_heading);
-        mNews = view.findViewById(R.id.txt_news);
-        mSelectedPhoto= view.findViewById(R.id.img_news);
-        mSubmit = view.findViewById(R.id.btn_submit_news);
+        mChooseImage = view.findViewById(R.id.btn_upload_education_place_photo);
+        mPlaneName = view.findViewById(R.id.txt_education_place_name);
+        mDesc = view.findViewById(R.id.txt__education_place_desc);
+        mSelectedPhoto = view.findViewById(R.id.img_education_selected_place);
+        mSubmit = view.findViewById(R.id.btn_submit_education);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
         return view;
     }
 
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_add_news_photo) {
+        if (id == R.id.btn_upload_education_place_photo) {
             openImageChooser();
-        } else if (id == R.id.btn_submit_news) {
-            submitData(photoUri, mNewsHeading.getText().toString().trim(), mNews.getText().toString().trim());
+        } else if (id == R.id.btn_submit_education) {
+            submitData(photoUri, mPlaneName.getText().toString().trim(), mDesc.getText().toString().trim());
         }
     }
 
@@ -108,10 +110,10 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
 
             if (data.getData() != null) {
                 photoUri = data.getData();
-                mSelectedPhoto.setVisibility(View.VISIBLE);
                 RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.drawable.no_barner);
 
+                mSelectedPhoto.setVisibility(View.VISIBLE);
                 Glide.with(mContext)
                         .load(photoUri)
                         .apply(requestOptions)
@@ -125,14 +127,14 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void submitData(Uri photoUri, final String newsHeading, final String newsText) {
+    private void submitData(Uri photoUri, final String placeName, final String desc) {
 
         mProgress.setMessage("Submitting data please wait...");
         mProgress.setCanceledOnTouchOutside(false);
         mProgress.show();
 
-
         try {
+
             Bitmap bitmapImage = getBitmapFromUri(photoUri);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -153,16 +155,15 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mNewsRef.document();
-                    News news = new News(
+                    DocumentReference docRef = mEduRef.document();
+                    Education education = new Education(
                             imageUrl,
-                            newsHeading,
-                            newsText,
+                            placeName,
+                            desc,
                             docRef.getId(),
-                            new Date(),
                             true
                     );
-                    docRef.set(news)
+                    docRef.set(education)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -208,7 +209,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Images"), IMAGE_PICK);
     }
 
 
@@ -263,6 +264,4 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         parcelFileDescriptor.close();
         return image;
     }
-
-
 }

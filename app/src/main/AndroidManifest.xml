@@ -100,7 +100,7 @@
         <activity android:name=".medical_activities.LabsActivity" />
         <activity android:name=".medical_activities.MedicalShopsActivity" />
         <activity android:name=".medical_activities.OpticalActivity" />
-        <activity android:name=".admin.DataEntryActivity" />
+        <activity android:name=".admin_majery.DataEntryActivity" />
         <activity android:name=".majery_activities.NotificationActivity" />
         <activity android:name=".majery_activities.NewsDetailActivity" />
         <activity android:name=".majery_activities.EducationDetailActivity" />
@@ -121,7 +121,11 @@
         <activity android:name=".digital_activities.EnterPasswordActivity" />
         <activity android:name=".user.UserPanelActivity" />
         <activity android:name=".user.ClassifieldsMenuActivity" />
-        <activity android:name=".admin.AdminPanelActivity"></activity>
+        <activity android:name=".admin_majery.AdminPanelActivity" />
+        <activity android:name=".admin_banner_setting.BannerSettingEntryPointActivity" />
+        <activity android:name=".admin_contacts.ContactsEntryPointActivity" />
+        <activity android:name=".admin_medical.MedicalEntryPointActivity" />
+        <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity"></activity>
     </application>
 
 </manifest>
