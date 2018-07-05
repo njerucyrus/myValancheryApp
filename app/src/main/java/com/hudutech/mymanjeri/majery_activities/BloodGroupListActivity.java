@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri;
+package com.hudutech.mymanjeri.majery_activities;
 
 
 
@@ -20,6 +20,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.BloodDonorAdapter;
 import com.hudutech.mymanjeri.models.majery_models.BloodDonor;
 

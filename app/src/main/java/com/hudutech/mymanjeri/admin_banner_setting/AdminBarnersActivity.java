@@ -1,8 +1,9 @@
-package com.hudutech.mymanjeri;
 
-import android.app.AlertDialog;
+
+package com.hudutech.mymanjeri.admin_banner_setting;
+
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,25 +14,28 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.adapters.BarnerAdminAdapter;
 import com.hudutech.mymanjeri.models.Banner;
 
 import java.io.ByteArrayOutputStream;
@@ -40,87 +44,78 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditBannerActivity extends AppCompatActivity implements View.OnClickListener{
-    private static final String TAG = "EditBannerActivity";
-    private Banner barner;
-    private ProgressDialog mProgress;
-    private CollectionReference mRootRef;
+public class AdminBarnersActivity extends AppCompatActivity {
+    private static final String TAG = "AdminBarnersActivity";
 
-
-    private static final int IMAGE_PICK = 1;
-    private Uri[] imageUris;
-    private Uri imageUri;
-    private StorageReference mStorageRef;
+   private static final int IMAGE_PICK = 1;
+   private Uri[] imageUris;
+   private Uri imageUri;
+   private ProgressDialog mProgress;
+   private StorageReference mStorageRef;
+   private CollectionReference mBarnersRef;
+   private RecyclerView mRecylerView;
+   private BarnerAdminAdapter mAdapter;
+   private List<Banner> barnerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_banner);
-
-        getSupportActionBar().setTitle("Edit Banner");
+        setContentView(R.layout.activity_admin_barners);
+        getSupportActionBar().setTitle("Banners");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageView bannerImage = findViewById(R.id.img_edit_banner);
-
-        Button delete = findViewById(R.id.btn_edit_delete_banner);
-        Button change = findViewById(R.id.btn_edit_change_banner);
-
-        delete.setOnClickListener(this);
-        change.setOnClickListener(this);
-
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-
         mProgress = new ProgressDialog(this);
-        barner = (Banner)getIntent().getSerializableExtra("barner");
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mBarnersRef = FirebaseFirestore.getInstance().collection("barners");
+        barnerList = new ArrayList<>();
+        mAdapter = new BarnerAdminAdapter(this, barnerList);
+        mRecylerView = findViewById(R.id.admin_barner_recylerview);
+        mRecylerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecylerView.setItemAnimator(new DefaultItemAnimator());
+        mRecylerView.setAdapter(mAdapter);
+        mRecylerView.setHasFixedSize(true);
+        loadBarners();
 
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.no_barner);
+        ImageButton btnUploadImage = (ImageButton)findViewById(R.id.btn_choose_img_admin);
 
-        Glide.with(this)
-                .load(barner.getBarnerUrl())
-                .apply(requestOptions)
-                .into(bannerImage);
-
-        mRootRef = FirebaseFirestore.getInstance().collection("barners");
+        btnUploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImageChooser();
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.btn_edit_change_banner){
-            //change image
-            openImageChooser();
-        } else if (id == R.id.btn_edit_delete_banner) {
-            //delete barner from storage and from db
+    private void loadBarners() {
+        mBarnersRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.getDocuments().size() > 0) {
+                            for (DocumentSnapshot snapshot: queryDocumentSnapshots.getDocuments()) {
+                                Banner barner = snapshot.toObject(Banner.class);
+                                barnerList.add(barner);
+                            }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Are you sure you want to delete?");
-            builder.setMessage("The file will be lost permanently" );
-            builder.setCancelable(false);
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    deleteBarner(barner.getBarnerUrl());
-                }
-            });
-
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
-        }
-
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: "+e.getMessage());
+                    }
+                });
     }
 
 
     private void openImageChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Images"), IMAGE_PICK);
     }
 
     @Override
@@ -134,11 +129,14 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
                 int count = data.getClipData().getItemCount();
                 imageUris = new Uri[count];
 
+
                 for (int i = 0; i < count; i++) {
                     imageUri = data.getClipData().getItemAt(i).getUri();
                     imageUris[i] = imageUri;
                 }
                 uploadImages(imageUris);
+                barnerList = new ArrayList<>();
+                loadBarners();
 
             } else if (data.getData() != null) {
                 //only one image selected so set up the array for upload method to work
@@ -146,22 +144,26 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
                 imageUris = new Uri[1];
                 imageUris[0] = data.getData();
                 uploadImages(imageUris);
+                barnerList = new ArrayList<>();
+                loadBarners();
+
 
 
             }
         } else {
-            // No baner images selected selected
-            Toast.makeText(this, "No image selected.", Toast.LENGTH_SHORT).show();
+           // No baner images selected selected
+            Toast.makeText(this, "No images selected.", Toast.LENGTH_SHORT).show();
         }
     }
 
+
     private void uploadImages(Uri[] uris) {
 
-        mProgress.setMessage("Uploading please wait...");
+        mProgress.setMessage("Uploading please...");
         mProgress.setCanceledOnTouchOutside(false);
 
         mProgress.show();
-        final List<String> imageDownloadUrls = new ArrayList<>();
+        final List<String>  imageDownloadUrls = new ArrayList<>();
 
 
         for (Uri uri : uris) {
@@ -189,16 +191,14 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
 
                         imageDownloadUrls.add(taskSnapshot.getDownloadUrl().toString());
 
-                        DocumentReference docRef = mRootRef.document(barner.getDocKey());
-                        Banner barner1 = new Banner(taskSnapshot.getDownloadUrl().toString(), barner.getDocKey(), 0);
+                        DocumentReference docRef = mBarnersRef.document();
+                        Banner barner = new Banner(taskSnapshot.getDownloadUrl().toString(), docRef.getId(), 0);
 
-                        docRef.set(barner1);
+                        docRef.set(barner);
 
                         if (imageDownloadUrls.size() == imageUris.length) {
-                            Toast.makeText(EditBannerActivity.this, "banners uploaded", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AdminBarnersActivity.this, "banners uploaded", Toast.LENGTH_LONG).show();
                             if (mProgress.isShowing()) mProgress.dismiss();
-
-                            startActivity(new Intent(EditBannerActivity.this, AdminBarnersActivity.class));
 
                         }
 
@@ -234,14 +234,14 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
 
 
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private String getFileName(Uri uri) {
         String fileName = null;
         // The query, since it only applies to a single document, will only return
         // one row. There's no need to filter, sort, or select fields, since we want
         // all fields for one document.
 
-        try (Cursor cursor = EditBannerActivity.this.getContentResolver()
+        try (Cursor cursor = AdminBarnersActivity.this.getContentResolver()
                 .query(uri, null, null, null, null, null)) {
             // moveToFirst() returns false if the cursor has 0 rows.  Very handy for
             // "if there's anything to look at, look at it" conditionals.
@@ -284,52 +284,5 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
         return image;
-    }
-
-
-    private void deleteBarner(String downloadUrl) {
-
-        mProgress.setMessage("Deleting....");
-        mProgress.show();
-        StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(downloadUrl);
-        photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-
-                deleteFromDb();
-                // File deleted successfully
-                Log.d(TAG, "onSuccess: deleted file");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                if (mProgress.isShowing()) mProgress.dismiss();
-                // Uh-oh, an error occurred!
-                Log.d(TAG, "onFailure: did not delete file");
-            }
-        });
-
-    }
-
-    private void deleteFromDb() {
-        DocumentReference docRef = mRootRef.document(barner.getDocKey());
-        docRef.delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        if (mProgress.isShowing()) mProgress.dismiss();
-                        Toast.makeText(EditBannerActivity.this, "Deleted!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(EditBannerActivity.this, AdminBarnersActivity.class));
-                        finish();
-                        barner = new Banner();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (mProgress.isShowing()) mProgress.dismiss();
-
-                    }
-                });
     }
 }

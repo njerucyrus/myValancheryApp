@@ -1,12 +1,13 @@
-package com.hudutech.mymanjeri.admin_majery;
+package com.hudutech.mymanjeri;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
-import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
+import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,6 +42,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
                 showActivity(DataEntryActivity.class);
                 break;
             case R.id.admin_panel_contacts:
+                showActivity(ContactsEntryPointActivity.class);
                 break;
 
         }
@@ -50,7 +52,5 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         startActivity(new Intent(this, cls));
     }
 
-    private void showActivity(Intent intent) {
-        startActivity(intent);
-    }
+
 }

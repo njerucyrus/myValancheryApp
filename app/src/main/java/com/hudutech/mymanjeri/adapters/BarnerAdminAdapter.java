@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.hudutech.mymanjeri.EditBannerActivity;
+import com.hudutech.mymanjeri.admin_banner_setting.EditBannerActivity;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Banner;
 

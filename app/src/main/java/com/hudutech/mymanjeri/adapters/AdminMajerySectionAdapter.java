@@ -13,9 +13,9 @@ import com.hudutech.mymanjeri.admin_majery.AddShoppingFragment;
 import com.hudutech.mymanjeri.admin_majery.AddTourismFragment;
 
 
-public class AdminSectionAdapter extends FragmentPagerAdapter {
+public class AdminMajerySectionAdapter extends FragmentPagerAdapter {
 
-    public AdminSectionAdapter(FragmentManager fm) {
+    public AdminMajerySectionAdapter(FragmentManager fm) {
         super(fm);
     }
 

@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.GetTimeAgo;
+import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.majery_activities.CustomNotificationDetailActivity;
 import com.hudutech.mymanjeri.models.majery_models.CustomNotification;
 

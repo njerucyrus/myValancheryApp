@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri;
+package com.hudutech.mymanjeri.admin_majery;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -34,6 +34,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.majery_activities.BloodBankActivity;
 import com.hudutech.mymanjeri.models.majery_models.BloodDonor;
 

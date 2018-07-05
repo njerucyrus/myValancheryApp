@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri;
+package com.hudutech.mymanjeri.admin_majery;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.majery_activities.BloodBankActivity;
 import com.hudutech.mymanjeri.models.majery_models.BloodDonor;
 

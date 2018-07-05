@@ -35,22 +35,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".majery_activities.BloodBankActivity" />
-        <activity android:name=".BecomeDonorActivity">
+        <activity android:name=".admin_majery.BecomeDonorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
         </activity>
-        <activity android:name=".BloodGroupListActivity">
+        <activity android:name=".majery_activities.BloodGroupListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
         </activity>
-        <activity android:name=".AdminBarnersActivity">
+        <activity android:name=".admin_banner_setting.AdminBarnersActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.MainActivity" />
         </activity>
-        <activity android:name=".AddBloodDonorAdminActivity">
+        <activity android:name=".admin_majery.AddBloodDonorAdminActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
@@ -61,10 +61,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.LoginActivity" />
         </activity>
-        <activity android:name=".EditBannerActivity">
+        <activity android:name=".admin_banner_setting.EditBannerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hudutech.mymanjeri.AdminBarnersActivity" />
+                android:value="com.hudutech.mymanjeri.admin_banner_setting.AdminBarnersActivity" />
         </activity>
         <activity android:name=".majery_activities.NewsActivity" />
         <activity android:name=".majery_activities.TourismActivity" />
@@ -121,7 +121,7 @@
         <activity android:name=".digital_activities.EnterPasswordActivity" />
         <activity android:name=".user.UserPanelActivity" />
         <activity android:name=".user.ClassifieldsMenuActivity" />
-        <activity android:name=".admin_majery.AdminPanelActivity" />
+        <activity android:name=".AdminPanelActivity" />
         <activity android:name=".admin_banner_setting.BannerSettingEntryPointActivity" />
         <activity android:name=".admin_contacts.ContactsEntryPointActivity" />
         <activity android:name=".admin_medical.MedicalEntryPointActivity" />

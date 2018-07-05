@@ -23,6 +23,7 @@
             android:text="@string/fullname_n_phone_number_nlocation"
             android:id="@+id/txt_donor_desc"
             android:layout_toEndOf="@+id/image_blood_donor"
+            android:layout_toRightOf="@+id/image_blood_donor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

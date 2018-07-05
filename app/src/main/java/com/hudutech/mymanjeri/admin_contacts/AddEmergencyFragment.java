@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.user;
+package com.hudutech.mymanjeri.admin_contacts;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -48,8 +48,6 @@ import java.io.IOException;
 public class AddEmergencyFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "AddEmergencyFragment";
     private static final int IMAGE_PICK = 100;
-    private Button mSubmit;
-    private Button mChooseImage;
     private TextInputEditText mPlace;
     private TextInputEditText mName;
     private TextInputEditText mPhoneNumber;
@@ -77,13 +75,13 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
 
         mProgress = new ProgressDialog(getContext());
 
-        mChooseImage = view.findViewById(R.id.btn_upload_emergency_photo);
+        Button mChooseImage = view.findViewById(R.id.btn_upload_emergency_photo);
         mPlace = view.findViewById(R.id.txt_emergency_place);
         mName = view.findViewById(R.id.txt_emergency_name);
         mPhoneNumber = view.findViewById(R.id.txt_emergency_phone_number);
         mEmergencyType = view.findViewById(R.id.txt_emergency_type);
         mSelectedPhoto = view.findViewById(R.id.img_emergency_photo);
-        mSubmit = view.findViewById(R.id.btn_submit_emergency);
+        Button mSubmit = view.findViewById(R.id.btn_submit_emergency);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 

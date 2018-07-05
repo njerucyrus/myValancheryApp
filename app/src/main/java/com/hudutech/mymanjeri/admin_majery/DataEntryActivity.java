@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.adapters.AdminSectionAdapter;
+import com.hudutech.mymanjeri.adapters.AdminMajerySectionAdapter;
 
 public class DataEntryActivity extends AppCompatActivity {
 
@@ -14,10 +14,11 @@ public class DataEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
-        getSupportActionBar().setTitle("Admin Panel- Data Entry");
+        getSupportActionBar().setTitle("Admin Valancery Section");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewPager mViewPager = findViewById(R.id.adminDataEntryViewPager);
-        AdminSectionAdapter mSectionsPagerAdapter = new AdminSectionAdapter(getSupportFragmentManager());
+        AdminMajerySectionAdapter mSectionsPagerAdapter = new AdminMajerySectionAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout mTabLayout = findViewById(R.id.adminDataEntryTablayout);
         mTabLayout.setupWithViewPager(mViewPager);

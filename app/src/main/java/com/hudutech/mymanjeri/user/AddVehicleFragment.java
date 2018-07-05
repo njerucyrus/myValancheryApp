@@ -79,7 +79,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mVehiclesRef = FirebaseFirestore.getInstance().collection("vehicles");
+        mVehiclesRef = FirebaseFirestore.getInstance().collection("contact_vehicles");
 
         mProgress = new ProgressDialog(getContext());
 
