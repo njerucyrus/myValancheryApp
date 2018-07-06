@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,8 +28,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.admin_contacts.ContactVehicleFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
 import com.hudutech.mymanjeri.models.contact_models.Vehicle;
 
 import java.util.List;
@@ -49,14 +46,15 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
 
     }
 
+    @NonNull
     @Override
-    public VehicleListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VehicleListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
         return new VehicleListAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
         final Vehicle vehicle = vehicleList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -81,7 +79,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.deleteVehicle(vehicle, position);
+                        holder.deleteVehicle(vehicle, holder.getAdapterPosition());
 
                     }
                 });
@@ -108,7 +106,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(vehicle, true, position);
+                        holder.updateIsValidated(vehicle, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -134,7 +132,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(vehicle, false, position);
+                        holder.updateIsValidated(vehicle, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -251,7 +249,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
 
         }
 
-        public void updateIsValidated(final Vehicle vehicle, boolean isValidated, final int position) {
+        public void updateIsValidated(final Vehicle vehicle, boolean isValidated,  final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();

@@ -1,25 +1,24 @@
-package com.hudutech.mymanjeri.models;
+package com.hudutech.mymanjeri.models.contact_models;
 
-public class Labourer implements java.io.Serializable {
+public class Emergency implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String docKey;
     private String name;
-    private String phoneNumber;
     private String place;
-    private String category;
+    private String phoneNumber;
+    private String emergencyType;
     private String photoUrl;
     private boolean isValidated;
 
-
-    public Labourer() {
+    public Emergency() {
     }
 
-    public Labourer(String docKey, String name, String phoneNumber, String place, String category, String photoUrl, boolean isValidated) {
+    public Emergency(String docKey, String name, String place, String phoneNumber, String emergencyType, String photoUrl, boolean isValidated) {
         this.docKey = docKey;
         this.name = name;
-        this.phoneNumber = phoneNumber;
         this.place = place;
-        this.category = category;
+        this.phoneNumber = phoneNumber;
+        this.emergencyType = emergencyType;
         this.photoUrl = photoUrl;
         this.isValidated = isValidated;
     }
@@ -40,14 +39,6 @@ public class Labourer implements java.io.Serializable {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getPlace() {
         return place;
     }
@@ -56,12 +47,20 @@ public class Labourer implements java.io.Serializable {
         this.place = place;
     }
 
-    public String getCategory() {
-        return category;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmergencyType() {
+        return emergencyType;
+    }
+
+    public void setEmergencyType(String emergencyType) {
+        this.emergencyType = emergencyType;
     }
 
     public String getPhotoUrl() {
@@ -82,12 +81,12 @@ public class Labourer implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Professional{" +
+        return "Emergency{" +
                 "docKey='" + docKey + '\'' +
                 ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", place='" + place + '\'' +
-                ", category='" + category + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emergencyType='" + emergencyType + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", isValidated=" + isValidated +
                 '}';

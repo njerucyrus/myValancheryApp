@@ -4,11 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin_contacts.ContactAddGeneralFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint=" Name"
+                    android:id="@+id/txt_general_name"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Phone Number"
+                    android:id="@+id/txt_general_phone_number"
+                    android:inputType="textMultiLine"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Place"
+                    android:id="@+id/txt_general_place"
+                    android:inputType="textMultiLine"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <Button
+                android:id="@+id/btn_submit_general"
+                android:background="@drawable/button_ui_primary"
+                android:textColor="@color/colorWhite"
+                android:text="Submit"
+                android:layout_width="140dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

@@ -1,25 +1,22 @@
-package com.hudutech.mymanjeri.models;
+package com.hudutech.mymanjeri.models.contact_models;
 
-public class Emergency implements java.io.Serializable {
+public class General implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String docKey;
     private String name;
     private String place;
     private String phoneNumber;
-    private String emergencyType;
-    private String photoUrl;
     private boolean isValidated;
 
-    public Emergency() {
+    public General() {
+
     }
 
-    public Emergency(String docKey, String name, String place, String phoneNumber, String emergencyType, String photoUrl, boolean isValidated) {
+    public General(String docKey, String name, String place, String phoneNumber, boolean isValidated) {
         this.docKey = docKey;
         this.name = name;
         this.place = place;
         this.phoneNumber = phoneNumber;
-        this.emergencyType = emergencyType;
-        this.photoUrl = photoUrl;
         this.isValidated = isValidated;
     }
 
@@ -55,40 +52,13 @@ public class Emergency implements java.io.Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmergencyType() {
-        return emergencyType;
-    }
-
-    public void setEmergencyType(String emergencyType) {
-        this.emergencyType = emergencyType;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
-    public boolean isValidated() {
-        return isValidated;
-    }
-
-    public void setValidated(boolean validated) {
-        isValidated = validated;
-    }
-
     @Override
     public String toString() {
-        return "Emergency{" +
+        return "General{" +
                 "docKey='" + docKey + '\'' +
                 ", name='" + name + '\'' +
                 ", place='" + place + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", emergencyType='" + emergencyType + '\'' +
-                ", photoUrl='" + photoUrl + '\'' +
-                ", isValidated=" + isValidated +
                 '}';
     }
 }

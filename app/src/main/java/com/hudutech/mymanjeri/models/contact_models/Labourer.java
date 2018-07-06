@@ -1,6 +1,6 @@
-package com.hudutech.mymanjeri.models;
+package com.hudutech.mymanjeri.models.contact_models;
 
-public class Professional implements java.io.Serializable {
+public class Labourer implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String docKey;
     private String name;
@@ -11,10 +11,10 @@ public class Professional implements java.io.Serializable {
     private boolean isValidated;
 
 
-    public Professional() {
+    public Labourer() {
     }
 
-    public Professional(String docKey, String name, String phoneNumber, String place, String category, String photoUrl, boolean isValidated) {
+    public Labourer(String docKey, String name, String phoneNumber, String place, String category, String photoUrl, boolean isValidated) {
         this.docKey = docKey;
         this.name = name;
         this.phoneNumber = phoneNumber;
