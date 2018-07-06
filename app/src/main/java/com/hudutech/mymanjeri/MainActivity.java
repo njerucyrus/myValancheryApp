@@ -34,6 +34,8 @@ import com.hudutech.mymanjeri.adapters.ImageViewPagerAdapter;
 import com.hudutech.mymanjeri.admin_banner_setting.AdminBarnersActivity;
 import com.hudutech.mymanjeri.admin_majery.AddBloodDonorAdminActivity;
 import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
+import com.hudutech.mymanjeri.auth.LoginActivity;
+import com.hudutech.mymanjeri.auth.RegisterActivity;
 import com.hudutech.mymanjeri.models.Banner;
 import com.hudutech.mymanjeri.models.CategoryMenu;
 import com.hudutech.mymanjeri.models.MenuHolder;

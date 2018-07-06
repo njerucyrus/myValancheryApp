@@ -55,11 +55,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.RegisterActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hudutech.mymanjeri.LoginActivity" />
+                android:value="com.hudutech.mymanjeri.auth.LoginActivity" />
         </activity>
         <activity android:name=".admin_banner_setting.EditBannerActivity">
             <meta-data
