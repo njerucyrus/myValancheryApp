@@ -8,17 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:id="@+id/img_contact_vehicle"
             android:src="@drawable/no_icon_48"
-            android:scaleType="centerCrop"
-            android:layout_width="64dp"
-            android:layout_height="64dp" />
+            android:scaleType="center"
+            android:layout_width="100dp"
+            android:layout_height="72dp" />
         <LinearLayout
             android:id="@+id/layout_text"
             android:layout_toRightOf="@+id/img_contact_vehicle"
             android:layout_toEndOf="@+id/img_contact_vehicle"
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -65,15 +69,16 @@
             <TextView
                 android:id="@+id/tv_contact_vehicle_share"
                 android:layout_gravity="center_horizontal"
-                android:padding="8dp"
+                android:padding="2dp"
+                android:layout_margin="4dp"
                 android:drawableStart="@drawable/ic_share_black_48dp"
                 android:drawableLeft="@drawable/ic_share_black_48dp"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp" />
             <TextView
                 android:id="@+id/tv_contact_vehicle_call"
-                android:layout_margin="8dp"
-                android:padding="8dp"
+                android:layout_margin="4dp"
+                android:padding="2dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="end"
                 android:drawableStart="@drawable/ic_phone_black_48dp"
@@ -86,7 +91,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="end"
         android:layout_marginBottom="4dp"
         android:orientation="horizontal"
@@ -94,6 +99,19 @@
         android:layout_below="@+id/layout_contact_vehicle_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_contact_vehicle_invalidate"
+            android:gravity="center"
+            android:background="@drawable/button_ui_primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="In Validate"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
         <Button
             android:id="@+id/btn_contact_vehicle_validate"
             android:gravity="center"
@@ -106,6 +124,21 @@
             android:layout_marginBottom="4dp"
             android:layout_width="wrap_content"
             android:layout_height="36dp" />
+
+        <Button
+            android:id="@+id/btn_contact_vehicle_delete"
+            android:gravity="center"
+            android:background="@drawable/button_ui_danger"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Delete"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+
     </LinearLayout>
     <View
         android:layout_below="@+id/layout_contact_vehicle_admin_control"

@@ -41,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Labourer;
 
@@ -202,7 +203,7 @@ public class AddLabourerFragment extends Fragment implements View.OnClickListene
                             place,
                             category,
                             imageUrl,
-                            isAdmin()
+                            Config.isAdmin(mContext)
                     );
 
 
@@ -340,12 +341,6 @@ public class AddLabourerFragment extends Fragment implements View.OnClickListene
         return valid;
     }
 
-    private boolean isAdmin() {
 
-        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
-                Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean("isAdmin", false);
-
-    }
 
 }

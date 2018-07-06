@@ -41,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.digital_models.Partner;
 
@@ -187,7 +188,7 @@ public class FindPartnerFragment extends Fragment implements View.OnClickListene
                             moreDetails,
                             mCurrentUser.getUid(),
                             docRef.getId(),
-                            false
+                            Config.isAdmin(mContext)
                     );
 
                     docRef.set(partner)

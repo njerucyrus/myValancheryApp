@@ -42,6 +42,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.SelectedImagesViewPagerAdapter;
 import com.hudutech.mymanjeri.models.Hotel;
@@ -320,7 +321,7 @@ public class AddHotelFragment extends Fragment implements View.OnClickListener {
                                     mAddress,
                                     phoneNumber,
                                     moreDetails,
-                                    isAdmin()
+                                    Config.isAdmin(mContext)
                             );
 
                             docRef.set(hotel)
@@ -440,12 +441,6 @@ public class AddHotelFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private boolean isAdmin() {
 
-        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
-                Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean("isAdmin", false);
-
-    }
 
 }

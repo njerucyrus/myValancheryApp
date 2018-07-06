@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.contact_adapter.VehicleListAdapter;
@@ -39,6 +40,8 @@ public class ContactVehicleFragment extends Fragment {
     private CollectionReference mVehicleRef;
     private ProgressDialog mProgress;
 
+    private ListenerRegistration registration;
+
     public ContactVehicleFragment() {
         // Required empty public constructor
     }
@@ -48,7 +51,7 @@ public class ContactVehicleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_contact_vehicle, container, false);
+        View v = inflater.inflate(R.layout.fragment_contact_vehicle, container, false);
         mContext = getContext();
         mVehicleRef = FirebaseFirestore.getInstance().collection("contact_vehicles");
         vehicleList = new ArrayList<>();
@@ -60,6 +63,7 @@ public class ContactVehicleFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
         loadVehicles();
+
         return v;
 
     }
@@ -68,6 +72,7 @@ public class ContactVehicleFragment extends Fragment {
         mProgress.setMessage("Loading...");
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
+
         mVehicleRef.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -92,6 +97,12 @@ public class ContactVehicleFragment extends Fragment {
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
     }
 
+
 }
+
+
+

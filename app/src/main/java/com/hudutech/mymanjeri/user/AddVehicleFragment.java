@@ -41,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Vehicle;
 
@@ -65,6 +66,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
     private ProgressDialog mProgress;
     private StorageReference mStorageRef;
     private CollectionReference mVehiclesRef;
+    private DocumentReference docRef;
     private Uri photoUri;
 
     public AddVehicleFragment() {
@@ -177,10 +179,11 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
 
             //get the filename. ensure to overwrite the existing file
             //with the same name this saves on firebase storage. by removing duplicates
+
             String fileName = getFileName(photoUri);
 
             UploadTask uploadTask = mStorageRef.child("images")
-                    .child(fileName)
+                    .child(mVehiclesRef.document().getId())
                     .putBytes(thumbnailBytes);
 
 
@@ -197,7 +200,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
                             phoneNumber,
                             vehicleType,
                             imageUrl,
-                            isAdmin()
+                            Config.isAdmin(mContext)
                     );
 
 
@@ -335,12 +338,6 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
         return valid;
     }
 
-    private boolean isAdmin() {
 
-        SharedPreferences sharedPrefs = mContext.getSharedPreferences("AUTH_DATA",
-                Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean("isAdmin", false);
-
-    }
 
 }
