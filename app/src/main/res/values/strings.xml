@@ -94,5 +94,17 @@
         <item>Electricity</item>
     </string-array>
 
+    <string-array name="parties">
+        <item>Choose Party</item>
+        <item>IVML</item>
+        <item>INC</item>
+        <item>CPIM</item>
+        <item>BJP</item>
+        <item>CPI</item>
+        <item>SDPI</item>
+        <item>WPI</item>
+        <item>INL</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

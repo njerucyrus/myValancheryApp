@@ -3,6 +3,7 @@ package com.hudutech.mymanjeri.admin_contacts;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,8 @@ public class ContactProfessionalFragment extends Fragment {
     private List<Professional> professionalList;
     private CollectionReference mProfRef;
     private ProgressDialog mProgress;
+
+    private Uri photoUri;
 
     public ContactProfessionalFragment() {
         // Required empty public constructor

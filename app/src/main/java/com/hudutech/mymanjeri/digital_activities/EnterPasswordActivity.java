@@ -145,6 +145,7 @@ public class EnterPasswordActivity extends AppCompatActivity {
                                         mUsersRef.document(account.getUserUid()).delete();
                                         if (mProgress.isShowing()) mProgress.dismiss();
                                         startActivity(new Intent(EnterPasswordActivity.this, ManageSBAccountsActivity.class));
+                                        finish();
                                         Toast.makeText(EnterPasswordActivity.this, "Account Deleted", Toast.LENGTH_SHORT).show();
                                     }
                                 })
