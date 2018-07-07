@@ -90,7 +90,7 @@ public class Politics implements Serializable {
     public void setValidated(boolean validated) {
         isValidated = validated;
     }
-    
+
     @Override
     public String toString() {
         return "Politics{" +
