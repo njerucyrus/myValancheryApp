@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,19 +27,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.contact_models.Labourer;
+import com.hudutech.mymanjeri.models.classifields_models.OtherClassifield;
 
 import java.util.List;
 
-public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.ViewHolder> {
+public class OthersListAdapter extends RecyclerView.Adapter<OthersListAdapter.ViewHolder> {
 
-    private List<Labourer> labourerList;
+    private List<OtherClassifield> othersList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public OtherListAdapter(Context mContext, List<Labourer> labourerList) {
-        this.labourerList = labourerList;
+    public OthersListAdapter(Context mContext, List<OtherClassifield> othersList) {
+        this.othersList = othersList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -48,19 +47,19 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
 
     @NonNull
     @Override
-    public OtherListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
-        return new OtherListAdapter.ViewHolder(v);
+    public OthersListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_classifieds_item, parent, false);
+        return new OthersListAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Labourer labourer = labourerList.get(position);
+        final OtherClassifield otherClassifield = othersList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (labourer.isValidated()) {
+            if (otherClassifield.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -79,7 +78,7 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.deleteVehicle(labourer, holder.getAdapterPosition());
+                        holder.delete(otherClassifield, holder.getAdapterPosition());
 
                     }
                 });
@@ -98,7 +97,7 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
 
         holder.mButtonValidate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Are you sure you want to Validate?");
                 builder.setMessage("Validating data means it will be displayed to the app users.");
@@ -106,7 +105,7 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(labourer, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(otherClassifield, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -132,7 +131,7 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(labourer, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(otherClassifield, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -147,16 +146,16 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
                 builder.show();
             }
         });
+        String amount = "INR "+otherClassifield.getAmount();
+        holder.tvTitle.setText(otherClassifield.getDescription());
+        holder.tvPrice.setText(amount);
 
-        holder.mName.setText(labourer.getName());
-        holder.mPhoneNumber.setText(labourer.getPhoneNumber());
-        holder.mLocation.setText(labourer.getPlace());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(labourer.getPhotoUrl())
+                .load(otherClassifield.getPhotoUrls().get(0))
                 .apply(requestOptions)
                 .into(holder.imageView);
 
@@ -167,41 +166,36 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
 
     @Override
     public int getItemCount() {
-        return labourerList.size();
+        return othersList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = "ViewHolder";
-        TextView mName;
-        ImageView imageView;
-        TextView mPhoneNumber;
-        TextView mLocation;
-        TextView mShare;
-        TextView mCall;
-        RelativeLayout layoutContent;
+
+        LinearLayout layoutContent;
         LinearLayout layoutControl;
+        TextView tvTitle;
+        TextView tvPrice;
         Button mButtonValidate;
         Button mButtonInValidate;
         Button mButtonDelete;
+        ImageView imageView;
         View mView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
-            mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
-            mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
-            mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
-            mShare = itemView.findViewById(R.id.tv_contact_vehicle_share);
-            mCall = itemView.findViewById(R.id.tv_contact_vehicle_call);
-            imageView = itemView.findViewById(R.id.img_contact_vehicle);
-            mButtonValidate = itemView.findViewById(R.id.btn_contact_vehicle_validate);
-            mButtonInValidate = itemView.findViewById(R.id.btn_contact_vehicle_invalidate);
-            mButtonDelete = itemView.findViewById(R.id.btn_contact_vehicle_delete);
-            layoutContent = itemView.findViewById(R.id.layout_contact_vehicle_content);
-            layoutControl = itemView.findViewById(R.id.layout_contact_vehicle_admin_control);
+            mButtonValidate = itemView.findViewById(R.id.btn_validate);
+            mButtonInValidate = itemView.findViewById(R.id.btn_invalidate);
+            mButtonDelete = itemView.findViewById(R.id.btn_delete);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvPrice = itemView.findViewById(R.id.tv_price);
+            imageView = itemView.findViewById(R.id.img_classified);
+            layoutContent = itemView.findViewById(R.id.layout_content);
+            layoutControl = itemView.findViewById(R.id.layout_admin_control);
         }
 
-        public void deleteVehicle(final Labourer labourer, final int position) {
+        public void delete(final OtherClassifield otherClassifield, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
@@ -211,21 +205,21 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
             StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(labourer.getPhotoUrl());
+                    .getReferenceFromUrl(otherClassifield.getPhotoUrls().get(0));
             photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("professionals");
-                    ref.document(labourer.getDocKey())
+                    CollectionReference ref = db.collection("classifields_others");
+                    ref.document(otherClassifield.getDocKey())
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    labourerList.remove(position);
+                                    othersList.remove(position);
                                     notifyItemRemoved(position);
                                     notifyDataSetChanged();
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "labourer deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "record deleted", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -250,26 +244,26 @@ public class OtherListAdapter extends RecyclerView.Adapter<OtherListAdapter.View
 
         }
 
-        public void updateIsValidated(final Labourer  labourer, boolean isValidated, final int position) {
+        public void updateIsValidated(final OtherClassifield  otherClassifield, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("professionals")
-                    .document(labourer.getDocKey())
+            db.collection("classifields_others")
+                    .document(otherClassifield.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("professionals")
-                                    .document(labourer.getDocKey())
+                            db.collection("classifields_others")
+                                    .document(otherClassifield.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            Labourer newItem = documentSnapshot.toObject(Labourer.class);
-                                            labourerList.set(position, newItem);
+                                            OtherClassifield newItem = documentSnapshot.toObject(OtherClassifield.class);
+                                            othersList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();

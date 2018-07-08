@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.hudutech.mymanjeri.admin_majery.BecomeDonorActivity;
 import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.admin_majery.BecomeDonorActivity;
 
 public class BloodBankActivity extends AppCompatActivity implements View.OnClickListener {
     private String bloodGroup = null;

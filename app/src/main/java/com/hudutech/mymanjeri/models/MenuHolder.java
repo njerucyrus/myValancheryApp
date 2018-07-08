@@ -1,5 +1,6 @@
 package com.hudutech.mymanjeri.models;
 
+import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.auth.LoginActivity;
 import com.hudutech.mymanjeri.classifields_activities.OthersActivity;
 import com.hudutech.mymanjeri.classifields_activities.PetsActivity;
@@ -22,7 +23,6 @@ import com.hudutech.mymanjeri.majery_activities.BloodBankActivity;
 import com.hudutech.mymanjeri.majery_activities.EducationActivity;
 import com.hudutech.mymanjeri.majery_activities.HistoryActivity;
 import com.hudutech.mymanjeri.majery_activities.NewsActivity;
-import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.majery_activities.NotificationActivity;
 import com.hudutech.mymanjeri.majery_activities.ShoppingActivity;
 import com.hudutech.mymanjeri.majery_activities.TourismActivity;

@@ -3,10 +3,10 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/layout_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -24,6 +24,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
             android:textAppearance="?android:textAppearanceLarge"
             android:text="INR 2000.00"
             android:textColor="@color/colorPrimaryText"
@@ -32,6 +34,9 @@
     </LinearLayout>
 
     <ImageView
+        android:padding="2dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="12dp"
@@ -41,12 +46,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:id="@+id/img_classified"
-        android:layout_width="140dp"
-        android:layout_height="88dp" />
+        android:layout_width="130dp"
+        android:layout_height="70dp" />
 
     <LinearLayout
-        android:layout_marginTop="18dp"
-        android:visibility="visible"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
         android:gravity="end"
         android:layout_marginBottom="4dp"
         android:orientation="horizontal"
@@ -68,7 +73,7 @@
             android:layout_height="36dp" />
 
         <Button
-            android:id="@+id/btn_vehicle_validate"
+            android:id="@+id/btn_validate"
             android:gravity="center"
             android:background="@drawable/button_ui_primary"
             android:layout_marginStart="8dp"

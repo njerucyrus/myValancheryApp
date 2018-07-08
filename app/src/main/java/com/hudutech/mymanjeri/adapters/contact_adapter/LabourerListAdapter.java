@@ -30,7 +30,6 @@ import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Labourer;
 
-
 import java.util.List;
 
 public class LabourerListAdapter extends RecyclerView.Adapter<LabourerListAdapter.ViewHolder> {

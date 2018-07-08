@@ -1,6 +1,5 @@
 package com.hudutech.mymanjeri.models;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Hotel implements java.io.Serializable {

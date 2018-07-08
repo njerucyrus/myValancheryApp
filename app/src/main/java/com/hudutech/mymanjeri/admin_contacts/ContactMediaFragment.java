@@ -34,7 +34,6 @@ import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Media;
-import com.hudutech.mymanjeri.models.contact_models.Politics;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;

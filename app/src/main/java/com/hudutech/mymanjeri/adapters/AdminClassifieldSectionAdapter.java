@@ -4,19 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hudutech.mymanjeri.admin_contacts.AddEmergencyFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactAddGeneralFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactArtAndCultureFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactBanksFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactInstitutionFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactLabourerFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactMediaFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactMlaFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactMpFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactMunicipalityFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactPoliticsFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactProfessionalFragment;
-import com.hudutech.mymanjeri.admin_contacts.ContactVehicleFragment;
+import com.hudutech.mymanjeri.admin_classifieds.ElectronicsFragment;
+import com.hudutech.mymanjeri.admin_classifieds.OtherFragment;
+import com.hudutech.mymanjeri.admin_classifieds.PetsFragment;
+import com.hudutech.mymanjeri.admin_classifieds.RealEstateFragment;
+import com.hudutech.mymanjeri.admin_classifieds.VehicleFragment;
 
 
 public class AdminClassifieldSectionAdapter extends FragmentPagerAdapter {
@@ -29,31 +21,15 @@ public class AdminClassifieldSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ContactVehicleFragment();
+                return new RealEstateFragment();
             case 1:
-                return new AddEmergencyFragment();
+                return new VehicleFragment();
             case 2:
-                return new ContactAddGeneralFragment();
+                return new ElectronicsFragment();
             case 3:
-                return  new ContactMpFragment();
+                return  new PetsFragment();
             case 4:
-                return new ContactMlaFragment();
-            case 5:
-                return new ContactPoliticsFragment();
-            case 6:
-                return new ContactMediaFragment();
-            case 7:
-                return new ContactArtAndCultureFragment();
-            case 8:
-                return new ContactMunicipalityFragment();
-            case 9:
-                return new ContactBanksFragment();
-            case 10:
-                return new ContactProfessionalFragment();
-            case 11:
-                return new ContactLabourerFragment();
-            case 12:
-                return new ContactInstitutionFragment();
+                return new OtherFragment();
             default:
                 return  null;
         }
@@ -62,7 +38,7 @@ public class AdminClassifieldSectionAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 13;
+        return 5;
     }
 
     @Override
@@ -70,31 +46,15 @@ public class AdminClassifieldSectionAdapter extends FragmentPagerAdapter {
         super.getPageTitle(position);
         switch (position) {
             case 0:
-                return "VEHICLE";
+                return "Real Estate";
             case 1:
-                return "EMERGENCY";
+                return "Vehicle";
             case 2:
-                return "GENERAL";
+                return "Electronics";
             case 3:
-                return "MP";
+                return "Pets";
             case 4:
-                return "MLA";
-            case 5:
-                return "POLITICS";
-            case 6:
-                return "MEDIA";
-            case 7:
-                return "ART & CULTURE";
-            case 8:
-                return "MUNICIPALITY";
-            case 9:
-                return "BANKS";
-            case 10:
-                return "PROFESSIONALS";
-            case 11:
-                return "LABOURERS";
-            case 12:
-                return "INSTITUTIONS";
+                return "Others";
             default:
                 return null;
         }

@@ -27,19 +27,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.classifields_models.Pet;
+import com.hudutech.mymanjeri.models.classifields_models.RealEstate;
 
 import java.util.List;
 
-public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHolder> {
+public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAdapter.ViewHolder> {
 
-    private List<Pet> petsList;
+    private List<RealEstate> realEstateList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public PetsListAdapter(Context mContext, List<Pet> petsList) {
-        this.petsList = petsList;
+    public RealEstateListAdapter(Context mContext, List<RealEstate> realEstateList) {
+        this.realEstateList = realEstateList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -47,19 +47,19 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
 
     @NonNull
     @Override
-    public PetsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RealEstateListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_classifieds_item, parent, false);
-        return new PetsListAdapter.ViewHolder(v);
+        return new RealEstateListAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Pet pet = petsList.get(position);
+        final RealEstate realEstate = realEstateList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (pet.isValidated()) {
+            if (realEstate.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -78,7 +78,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.delete(pet, holder.getAdapterPosition());
+                        holder.deleteVehicle(realEstate, holder.getAdapterPosition());
 
                     }
                 });
@@ -105,7 +105,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(pet, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(realEstate, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -131,7 +131,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(pet, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(realEstate, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -146,8 +146,8 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                 builder.show();
             }
         });
-        String amount = "INR "+pet.getAmount();
-        holder.tvTitle.setText(pet.getDescription());
+        String amount = "INR "+realEstate.getAmount();
+        holder.tvTitle.setText(realEstate.getDescription());
         holder.tvPrice.setText(amount);
 
 
@@ -155,7 +155,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(pet.getPhotoUrls().get(0))
+                .load(realEstate.getPhotoUrls().get(0))
                 .apply(requestOptions)
                 .into(holder.imageView);
 
@@ -166,7 +166,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return petsList.size();
+        return realEstateList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -195,7 +195,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
             layoutControl = itemView.findViewById(R.id.layout_admin_control);
         }
 
-        public void delete(final Pet pet, final int position) {
+        public void deleteVehicle(final RealEstate realEstate, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
@@ -205,21 +205,21 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
             StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(pet.getPhotoUrls().get(0));
+                    .getReferenceFromUrl(realEstate.getPhotoUrls().get(0));
             photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("classifields_pets");
-                    ref.document(pet.getDocKey())
+                    CollectionReference ref = db.collection("classifields_real_estate");
+                    ref.document(realEstate.getDocKey())
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    petsList.remove(position);
+                                    realEstateList.remove(position);
                                     notifyItemRemoved(position);
                                     notifyDataSetChanged();
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "pet deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "record deleted", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -244,26 +244,26 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
 
         }
 
-        public void updateIsValidated(final Pet  pet, boolean isValidated, final int position) {
+        public void updateIsValidated(final RealEstate  realEstate, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("classifields_pets")
-                    .document(pet.getDocKey())
+            db.collection("classifields_real_estate")
+                    .document(realEstate.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("classifields_pets")
-                                    .document(pet.getDocKey())
+                            db.collection("classifields_real_estate")
+                                    .document(realEstate.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            Pet newItem = documentSnapshot.toObject(Pet.class);
-                                            petsList.set(position, newItem);
+                                            RealEstate newItem = documentSnapshot.toObject(RealEstate.class);
+                                            realEstateList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
@@ -289,7 +289,11 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
                         }
                     });
 
+
         }
+
+
+
 
     }
 }

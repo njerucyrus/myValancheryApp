@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,19 +27,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.contact_models.Labourer;
+import com.hudutech.mymanjeri.models.classifields_models.Vehicle;
 
 import java.util.List;
 
 public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.ViewHolder> {
 
-    private List<Labourer> labourerList;
+    private List<Vehicle> vehicleList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public VehicleListAdapter(Context mContext, List<Labourer> labourerList) {
-        this.labourerList = labourerList;
+    public VehicleListAdapter(Context mContext, List<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -49,18 +48,18 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
     @NonNull
     @Override
     public VehicleListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_classifieds_item, parent, false);
         return new VehicleListAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Labourer labourer = labourerList.get(position);
+        final Vehicle vehicle = vehicleList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (labourer.isValidated()) {
+            if (vehicle.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -79,7 +78,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.deleteVehicle(labourer, holder.getAdapterPosition());
+                        holder.deleteVehicle(vehicle, holder.getAdapterPosition());
 
                     }
                 });
@@ -98,7 +97,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
 
         holder.mButtonValidate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Are you sure you want to Validate?");
                 builder.setMessage("Validating data means it will be displayed to the app users.");
@@ -106,7 +105,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(labourer, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(vehicle, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -132,7 +131,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(labourer, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(vehicle, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -147,16 +146,16 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 builder.show();
             }
         });
+        String amount = "INR "+vehicle.getAmount();
+        holder.tvTitle.setText(vehicle.getDescription());
+        holder.tvPrice.setText(amount);
 
-        holder.mName.setText(labourer.getName());
-        holder.mPhoneNumber.setText(labourer.getPhoneNumber());
-        holder.mLocation.setText(labourer.getPlace());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(labourer.getPhotoUrl())
+                .load(vehicle.getPhotoUrls().get(0))
                 .apply(requestOptions)
                 .into(holder.imageView);
 
@@ -167,41 +166,36 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
 
     @Override
     public int getItemCount() {
-        return labourerList.size();
+        return vehicleList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = "ViewHolder";
-        TextView mName;
-        ImageView imageView;
-        TextView mPhoneNumber;
-        TextView mLocation;
-        TextView mShare;
-        TextView mCall;
-        RelativeLayout layoutContent;
+
+        LinearLayout layoutContent;
         LinearLayout layoutControl;
+        TextView tvTitle;
+        TextView tvPrice;
         Button mButtonValidate;
         Button mButtonInValidate;
         Button mButtonDelete;
+        ImageView imageView;
         View mView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
-            mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
-            mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
-            mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
-            mShare = itemView.findViewById(R.id.tv_contact_vehicle_share);
-            mCall = itemView.findViewById(R.id.tv_contact_vehicle_call);
-            imageView = itemView.findViewById(R.id.img_contact_vehicle);
-            mButtonValidate = itemView.findViewById(R.id.btn_contact_vehicle_validate);
-            mButtonInValidate = itemView.findViewById(R.id.btn_contact_vehicle_invalidate);
-            mButtonDelete = itemView.findViewById(R.id.btn_contact_vehicle_delete);
-            layoutContent = itemView.findViewById(R.id.layout_contact_vehicle_content);
-            layoutControl = itemView.findViewById(R.id.layout_contact_vehicle_admin_control);
+            mButtonValidate = itemView.findViewById(R.id.btn_validate);
+            mButtonInValidate = itemView.findViewById(R.id.btn_invalidate);
+            mButtonDelete = itemView.findViewById(R.id.btn_delete);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvPrice = itemView.findViewById(R.id.tv_price);
+            imageView = itemView.findViewById(R.id.img_classified);
+            layoutContent = itemView.findViewById(R.id.layout_content);
+            layoutControl = itemView.findViewById(R.id.layout_admin_control);
         }
 
-        public void deleteVehicle(final Labourer labourer, final int position) {
+        public void deleteVehicle(final Vehicle vehicle, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
@@ -211,21 +205,21 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
             StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(labourer.getPhotoUrl());
+                    .getReferenceFromUrl(vehicle.getPhotoUrls().get(0));
             photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("professionals");
-                    ref.document(labourer.getDocKey())
+                    CollectionReference ref = db.collection("classifields_vehicles");
+                    ref.document(vehicle.getDocKey())
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    labourerList.remove(position);
+                                    vehicleList.remove(position);
                                     notifyItemRemoved(position);
                                     notifyDataSetChanged();
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "labourer deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "deleted", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -250,26 +244,26 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
 
         }
 
-        public void updateIsValidated(final Labourer  labourer, boolean isValidated, final int position) {
+        public void updateIsValidated(final Vehicle  vehicle, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("professionals")
-                    .document(labourer.getDocKey())
+            db.collection("classifields_vehicles")
+                    .document(vehicle.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("professionals")
-                                    .document(labourer.getDocKey())
+                            db.collection("classifields_vehicles")
+                                    .document(vehicle.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            Labourer newItem = documentSnapshot.toObject(Labourer.class);
-                                            labourerList.set(position, newItem);
+                                            Vehicle newItem = documentSnapshot.toObject(Vehicle.class);
+                                            vehicleList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
