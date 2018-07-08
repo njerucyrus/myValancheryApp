@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.hudutech.mymanjeri.admin_classifieds.ClassfiedsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
 
@@ -28,6 +29,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         findViewById(R.id.admin_panel_majery).setOnClickListener(this);
         findViewById(R.id.admin_panel_contacts).setOnClickListener(this);
         findViewById(R.id.admin_panel_timing_and_booking).setOnClickListener(this);
+        findViewById(R.id.admin_panel_classifieds).setOnClickListener(this);
         findViewById(R.id.admin_panel_banner_setting).setOnClickListener(this);
         findViewById(R.id.admin_panel_medical).setOnClickListener(this);
         findViewById(R.id.admin_panel_opening_banner).setOnClickListener(this);
@@ -43,6 +45,9 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.admin_panel_contacts:
                 showActivity(ContactsEntryPointActivity.class);
+                break;
+            case R.id.admin_panel_classifieds:
+                    showActivity(ClassfiedsEntryPointActivity.class);
                 break;
 
         }

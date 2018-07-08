@@ -125,7 +125,8 @@
         <activity android:name=".admin_banner_setting.BannerSettingEntryPointActivity" />
         <activity android:name=".admin_contacts.ContactsEntryPointActivity" />
         <activity android:name=".admin_medical.MedicalEntryPointActivity" />
-        <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity"></activity>
+        <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity" />
+        <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity"></activity>
     </application>
 
 </manifest>
