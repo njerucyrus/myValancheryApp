@@ -41,6 +41,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Designation"
+                    android:id="@+id/txt_municipality_designation"
+                    android:inputType="text"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Ward Name"
+                    android:id="@+id/txt_municipality_word"
+                    android:inputType="number"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:hint="Ward No"
+                    android:id="@+id/txt_municipality_word_no"
+                    android:inputType="number"
+                    android:fontFamily="@font/century_gothic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_party"
+                android:layout_margin="8dp"
+                android:entries="@array/parties"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+
 
 
             <android.support.design.widget.TextInputLayout
@@ -61,22 +105,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:hint="Designation"
-                    android:id="@+id/txt_municipality_designation"
-                    android:inputType="text"
+                    android:hint="Mobile Number"
+                    android:id="@+id/txt_municipality_mobile"
+                    android:inputType="phone"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:hint="Ward No"
-                    android:id="@+id/txt_municipality_word_no"
-                    android:inputType="number"
+                    android:hint="Address"
+                    android:id="@+id/txt_municipality_address"
+                    android:inputType="phone"
                     android:fontFamily="@font/century_gothic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

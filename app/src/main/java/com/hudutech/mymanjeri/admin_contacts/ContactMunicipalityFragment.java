@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,7 +35,6 @@ import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Municipality;
-import com.hudutech.mymanjeri.models.contact_models.Politics;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -50,6 +50,11 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
     private TextInputEditText mPhoneNumber;
     private TextInputEditText mDesignation;
     private TextInputEditText mWardNo;
+    private TextInputEditText mWardName;
+    private TextInputEditText mMobileNo;
+    private TextInputEditText mAddress;
+    private Spinner spinner;
+    private String mParty;
     private ImageView mSelectedPhoto;
     private CollectionReference mMunicipalityRef;
     private ProgressDialog mProgress;
@@ -73,8 +78,24 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
         mName = v.findViewById(R.id.txt_municipality_name);
         mPhoneNumber = v.findViewById(R.id.txt_municipality_phone);
         mDesignation = v.findViewById(R.id.txt_municipality_designation);
+        mWardName = v.findViewById(R.id.txt_municipality_word);
+        mMobileNo = v.findViewById(R.id.txt_municipality_mobile);
+        mAddress = v.findViewById(R.id.txt_municipality_address);
         mWardNo = v.findViewById(R.id.txt_municipality_word_no);
         mSelectedPhoto = v.findViewById(R.id.img_municipality_photo);
+
+        spinner = v.findViewById(R.id.spinner_party);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mParty = position > 0 ? parent.getItemAtPosition(position).toString() : null;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mParty = null;
+            }
+        });
 
 
         v.findViewById(R.id.btn_upload_municipality_photo).setOnClickListener(this);
@@ -127,28 +148,37 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
         inputs.add(mDesignation);
         inputs.add(mWardNo);
         inputs.add(mSelectedPhoto);
+        inputs.add(mWardName);
+        inputs.add(spinner);
+        inputs.add(mMobileNo);
+        inputs.add(mAddress);
 
         HashMap<String, String> stringInputs = new HashMap<>();
 
         stringInputs.put("Photo", photoUploaded);
+        stringInputs.put("Party", mParty);
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit_municipality) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mName.getText().toString(),
                         mPhoneNumber.getText().toString(),
                         mDesignation.getText().toString(),
-                        mWardNo.getText().toString()
+                        mWardNo.getText().toString(),
+                        mWardName.getText().toString(),
+                        mAddress.getText().toString(),
+                        mMobileNo.getText().toString(),
+                        mParty
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_municipality_photo){
+        } else if (id == R.id.btn_upload_municipality_photo) {
             openImageChooser();
         }
 
@@ -159,7 +189,12 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
             final String name,
             final String phoneNumber,
             final String designation,
-            final String wardNo
+            final String wardNo,
+            final String wardName,
+            final String address,
+            final String mobile,
+            final String party
+
 
     ) {
 
@@ -192,15 +227,19 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
 
                     DocumentReference docRef = mMunicipalityRef.document();
 
-                    Municipality municipality = new Municipality(
-                            docRef.getId(),
-                            imageUrl,
-                            name,
-                            phoneNumber,
-                            designation,
-                            wardNo,
-                            Config.isAdmin(mContext)
-                    );
+                   Municipality municipality = new Municipality(
+                           docRef.getId(),
+                           imageUrl,
+                           name,
+                           phoneNumber,
+                           mobile,
+                           address,
+                           party,
+                           designation,
+                           wardNo,
+                           wardName,
+                           Config.isAdmin(mContext)
+                   );
 
                     docRef.set(municipality)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -228,7 +267,7 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 
@@ -254,8 +293,6 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
     }
-
-
 
 
 }

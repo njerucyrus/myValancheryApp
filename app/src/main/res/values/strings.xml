@@ -112,5 +112,14 @@
         <item>Channels</item>
     </string-array>
 
+    <string-array name="institution_category">
+        <item>Choose Category</item>
+        <item>LIP/UP</item>
+        <item>HSC</item>
+        <item>English Medium</item>
+        <item>College</item>
+        <item>Coaching Centre</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -8,20 +8,28 @@ public class Municipality implements Serializable {
     private String photoUrl;
     private String name;
     private String phoneNumber;
+    private String mobileNumber;
+    private String address;
+    private String party;
     private String designation;
     private String wardNo;
+    private String wardName;
     private boolean isValidated;
 
     public Municipality() {
     }
 
-    public Municipality(String docKey, String photoUrl, String name, String phoneNumber, String designation, String wardNo, boolean isValidated) {
+    public Municipality(String docKey, String photoUrl, String name, String phoneNumber, String mobileNumber, String address, String party, String designation, String wardNo,String wardName, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrl = photoUrl;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.mobileNumber = mobileNumber;
+        this.address = address;
+        this.party = party;
         this.designation = designation;
         this.wardNo = wardNo;
+        this.wardName = wardName;
         this.isValidated = isValidated;
     }
 
@@ -49,6 +57,38 @@ public class Municipality implements Serializable {
         this.name = name;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getParty() {
+        return party;
+    }
+
+    public void setParty(String party) {
+        this.party = party;
+    }
+
     public String getDesignation() {
         return designation;
     }
@@ -65,6 +105,14 @@ public class Municipality implements Serializable {
         this.wardNo = wardNo;
     }
 
+    public String getWardName() {
+        return wardName;
+    }
+
+    public void setWardName(String wardName) {
+        this.wardName = wardName;
+    }
+
     public boolean isValidated() {
         return isValidated;
     }
@@ -79,6 +127,10 @@ public class Municipality implements Serializable {
                 "docKey='" + docKey + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", party='" + party + '\'' +
                 ", designation='" + designation + '\'' +
                 ", wardNo='" + wardNo + '\'' +
                 ", isValidated=" + isValidated +
