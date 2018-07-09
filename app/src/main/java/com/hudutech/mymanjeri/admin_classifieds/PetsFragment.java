@@ -23,9 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.classifields_adapters.PetsListAdapter;
-import com.hudutech.mymanjeri.adapters.classifields_adapters.VehicleListAdapter;
 import com.hudutech.mymanjeri.models.classifields_models.Pet;
-import com.hudutech.mymanjeri.models.classifields_models.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;

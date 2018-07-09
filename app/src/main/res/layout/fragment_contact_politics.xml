@@ -15,7 +15,7 @@
             <Button
                 android:drawableStart="@drawable/ic_add_a_photo_black_24dp"
                 android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
-                android:text="Upload Party Logo"
+                android:text="Upload Photo"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/century_gothic"
                 android:id="@+id/btn_upload_politics_photo"

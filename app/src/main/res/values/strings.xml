@@ -121,5 +121,15 @@
         <item>Coaching Centre</item>
     </string-array>
 
+    <string-array name="hospital_category">
+        <item>Choose Category</item>
+        <item>General</item>
+        <item>Homeo</item>
+        <item>Ayurvedic</item>
+        <item>Dental</item>
+        <item>Ophthal</item>
+        <item>Physio</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

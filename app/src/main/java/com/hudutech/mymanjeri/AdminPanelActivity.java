@@ -9,6 +9,7 @@ import android.view.View;
 import com.hudutech.mymanjeri.admin_classifieds.ClassfiedsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
+import com.hudutech.mymanjeri.admin_medical.MedicalEntryPointActivity;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,6 +49,10 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.admin_panel_classifieds:
                     showActivity(ClassfiedsEntryPointActivity.class);
+                break;
+
+            case R.id.admin_panel_medical:
+                showActivity(MedicalEntryPointActivity.class);
                 break;
 
         }
