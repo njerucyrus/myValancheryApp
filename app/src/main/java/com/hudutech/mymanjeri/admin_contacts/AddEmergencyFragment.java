@@ -23,8 +23,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -51,7 +53,7 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
     private TextInputEditText mPlace;
     private TextInputEditText mName;
     private TextInputEditText mPhoneNumber;
-    private TextInputEditText mEmergencyType;
+    private String mEmergencyType = null;
     private ImageView mSelectedPhoto;
     private Context mContext;
     private ProgressDialog mProgress;
@@ -79,9 +81,21 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
         mPlace = view.findViewById(R.id.txt_emergency_place);
         mName = view.findViewById(R.id.txt_emergency_name);
         mPhoneNumber = view.findViewById(R.id.txt_emergency_phone_number);
-        mEmergencyType = view.findViewById(R.id.txt_emergency_type);
         mSelectedPhoto = view.findViewById(R.id.img_emergency_photo);
         Button mSubmit = view.findViewById(R.id.btn_submit_emergency);
+
+        Spinner spinner = view.findViewById(R.id.spinner_emergency_type);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mEmergencyType = position > 0 ? parent.getItemAtPosition(position).toString() : null;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mEmergencyType = null;
+            }
+        });
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
@@ -100,7 +114,7 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
                         mPlace.getText().toString().trim(),
                         mName.getText().toString().trim(),
                         mPhoneNumber.getText().toString().trim(),
-                        mEmergencyType.getText().toString().trim()
+                        mEmergencyType
                 );
             } else {
                 Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
@@ -305,12 +319,9 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
             mPhoneNumber.setError(null);
         }
 
-        if (TextUtils.isEmpty(mEmergencyType.getText().toString().trim())){
+        if (TextUtils.isEmpty(mEmergencyType)) {
             valid = false;
-            mEmergencyType.setError("*Required!");
-
-        }else {
-            mEmergencyType.setError(null);
+            Toast.makeText(mContext, "Select emergency type", Toast.LENGTH_SHORT).show();
         }
 
         return valid;

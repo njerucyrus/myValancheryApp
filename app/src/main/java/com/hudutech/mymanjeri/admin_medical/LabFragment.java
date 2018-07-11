@@ -38,7 +38,6 @@ import com.google.firebase.storage.UploadTask;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.medical_models.Lab;
-import com.hudutech.mymanjeri.models.medical_models.MedicalShop;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class LabFragment extends Fragment implements View.OnClickListener{
     private TextInputEditText mPhoneNumber;
     private TextInputEditText mPlace;
     private ImageView mSelectedPhoto;
-    private CollectionReference mHospitalsRef;
+    private CollectionReference mLapRef;
     private ProgressDialog mProgress;
     private Context mContext;
     private StorageReference mStorageRef;
@@ -100,7 +99,7 @@ public class LabFragment extends Fragment implements View.OnClickListener{
         mContext = getContext();
         mProgress = new ProgressDialog(getContext());
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mHospitalsRef = FirebaseFirestore.getInstance().collection("medical_shops");
+        mLapRef = FirebaseFirestore.getInstance().collection("labs");
 
         return v;
     }
@@ -208,7 +207,7 @@ public class LabFragment extends Fragment implements View.OnClickListener{
 
             //get the filename. ensure to overwrite the existing file
             //with the same name this saves on firebase storage. by removing duplicates
-            String fileName = mHospitalsRef.document().getId();
+            String fileName = mLapRef.document().getId();
 
             UploadTask uploadTask = mStorageRef.child("images")
                     .child(fileName)
@@ -221,7 +220,7 @@ public class LabFragment extends Fragment implements View.OnClickListener{
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
 
-                    DocumentReference docRef = mHospitalsRef.document();
+                    DocumentReference docRef = mLapRef.document();
 
                     Lab medicalShop = new Lab(
                             docRef.getId(),

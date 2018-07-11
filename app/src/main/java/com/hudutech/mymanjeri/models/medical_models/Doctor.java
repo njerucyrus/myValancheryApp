@@ -9,19 +9,19 @@ public class Doctor implements Serializable {
     private String doctorName;
     private String phoneNumber;
     private String department;
-    private boolean isValidate;
+    private boolean isValidated;
 
     public Doctor() {
 
     }
 
-    public Doctor(String docKey, String photoUrl, String doctorName, String phoneNumber, String department, boolean isValidate) {
+    public Doctor(String docKey, String photoUrl, String doctorName, String phoneNumber, String department, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrl = photoUrl;
         this.doctorName = doctorName;
         this.phoneNumber = phoneNumber;
         this.department = department;
-        this.isValidate = isValidate;
+        this.isValidated = isValidated;
     }
 
     public String getDocKey() {
@@ -64,12 +64,12 @@ public class Doctor implements Serializable {
         this.department = department;
     }
 
-    public boolean isValidate() {
-        return isValidate;
+    public boolean isValidated() {
+        return isValidated;
     }
 
     public void setValidate(boolean validate) {
-        isValidate = validate;
+        isValidated = validate;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Doctor implements Serializable {
                 ", doctorName='" + doctorName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", department='" + department + '\'' +
-                ", isValidate=" + isValidate +
+                ", isValidate=" + isValidated +
                 '}';
     }
 }
