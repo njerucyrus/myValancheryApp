@@ -52,6 +52,14 @@ public class General implements java.io.Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public boolean isValidated() {
+        return isValidated;
+    }
+
+    public void setValidated(boolean validated) {
+        isValidated = validated;
+    }
+
     @Override
     public String toString() {
         return "General{" +

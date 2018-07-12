@@ -36,6 +36,7 @@ import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Mla;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +58,7 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
     private StorageReference mStorageRef;
     private ImageView mSelectedPhoto;
     private Uri photoUri;
+    private ArrayList<Object> inputs;
 
     public ContactMlaFragment() {
         // Required empty public constructor
@@ -117,10 +119,20 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         final int id = v.getId();
+        inputs = new ArrayList<>();
+        inputs.add(mName);
+        inputs.add(mConstituency);
+        inputs.add(mParty);
+        inputs.add(mMobile);
+        inputs.add(mPhone);
+        inputs.add(mEmail);
+        inputs.add(mAddress);
+
+
         if (id == R.id.btn_upload_mp_photo) {
             openImageChooser();
         } else if (id == R.id.btn_submit_mp) {
-            if (validateInputs()) {
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mName.getText().toString(),
@@ -138,59 +150,6 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
 
     }
 
-    private boolean validateInputs() {
-        boolean valid = true;
-        if (TextUtils.isEmpty(mName.getText().toString().trim())) {
-            valid = false;
-            mName.setError("*Required!");
-        } else {
-            mName.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mConstituency.getText().toString().trim())) {
-            valid = false;
-            mConstituency.setError("*Required!");
-        } else {
-            mConstituency.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mParty.getText().toString().trim())) {
-            valid = false;
-            mParty.setError("*Required!");
-        } else {
-            mParty.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mMobile.getText().toString().trim())) {
-            valid = false;
-            mMobile.setError("*Required!");
-        } else {
-            mMobile.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mPhone.getText().toString().trim())) {
-            valid = false;
-            mPhone.setError("*Required!");
-        } else {
-            mPhone.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mEmail.getText().toString().trim())) {
-            valid = false;
-            mEmail.setError("*Required!");
-        } else {
-            mEmail.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mAddress.getText().toString().trim())) {
-            valid = false;
-            mAddress.setError("*Required!");
-        } else {
-            mAddress.setError(null);
-        }
-
-        return valid;
-    }
 
 
     private void submitData(
@@ -231,7 +190,7 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
 
-                    DocumentReference docRef = mlaRef.document();
+                    DocumentReference docRef = mlaRef.document("mla");
 
                     Mla mla = new Mla(
                             docRef.getId(),
@@ -251,6 +210,8 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
+                                    Config.clearInputs(inputs);
+                                    mSelectedPhoto.setVisibility(View.GONE);
                                     Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
                                 }
                             })
