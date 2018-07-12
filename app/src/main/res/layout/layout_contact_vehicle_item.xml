@@ -14,7 +14,7 @@
             android:id="@+id/img_contact_vehicle"
             android:src="@drawable/no_icon_48"
             android:scaleType="center"
-            android:layout_width="100dp"
+            android:layout_width="72dp"
             android:layout_height="72dp" />
         <LinearLayout
             android:id="@+id/layout_text"

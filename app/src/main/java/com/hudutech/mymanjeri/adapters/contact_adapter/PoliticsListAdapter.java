@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.adapters.medical_adapters;
+package com.hudutech.mymanjeri.adapters.contact_adapter;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,23 +23,21 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.medical_models.MedicalShop;
+import com.hudutech.mymanjeri.models.contact_models.Politics;
 
 import java.util.List;
 
-public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopListAdapter.ViewHolder> {
+public class PoliticsListAdapter extends RecyclerView.Adapter<PoliticsListAdapter.ViewHolder> {
 
-    private List<MedicalShop> medicalShopList;
+    private List<Politics> politicsList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public MedicalShopListAdapter(Context mContext, List<MedicalShop> medicalShopList) {
-        this.medicalShopList = medicalShopList;
+    public PoliticsListAdapter(Context mContext, List<Politics> politicsList) {
+        this.politicsList = politicsList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -48,21 +45,20 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
     @NonNull
     @Override
-    public MedicalShopListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_medical_item, parent, false);
-        return new MedicalShopListAdapter.ViewHolder(v);
+    public PoliticsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
+        return new PoliticsListAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final MedicalShop medicalShop = medicalShopList.get(position);
+        final Politics politics = politicsList.get(position);
         mProgress = new ProgressDialog(mContext);
 
-        holder.mMap.setVisibility(View.VISIBLE);
         //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (medicalShop.isValidated()) {
+            if (politics.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -81,7 +77,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.delete(medicalShop, holder.getAdapterPosition());
+                        holder.delete(politics, holder.getAdapterPosition());
 
                     }
                 });
@@ -108,7 +104,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(medicalShop, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(politics, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -134,7 +130,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(medicalShop, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(politics, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -150,18 +146,17 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
             }
         });
 
-        holder.mName.setText(medicalShop.getShopName());
-        holder.mPhoneNumber.setText(medicalShop.getPhoneNumber());
-        holder.mLocation.setText(medicalShop.getPlace());
+        holder.mName.setText(politics.getName());
+        holder.mPhoneNumber.setText(politics.getPhoneNumber());
+        holder.mLocation.setText(politics.getPlace());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(medicalShop.getPhotoUrl())
+                .load(R.drawable.no_icon_48)
                 .apply(requestOptions)
                 .into(holder.imageView);
-
 
 
     }
@@ -169,7 +164,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
     @Override
     public int getItemCount() {
-        return medicalShopList.size();
+        return politicsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -180,7 +175,6 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
         TextView mLocation;
         TextView mShare;
         TextView mCall;
-        TextView mMap;
         RelativeLayout layoutContent;
         LinearLayout layoutControl;
         Button mButtonValidate;
@@ -191,89 +185,75 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
-            mName = itemView.findViewById(R.id.tv_name);
-            mPhoneNumber = itemView.findViewById(R.id.tv_phone);
-            mLocation = itemView.findViewById(R.id.tv_location);
-            mShare = itemView.findViewById(R.id.tv_share);
-            mCall = itemView.findViewById(R.id.tv_call);
-            mMap = itemView.findViewById(R.id.tv_map);
-            imageView = itemView.findViewById(R.id.img_item);
-            mButtonValidate = itemView.findViewById(R.id.btn_validate);
-            mButtonInValidate = itemView.findViewById(R.id.btn_invalidate);
-            mButtonDelete = itemView.findViewById(R.id.btn_delete);
-            layoutContent = itemView.findViewById(R.id.layout_content);
-            layoutControl = itemView.findViewById(R.id.layout_admin_control);
+            mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
+            mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
+            mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
+            mShare = itemView.findViewById(R.id.tv_contact_vehicle_share);
+            mCall = itemView.findViewById(R.id.tv_contact_vehicle_call);
+            imageView = itemView.findViewById(R.id.img_contact_vehicle);
+            mButtonValidate = itemView.findViewById(R.id.btn_contact_vehicle_validate);
+            mButtonInValidate = itemView.findViewById(R.id.btn_contact_vehicle_invalidate);
+            mButtonDelete = itemView.findViewById(R.id.btn_contact_vehicle_delete);
+            layoutContent = itemView.findViewById(R.id.layout_contact_vehicle_content);
+            layoutControl = itemView.findViewById(R.id.layout_contact_vehicle_admin_control);
         }
 
-        public void delete(final MedicalShop medicalShop, final int position) {
+        public void delete(final Politics politics, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
              * by not keeping image files for deleted items.
              */
+
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(medicalShop.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("labs");
-                    ref.document(medicalShop.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    medicalShopList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("politics");
+            ref.document(politics.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            politicsList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Politics deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final MedicalShop medicalShop, boolean isValidated, final int position) {
+
+        public void updateIsValidated(final Politics politics, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("medical_shops")
-                    .document(medicalShop.getDocKey())
+            db.collection("politics")
+                    .document(politics.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("medical_shops")
-                                    .document(medicalShop.getDocKey())
+                            db.collection("politics")
+                                    .document(politics.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            MedicalShop newItem = documentSnapshot.toObject(MedicalShop.class);
-                                            medicalShopList.set(position, newItem);
+                                            Politics newItem = documentSnapshot.toObject(Politics.class);
+                                            politicsList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
@@ -301,8 +281,6 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
 
         }
-
-
 
 
     }

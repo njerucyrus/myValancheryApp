@@ -38,7 +38,7 @@ public class RailwayFragment extends Fragment {
     private Context mContext;
     private EmergencyListAdapter mAdapter;
     private List<Emergency> emergencyList;
-    private CollectionReference mVehicleRef;
+    private CollectionReference mRef;
     private ProgressDialog mProgress;
 
     private ListenerRegistration registration;
@@ -54,7 +54,7 @@ public class RailwayFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_railway, container, false);
         mContext = getContext();
-        mVehicleRef = FirebaseFirestore.getInstance().collection("emergency");
+        mRef = FirebaseFirestore.getInstance().collection("emergency");
         emergencyList = new ArrayList<>();
         mAdapter = new EmergencyListAdapter(mContext, emergencyList);
         mProgress = new ProgressDialog(getContext());
@@ -74,7 +74,7 @@ public class RailwayFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mVehicleRef.whereEqualTo("emergencyType", "Railway").get()
+        mRef.whereEqualTo("emergencyType", "Railway").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {

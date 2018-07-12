@@ -29,7 +29,6 @@ import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.medical_models.Optical;
-import com.hudutech.mymanjeri.models.medical_models.Optical;
 
 import java.util.List;
 

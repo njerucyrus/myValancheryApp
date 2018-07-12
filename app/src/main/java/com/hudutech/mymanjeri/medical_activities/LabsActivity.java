@@ -16,9 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.adapters.medical_adapters.DoctorListAdapter;
 import com.hudutech.mymanjeri.adapters.medical_adapters.LabListAdapter;
-import com.hudutech.mymanjeri.models.medical_models.Doctor;
 import com.hudutech.mymanjeri.models.medical_models.Lab;
 
 import java.util.ArrayList;

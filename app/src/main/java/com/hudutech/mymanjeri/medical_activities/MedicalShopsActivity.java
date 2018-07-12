@@ -18,7 +18,6 @@ import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.medical_adapters.MedicalShopListAdapter;
 import com.hudutech.mymanjeri.models.medical_models.MedicalShop;
-import com.hudutech.mymanjeri.models.medical_models.MedicalShop;
 
 import java.util.ArrayList;
 import java.util.List;

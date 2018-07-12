@@ -33,8 +33,8 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class INCFragment extends Fragment {
-    private static final String TAG = "INCFragment";
+public class CPIFragment extends Fragment {
+    private static final String TAG = "CPIFragment";
     private Context mContext;
     private PoliticsListAdapter mAdapter;
     private List<Politics> politicsList;
@@ -43,7 +43,7 @@ public class INCFragment extends Fragment {
 
     private ListenerRegistration registration;
 
-    public INCFragment() {
+    public CPIFragment() {
         // Required empty public constructor
     }
 
@@ -52,7 +52,7 @@ public class INCFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_inc, container, false);
+        View v = inflater.inflate(R.layout.fragment_cpi, container, false);
         mContext = getContext();
         mRef = FirebaseFirestore.getInstance().collection("politics");
         politicsList = new ArrayList<>();
@@ -74,7 +74,7 @@ public class INCFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mRef.whereEqualTo("party", "INC").get()
+        mRef.whereEqualTo("party", "CPI").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {

@@ -24,8 +24,8 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.adapters.contact_adapter.PoliticsListAdapter;
-import com.hudutech.mymanjeri.models.contact_models.Politics;
+import com.hudutech.mymanjeri.adapters.contact_adapter.MediaListAdapter;
+import com.hudutech.mymanjeri.models.contact_models.Media;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,17 +33,17 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class INCFragment extends Fragment {
-    private static final String TAG = "INCFragment";
+public class ChannelsFragment extends Fragment {
+    private static final String TAG = "ChannelsFragment";
     private Context mContext;
-    private PoliticsListAdapter mAdapter;
-    private List<Politics> politicsList;
+    private MediaListAdapter mAdapter;
+    private List<Media> mediaList;
     private CollectionReference mRef;
     private ProgressDialog mProgress;
 
     private ListenerRegistration registration;
 
-    public INCFragment() {
+    public ChannelsFragment() {
         // Required empty public constructor
     }
 
@@ -52,11 +52,11 @@ public class INCFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_inc, container, false);
+        View v = inflater.inflate(R.layout.fragment_channels, container, false);
         mContext = getContext();
-        mRef = FirebaseFirestore.getInstance().collection("politics");
-        politicsList = new ArrayList<>();
-        mAdapter = new PoliticsListAdapter(mContext, politicsList);
+        mRef = FirebaseFirestore.getInstance().collection("media");
+        mediaList = new ArrayList<>();
+        mAdapter = new MediaListAdapter(mContext, mediaList);
         mProgress = new ProgressDialog(getContext());
         RecyclerView mRecyclerView = v.findViewById(R.id.admin_contact_vehicle_list_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -74,19 +74,19 @@ public class INCFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mRef.whereEqualTo("party", "INC").get()
+        mRef.whereEqualTo("mediaType", "Channels").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (documentSnapshots.getDocuments().size() > 0) {
                             for (DocumentSnapshot snapshot : documentSnapshots.getDocuments()) {
-                                Politics politics = snapshot.toObject(Politics.class);
-                                if (politics != null) {
+                                Media media = snapshot.toObject(Media.class);
+                                if (media != null) {
                                     if (Config.isAdmin(mContext)) {
-                                        politicsList.add(politics);
+                                        mediaList.add(media);
                                     } else if (!Config.isAdmin(mContext)){
-                                        if (politics.isValidated()) politicsList.add(politics);
+                                        if (media.isValidated()) mediaList.add(media);
                                     }
                                 }
                             }
