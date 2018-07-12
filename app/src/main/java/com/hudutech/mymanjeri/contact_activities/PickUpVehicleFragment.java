@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.conctact_activities;
+package com.hudutech.mymanjeri.contact_activities;
 
 
 import android.app.ProgressDialog;
@@ -33,8 +33,8 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TaxiVehicleFragment extends Fragment {
-    private static final String TAG = "TaxiVehicleFragment";
+public class PickUpVehicleFragment extends Fragment {
+    private static final String TAG = "PickUpVehicleFragment";
     private Context mContext;
     private VehicleListAdapter mAdapter;
     private List<Vehicle> vehicleList;
@@ -43,7 +43,7 @@ public class TaxiVehicleFragment extends Fragment {
 
     private ListenerRegistration registration;
 
-    public TaxiVehicleFragment() {
+    public PickUpVehicleFragment() {
         // Required empty public constructor
     }
 
@@ -52,7 +52,7 @@ public class TaxiVehicleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_taxi_vehicle, container, false);
+        View v = inflater.inflate(R.layout.fragment_pick_up_vehicle, container, false);
         mContext = getContext();
         mVehicleRef = FirebaseFirestore.getInstance().collection("contact_vehicles");
         vehicleList = new ArrayList<>();
@@ -74,7 +74,7 @@ public class TaxiVehicleFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mVehicleRef.whereEqualTo("vehicleType", "Taxi").get()
+        mVehicleRef.whereEqualTo("vehicleType", "Pickup").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {

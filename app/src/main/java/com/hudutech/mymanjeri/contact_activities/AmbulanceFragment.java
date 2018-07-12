@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.conctact_activities;
+package com.hudutech.mymanjeri.contact_activities;
 
 
 import android.app.ProgressDialog;
@@ -33,8 +33,8 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FireForceFragment extends Fragment {
-    private static final String TAG = "FireForceFragment";
+public class AmbulanceFragment extends Fragment {
+    private static final String TAG = "AmbulanceFragment";
     private Context mContext;
     private EmergencyListAdapter mAdapter;
     private List<Emergency> emergencyList;
@@ -43,7 +43,7 @@ public class FireForceFragment extends Fragment {
 
     private ListenerRegistration registration;
 
-    public FireForceFragment() {
+    public AmbulanceFragment() {
         // Required empty public constructor
     }
 
@@ -74,7 +74,7 @@ public class FireForceFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mVehicleRef.whereEqualTo("emergencyType", "FireForce").get()
+        mVehicleRef.whereEqualTo("emergencyType", "Ambulance").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {
@@ -107,5 +107,4 @@ public class FireForceFragment extends Fragment {
 
 
     }
-
 }

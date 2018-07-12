@@ -4,11 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hudutech.mymanjeri.conctact_activities.AutoVehicleFragment;
-import com.hudutech.mymanjeri.conctact_activities.GoodsVehicleFragment;
-import com.hudutech.mymanjeri.conctact_activities.JcbVehicleFragment;
-import com.hudutech.mymanjeri.conctact_activities.PickUpVehicleFragment;
-import com.hudutech.mymanjeri.conctact_activities.TaxiVehicleFragment;
+import com.hudutech.mymanjeri.contact_activities.AutoVehicleFragment;
+import com.hudutech.mymanjeri.contact_activities.GoodsVehicleFragment;
+import com.hudutech.mymanjeri.contact_activities.JcbVehicleFragment;
+import com.hudutech.mymanjeri.contact_activities.PickUpVehicleFragment;
+import com.hudutech.mymanjeri.contact_activities.TaxiVehicleFragment;
 
 
 public class VehicleSectionAdapter extends FragmentPagerAdapter {

@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.conctact_activities;
+package com.hudutech.mymanjeri.contact_activities;
 
 
 import android.app.ProgressDialog;
@@ -33,8 +33,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KSRTCFragment extends Fragment {
-    private static final String TAG = "KSRTCFragment";
+public class PoliceFragment extends Fragment {
+
+    private static final String TAG = "PoliceFragment";
     private Context mContext;
     private EmergencyListAdapter mAdapter;
     private List<Emergency> emergencyList;
@@ -43,7 +44,7 @@ public class KSRTCFragment extends Fragment {
 
     private ListenerRegistration registration;
 
-    public KSRTCFragment() {
+    public PoliceFragment() {
         // Required empty public constructor
     }
 
@@ -52,7 +53,7 @@ public class KSRTCFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_ksrtc, container, false);
+        View v = inflater.inflate(R.layout.fragment_police, container, false);
         mContext = getContext();
         mVehicleRef = FirebaseFirestore.getInstance().collection("emergency");
         emergencyList = new ArrayList<>();
@@ -74,7 +75,7 @@ public class KSRTCFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mVehicleRef.whereEqualTo("emergencyType", "KSRTC").get()
+        mVehicleRef.whereEqualTo("emergencyType", "Police").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {

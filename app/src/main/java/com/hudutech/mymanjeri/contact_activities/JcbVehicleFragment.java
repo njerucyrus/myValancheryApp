@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.conctact_activities;
+package com.hudutech.mymanjeri.contact_activities;
 
 
 import android.app.ProgressDialog;
@@ -24,8 +24,8 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.adapters.contact_adapter.EmergencyListAdapter;
-import com.hudutech.mymanjeri.models.contact_models.Emergency;
+import com.hudutech.mymanjeri.adapters.contact_adapter.VehicleListAdapter;
+import com.hudutech.mymanjeri.models.contact_models.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,17 +33,17 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RailwayFragment extends Fragment {
-    private static final String TAG = "RailwayFragment";
+public class JcbVehicleFragment extends Fragment {
+    private static final String TAG = "JcbVehicleFragment";
     private Context mContext;
-    private EmergencyListAdapter mAdapter;
-    private List<Emergency> emergencyList;
+    private VehicleListAdapter mAdapter;
+    private List<Vehicle> vehicleList;
     private CollectionReference mVehicleRef;
     private ProgressDialog mProgress;
 
     private ListenerRegistration registration;
 
-    public RailwayFragment() {
+    public JcbVehicleFragment() {
         // Required empty public constructor
     }
 
@@ -52,41 +52,41 @@ public class RailwayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_railway, container, false);
+        View v = inflater.inflate(R.layout.fragment_jcb_vehicle, container, false);
         mContext = getContext();
-        mVehicleRef = FirebaseFirestore.getInstance().collection("emergency");
-        emergencyList = new ArrayList<>();
-        mAdapter = new EmergencyListAdapter(mContext, emergencyList);
+        mVehicleRef = FirebaseFirestore.getInstance().collection("contact_vehicles");
+        vehicleList = new ArrayList<>();
+        mAdapter = new VehicleListAdapter(mContext, vehicleList);
         mProgress = new ProgressDialog(getContext());
         RecyclerView mRecyclerView = v.findViewById(R.id.admin_contact_vehicle_list_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
-        loadData();
+        loadVehicles();
 
         return v;
 
     }
 
-    private void loadData() {
+    private void loadVehicles() {
         mProgress.setMessage("Loading...");
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mVehicleRef.whereEqualTo("emergencyType", "Railway").get()
+        mVehicleRef.whereEqualTo("vehicleType", "JCB").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (documentSnapshots.getDocuments().size() > 0) {
                             for (DocumentSnapshot snapshot : documentSnapshots.getDocuments()) {
-                                Emergency vehicle = snapshot.toObject(Emergency.class);
+                                Vehicle vehicle = snapshot.toObject(Vehicle.class);
                                 if (vehicle != null) {
                                     if (Config.isAdmin(mContext)) {
-                                        emergencyList.add(vehicle);
+                                        vehicleList.add(vehicle);
                                     } else if (!Config.isAdmin(mContext)){
-                                        if (vehicle.isValidated()) emergencyList.add(vehicle);
+                                        if (vehicle.isValidated()) vehicleList.add(vehicle);
                                     }
                                 }
                             }

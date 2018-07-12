@@ -4,12 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hudutech.mymanjeri.conctact_activities.AmbulanceFragment;
-import com.hudutech.mymanjeri.conctact_activities.FireForceFragment;
-import com.hudutech.mymanjeri.conctact_activities.KSEBFragment;
-import com.hudutech.mymanjeri.conctact_activities.KSRTCFragment;
-import com.hudutech.mymanjeri.conctact_activities.PoliceFragment;
-import com.hudutech.mymanjeri.conctact_activities.RailwayFragment;
+import com.hudutech.mymanjeri.contact_activities.AmbulanceFragment;
+import com.hudutech.mymanjeri.contact_activities.FireForceFragment;
+import com.hudutech.mymanjeri.contact_activities.KSEBFragment;
+import com.hudutech.mymanjeri.contact_activities.KSRTCFragment;
+import com.hudutech.mymanjeri.contact_activities.PoliceFragment;
+import com.hudutech.mymanjeri.contact_activities.RailwayFragment;
 
 
 public class EmergencySectionAdapter extends FragmentPagerAdapter {

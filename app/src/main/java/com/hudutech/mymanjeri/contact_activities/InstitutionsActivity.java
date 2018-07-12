@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.conctact_activities;
+package com.hudutech.mymanjeri.contact_activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
