@@ -223,8 +223,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tv_address"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_margin="8dp"
                     android:textColor="@color/colorPrimaryText"
                     android:text="Some Address"
                     android:layout_width="match_parent"

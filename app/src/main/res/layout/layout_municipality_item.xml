@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+  <RelativeLayout
+      android:id="@id/layout_content"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:background="@color/colorBg"
+        android:layout_margin="8dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_designation"
+        android:layout_below="@+id/tv_name"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="Designation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_ward_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:gravity="end"
+        android:text="Ward 4" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_32dp"
+        android:drawableStart="@drawable/ic_keyboard_arrow_right_black_32dp" />
+  </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="end"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_admin_control"
+        android:layout_below="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_contact_vehicle_invalidate"
+            android:gravity="center"
+            android:background="@drawable/button_ui_primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="In Validate"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+        <Button
+            android:id="@+id/btn_contact_vehicle_validate"
+            android:gravity="center"
+            android:background="@drawable/button_ui_primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Validate"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+        <Button
+            android:id="@+id/btn_contact_vehicle_delete"
+            android:gravity="center"
+            android:background="@drawable/button_ui_danger"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Delete"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -40,25 +40,31 @@ public class MunicipalityFragment extends Fragment {
         TextView mParty = v.findViewById(R.id.tv_party);
         ImageView imageView = v.findViewById(R.id.imageView);
 
-        Municipality mObject = (Municipality)getActivity().getIntent().getSerializableExtra("municipality");
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            Municipality mObject = (Municipality)bundle.getSerializable("municipality");
+            if (mObject != null) {
+                mName.setText(mObject.getName());
+                mDesignation.setText(mObject.getDesignation());
+                mWardNo.setText(mObject.getWardNo());
+                mWardName.setText(mObject.getWardName());
+                mMobileNo.setText(mObject.getMobileNumber());
+                mPhoneNo.setText(mObject.getPhoneNumber());
+                mAddress.setText(mObject.getAddress());
+                mParty.setText(mObject.getParty());
 
-        mName.setText(mObject.getName());
-        mDesignation.setText(mObject.getDesignation());
-        mWardNo.setText(mObject.getWardNo());
-        mWardName.setText(mObject.getWardName());
-        mMobileNo.setText(mObject.getMobileNumber());
-        mPhoneNo.setText(mObject.getPhoneNumber());
-        mAddress.setText(mObject.getAddress());
-        mParty.setText(mObject.getParty());
-
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.no_barner);
+                RequestOptions requestOptions = new RequestOptions()
+                        .placeholder(R.drawable.no_barner);
 
 
-        Glide.with(getContext())
-                .load(mObject.getPhotoUrl())
-                .apply(requestOptions)
-                .into(imageView);
+                Glide.with(getContext())
+                        .load(mObject.getPhotoUrl())
+                        .apply(requestOptions)
+                        .into(imageView);
+            }
+        }
+
+
         return v;
     }
 

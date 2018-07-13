@@ -26,7 +26,8 @@ import java.util.List;
 public class ManageSBAccountsActivity extends AppCompatActivity {
 
     private SBAccountsAdapter mAdapter;
-    private List<SBankAccount> sBankAccountList;
+    private List<SBankAccount>
+            sBankAccountList;
     private CollectionReference mAccountsRef;
     private ProgressDialog mProgress;
 
