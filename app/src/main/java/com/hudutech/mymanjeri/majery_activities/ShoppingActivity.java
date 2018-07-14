@@ -39,7 +39,7 @@ public class ShoppingActivity extends AppCompatActivity {
     private void loadShopMenus() {
         ShopMenu iceCream = new ShopMenu(
                 "Ice Cream",
-                R.drawable.no_icon_48,
+                R.drawable.ice_cream64,
                 ShopMenuDetailActivity.class
         );
 
@@ -47,7 +47,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu superMarket = new ShopMenu(
                 "Super Market",
-                R.drawable.no_icon_48,
+                R.drawable.super_market64,
                 ShopMenuDetailActivity.class
         );
 
@@ -70,7 +70,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu vegetables = new ShopMenu(
                 "Vegetables",
-                R.drawable.no_icon_48,
+                R.drawable.vegitable_48,
                 ShopMenuDetailActivity.class
         );
         shopMenuList.add(vegetables);
@@ -87,7 +87,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu electronics = new ShopMenu(
                 "Electronics",
-                R.drawable.no_icon_48,
+                R.drawable.electronics_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -112,7 +112,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu furniture = new ShopMenu(
                 "Furniture",
-                R.drawable.no_icon_48,
+                R.drawable.furniture_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -121,7 +121,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu generalStores = new ShopMenu(
                 "General Stores",
-                R.drawable.no_icon_48,
+                R.drawable.general_48,
                 ShopMenuDetailActivity.class
         );
 
@@ -129,7 +129,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu jewellery = new ShopMenu(
                 "Jewellery",
-                R.drawable.no_icon_48,
+                R.drawable.jewellery_48,
                 ShopMenuDetailActivity.class
         );
 
@@ -147,7 +147,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu homeAppliances = new ShopMenu(
                 "Home Appliances",
-                R.drawable.no_icon_48,
+                R.drawable.home_appliances64,
                 ShopMenuDetailActivity.class
         );
 
@@ -156,7 +156,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu electricalShops = new ShopMenu(
                 "Electrical Shop",
-                R.drawable.no_icon_48,
+                R.drawable.electicals_48,
                 ShopMenuDetailActivity.class
         );
 
@@ -165,7 +165,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu butcherShops = new ShopMenu(
                 "Butcher Shop",
-                R.drawable.no_icon_48,
+                R.drawable.butcher_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -174,7 +174,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu hardware_and_tools = new ShopMenu(
                 "Hardware&Tools",
-                R.drawable.no_icon_48,
+                R.drawable.hardwares_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -184,7 +184,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu stationary = new ShopMenu(
                 "Stationary",
-                R.drawable.no_icon_48,
+                R.drawable.stationery_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -193,7 +193,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu paints = new ShopMenu(
                 "Paints",
-                R.drawable.no_icon_48,
+                R.drawable.paint_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -202,7 +202,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu mobileShop = new ShopMenu(
                 "Mobile Shop",
-                R.drawable.no_icon_48,
+                R.drawable.mobile_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -229,7 +229,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu sportShop = new ShopMenu(
                 "Sport Shop",
-                R.drawable.no_icon_48,
+                R.drawable.sports_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -238,7 +238,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu studio = new ShopMenu(
                 "Studio",
-                R.drawable.no_icon_48,
+                R.drawable.studio_64,
                 ShopMenuDetailActivity.class
         );
 
@@ -256,7 +256,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu catering = new ShopMenu(
                 "Catering",
-                R.drawable.no_icon_48,
+                R.drawable.catering_64,
                 ShopMenuDetailActivity.class
         );
 

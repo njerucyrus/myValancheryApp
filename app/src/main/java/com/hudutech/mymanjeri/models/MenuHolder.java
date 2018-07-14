@@ -8,6 +8,7 @@ import com.hudutech.mymanjeri.classifields_activities.RealEstateActivity;
 import com.hudutech.mymanjeri.contact_activities.ArtAndCultureActivity;
 import com.hudutech.mymanjeri.contact_activities.BanksActivity;
 import com.hudutech.mymanjeri.contact_activities.EmergencyActivity;
+import com.hudutech.mymanjeri.contact_activities.FindPartnerActivity;
 import com.hudutech.mymanjeri.contact_activities.GeneralActivity;
 import com.hudutech.mymanjeri.contact_activities.InstitutionsActivity;
 import com.hudutech.mymanjeri.contact_activities.LabouresActivity;
@@ -45,6 +46,7 @@ import java.util.List;
 public class MenuHolder {
     private HashMap<String, List<CategoryMenu>> menuHashMap = new HashMap<>();
     private static final String CATEGORY_MAJERY = "manjery";
+    private static final String CATEGORY_CALL_US = "call_us";
     private static final String CATEGORY_CONTACTS_1 = "contacts_1";
     private static final String CATEGORY_CONTACTS_2 = "contacts_2";
     private static final String CATEGORY_TIMING_AND_BOOKING = "timing_and_booking";
@@ -57,6 +59,7 @@ public class MenuHolder {
 
         //create the menu object when the object instance is created
         initMajeryMenus();
+        initContactUsMenus();
         initContacts1Menus();
         initContact2Menus();
         initTimingAndBooking();
@@ -101,11 +104,7 @@ public class MenuHolder {
         majeryMenus.add(historyMenu);
 
 
-        CategoryMenu shopping = new CategoryMenu(
-                "Majery", "Shopping", ShoppingActivity.class, R.drawable.shopping_48
-        );
 
-        majeryMenus.add(shopping);
 
 
         CategoryMenu education = new CategoryMenu(
@@ -118,12 +117,48 @@ public class MenuHolder {
 
     }
 
+    private void initContactUsMenus() {
+
+        ArrayList<CategoryMenu> contactUsMenu = new ArrayList<>();
+        CategoryMenu shopping = new CategoryMenu(
+                "Call Us", "Shopping", ShoppingActivity.class, R.drawable.shopping_48
+        );
+
+        contactUsMenu.add(shopping);
+
+        CategoryMenu vehicle = new CategoryMenu(
+                "Call Us", "Vehicle", VehicleActivity.class, R.drawable.vehicles_48
+        );
+        contactUsMenu.add(vehicle);
+
+
+
+        CategoryMenu professionals = new CategoryMenu(
+                "Call Us", "Professionals", ProfessionalsActivity.class, R.drawable.proffesional_48
+        );
+
+        contactUsMenu.add(professionals);
+
+        CategoryMenu labourers = new CategoryMenu(
+                "Call Us", "Labourers", LabouresActivity.class, R.drawable.labourers_48
+        );
+        contactUsMenu.add(labourers);
+
+        CategoryMenu partner = new CategoryMenu(
+                "Call Us", "Find Partner", FindPartnerActivity.class, R.drawable.find_partner_48
+        );
+        contactUsMenu.add(partner);
+
+        this.menuHashMap.put(CATEGORY_CALL_US, contactUsMenu);
+
+
+
+
+    }
+
     private void initContacts1Menus() {
         ArrayList<CategoryMenu> contact1Menus = new ArrayList<>();
-        CategoryMenu vehicle = new CategoryMenu(
-                "Contact1", "Vehicle", VehicleActivity.class, R.drawable.vehicles_48
-        );
-        contact1Menus.add(vehicle);
+
 
         CategoryMenu emmergency = new CategoryMenu(
                 "Contact1", "Emergency", EmergencyActivity.class, R.drawable.emergency_48
@@ -182,17 +217,9 @@ public class MenuHolder {
 
         contact2.add(banks);
 
-        CategoryMenu professionals = new CategoryMenu(
-                "Contact2", "Professionals", ProfessionalsActivity.class, R.drawable.proffesional_48
-        );
 
-        contact2.add(professionals);
 
-        CategoryMenu labourers = new CategoryMenu(
-                "Contact2", "Labourers", LabouresActivity.class, R.drawable.labourers_48
-        );
 
-        contact2.add(labourers);
 
 
         CategoryMenu institutions = new CategoryMenu(

@@ -126,7 +126,8 @@
         <activity android:name=".admin_contacts.ContactsEntryPointActivity" />
         <activity android:name=".admin_medical.MedicalEntryPointActivity" />
         <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity" />
-        <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity"></activity>
+        <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity" />
+        <activity android:name=".contact_activities.FindPartnerActivity"></activity>
     </application>
 
 </manifest>

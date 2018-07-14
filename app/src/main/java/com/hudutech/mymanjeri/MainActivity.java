@@ -49,6 +49,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String CATEGORY_MAJERY = "manjery";
+    private static final String CATEGORY_CALL_US = "call_us";
     private static final String CATEGORY_CONTACTS_1 = "contacts_1";
     private static final String CATEGORY_CONTACTS_2 = "contacts_2";
     private static final String CATEGORY_TIMING_AND_BOOKING = "timing_and_booking";
@@ -59,13 +60,6 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, List<CategoryMenu>> menuHashMap;
     Handler handler = new Handler();
     Runnable runnable;
-    private List<CategoryMenu> manjeryMenuList;
-    private List<CategoryMenu> contact1MenuList;
-    private List<CategoryMenu> contact2MenuList;
-    private List<CategoryMenu> timingAndBookingMenuList;
-    private List<CategoryMenu> classfiledMenuList;
-    private List<CategoryMenu> medicalMenuList;
-    private List<CategoryMenu> digitalMenuList;
     private ImageViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private List<Banner> barnerList;
@@ -112,17 +106,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         //MENU DATA LIST
-        manjeryMenuList = menuHashMap.get(CATEGORY_MAJERY);
-        contact1MenuList = menuHashMap.get(CATEGORY_CONTACTS_1);
-        contact2MenuList = menuHashMap.get(CATEGORY_CONTACTS_2);
-        timingAndBookingMenuList = menuHashMap.get(CATEGORY_TIMING_AND_BOOKING);
-        classfiledMenuList = menuHashMap.get(CATEGORY_CLASSIFIEDS);
-        medicalMenuList = menuHashMap.get(CATEGORY_MEDICAL);
-        digitalMenuList = menuHashMap.get(CATEGORY_DIGITAL);
+
+        List<CategoryMenu> manjeryMenuList = menuHashMap.get(CATEGORY_MAJERY);
+        List<CategoryMenu> contact1MenuList = menuHashMap.get(CATEGORY_CONTACTS_1);
+        List<CategoryMenu> contact2MenuList = menuHashMap.get(CATEGORY_CONTACTS_2);
+        List<CategoryMenu> timingAndBookingMenuList = menuHashMap.get(CATEGORY_TIMING_AND_BOOKING);
+        List<CategoryMenu> classfiledMenuList = menuHashMap.get(CATEGORY_CLASSIFIEDS);
+        List<CategoryMenu> medicalMenuList = menuHashMap.get(CATEGORY_MEDICAL);
+        List<CategoryMenu> digitalMenuList = menuHashMap.get(CATEGORY_DIGITAL);
+        List<CategoryMenu> contactUsMenuList = menuHashMap.get(CATEGORY_CALL_US);
 
 
         //MENU ADAPTERS
         CustomMenuAdapter majeryAdapter = new CustomMenuAdapter(this, manjeryMenuList);
+        CustomMenuAdapter contactUsAdapter = new CustomMenuAdapter(this, contactUsMenuList);
         CustomMenuAdapter contact1Adapter = new CustomMenuAdapter(this, contact1MenuList);
         CustomMenuAdapter contact2Adapter = new CustomMenuAdapter(this, contact2MenuList);
         CustomMenuAdapter timmingAndBookingAdapter = new CustomMenuAdapter(this, timingAndBookingMenuList);
@@ -137,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
         majeryRecyclerView.setItemAnimator(new DefaultItemAnimator());
         majeryRecyclerView.setAdapter(majeryAdapter);
         majeryRecyclerView.setHasFixedSize(true);
+
+        //CONTACT US MENU
+        RecyclerView contactUsRecyclerView = findViewById(R.id.contact_us_recyclerview);
+        contactUsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
+        contactUsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        contactUsRecyclerView.setAdapter(contactUsAdapter);
+        contactUsRecyclerView.setHasFixedSize(true);
 
         //CONTACT MENU 1st ROW
         RecyclerView contact1RecyclerView = findViewById(R.id.contacts_recyclerview1);

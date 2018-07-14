@@ -40,7 +40,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/valanchery_48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/contacts_48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/time_and_booking48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/classifieds_48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/medical_48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/banner_48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -191,7 +191,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/opening_banner48" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_icon_48" />
+                android:src="@drawable/ic_power_settings_new_black_48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
