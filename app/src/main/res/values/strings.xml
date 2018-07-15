@@ -49,19 +49,9 @@
 
     <string-array name="professional_category">
         <item>Choose Profession</item>
-        <item>Driver</item>
-        <item>Electrical</item>
-        <item>Fridge&amp;Ac</item>
-        <item>Chef</item>
-        <item>Tailoring</item>
         <item>Engineers</item>
         <item>Advocates</item>
-        <item>Indus</item>
-        <item>Curtain</item>
-        <item>Fabrication</item>
-        <item>Labour</item>
-        <item>Painting</item>
-        <item>Doctors</item>
+        <item>Document Writing</item>
     </string-array>
 
     <string-array name="labourer_category">

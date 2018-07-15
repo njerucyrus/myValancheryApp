@@ -1,13 +1,18 @@
-package com.hudutech.mymanjeri.majery_activities;
+package com.hudutech.mymanjeri.contact_activities;
+
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,32 +29,48 @@ import com.hudutech.mymanjeri.models.majery_models.Shop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopMenuDetailActivity extends AppCompatActivity {
-    private static final String TAG = "ShopMenuDetailActivity";
-    private CollectionReference mRef;
-    private ShopListAdapter mAdapter;
-    private List<Shop> shopList;
-    private ProgressDialog mProgress;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_menu_detail);
-        getSupportActionBar().setTitle(getIntent().getStringExtra("shopType"));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        shopList = new ArrayList<>();
-        mAdapter = new ShopListAdapter(this, shopList);
-        mRef = FirebaseFirestore.getInstance().collection("shops");
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ShopItemFragment extends Fragment {
+    private static final String TAG = "ShopItemFragment";
+   private CollectionReference mRef;
+   private ShopListAdapter mAdapter;
+   private List<Shop> shopList;
+   private Context mContext;
+   private ProgressDialog mProgress;
 
-        RecyclerView mRecyclerView  = findViewById(R.id.admin_contact_vehicle_list_recyclerview);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    public ShopItemFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v =  inflater.inflate(R.layout.fragment_shop_item, container, false);
+        mRef = FirebaseFirestore.getInstance().collection("shopping");
+        mContext = getContext();
+
+        shopList = new ArrayList<>();
+        mAdapter = new ShopListAdapter(mContext, shopList);
+
+        RecyclerView mRecyclerView  = v.findViewById(R.id.admin_contact_vehicle_list_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
 
 
-        mProgress = new ProgressDialog(this);
-        displayData(getIntent().getStringExtra("shopType"));
+        mProgress = new ProgressDialog(getContext());
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String shopType = bundle.getString("shopType");
+            displayData(shopType);
+        }
+        return v;
     }
 
     private void displayData(String shopType) {
@@ -65,9 +86,9 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Shop shop = snapshot.toObject(Shop.class);
                                 if (shop != null) {
-                                    if (Config.isAdmin(ShopMenuDetailActivity.this)) {
+                                    if (Config.isAdmin(mContext)) {
                                         shopList.add(shop);
-                                    } else if (!Config.isAdmin(ShopMenuDetailActivity.this)) {
+                                    } else if (!Config.isAdmin(mContext)) {
                                         if (shop.isValidated()) {
                                             shopList.add(shop);
                                         }
@@ -76,7 +97,7 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
                             }
                             mAdapter.notifyDataSetChanged();
                         }else {
-                            Toast.makeText(ShopMenuDetailActivity.this, "No data!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "No data!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
@@ -89,4 +110,5 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
