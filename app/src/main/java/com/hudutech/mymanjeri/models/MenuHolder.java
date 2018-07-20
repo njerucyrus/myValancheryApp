@@ -182,17 +182,6 @@ public class MenuHolder {
         contact1Menus.add(mla);
 
 
-        CategoryMenu politics = new CategoryMenu(
-                "Contact1", "Politics", PoliticsActivity.class, R.drawable.politics_48
-        );
-        contact1Menus.add(politics);
-
-
-        CategoryMenu media = new CategoryMenu(
-                "Contact1", "Media", MediaActivity.class, R.drawable.media_48
-        );
-        contact1Menus.add(media);
-
 
         CategoryMenu art_and_culture = new CategoryMenu(
                 "Contact1", "Art & Culture", ArtAndCultureActivity.class, R.drawable.art_and_culture_48
@@ -218,8 +207,16 @@ public class MenuHolder {
         contact2.add(banks);
 
 
+        CategoryMenu politics = new CategoryMenu(
+                "Contact2", "Politics", PoliticsActivity.class, R.drawable.politics_48
+        );
+        contact2.add(politics);
 
 
+        CategoryMenu media = new CategoryMenu(
+                "Contact2", "Media", MediaActivity.class, R.drawable.media_48
+        );
+        contact2.add(media);
 
 
         CategoryMenu institutions = new CategoryMenu(

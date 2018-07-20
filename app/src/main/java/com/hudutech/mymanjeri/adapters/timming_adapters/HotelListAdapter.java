@@ -1,4 +1,4 @@
-package com.hudutech.mymanjeri.adapters.medical_adapters;
+package com.hudutech.mymanjeri.adapters.timming_adapters;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -28,19 +28,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.medical_models.MedicalShop;
+import com.hudutech.mymanjeri.models.Hotel;
 
 import java.util.List;
 
-public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopListAdapter.ViewHolder> {
+public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> {
 
-    private List<MedicalShop> medicalShopList;
+    private List<Hotel> hotelList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public MedicalShopListAdapter(Context mContext, List<MedicalShop> medicalShopList) {
-        this.medicalShopList = medicalShopList;
+    public HotelListAdapter(Context mContext, List<Hotel> hotelList) {
+        this.hotelList = hotelList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -48,21 +48,24 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
     @NonNull
     @Override
-    public MedicalShopListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_medical_item, parent, false);
-        return new MedicalShopListAdapter.ViewHolder(v);
+    public HotelListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
+        return new HotelListAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final MedicalShop medicalShop = medicalShopList.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+        final Hotel hotel = hotelList.get(position);
         mProgress = new ProgressDialog(mContext);
-
-        holder.mMap.setVisibility(View.VISIBLE);
         //Show views accordingly
+        holder.imageView.setVisibility(View.VISIBLE);
+        holder.mCall.setVisibility(View.GONE);
+        holder.mShare.setVisibility(View.GONE);
+        holder.mPhoneNumber.setVisibility(View.GONE);
+
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (medicalShop.isValidated()) {
+            if (hotel.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -81,7 +84,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.delete(medicalShop, holder.getAdapterPosition());
+                        holder.delete(hotel, holder.getAdapterPosition());
 
                     }
                 });
@@ -108,7 +111,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(medicalShop, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(hotel, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -134,7 +137,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(medicalShop, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(hotel, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -150,33 +153,33 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
             }
         });
 
-        holder.mName.setText(medicalShop.getShopName());
-        holder.mPhoneNumber.setText(medicalShop.getPhoneNumber());
-        holder.mLocation.setText(medicalShop.getPlace());
+        holder.mName.setText(hotel.getName());
+        holder.mPhoneNumber.setText(hotel.getPhoneNumber());
+        holder.mLocation.setText(hotel.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(medicalShop.getPhotoUrl())
+                .load(hotel.getPhotoUrls().get(0))
                 .apply(requestOptions)
                 .into(holder.imageView);
+
 
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+medicalShop.getPlace() +" Contact "+medicalShop.getPhoneNumber();
-                Config.share(mContext, medicalShop.getShopName(),desc);
+                String desc = "Place "+hotel.getPlaceName() +" Contact "+hotel.getPhoneNumber();
+                Config.share(mContext, hotel.getName(),desc);
             }
         });
 
         holder.mCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Config.call(mContext, medicalShop.getPhoneNumber());
+                Config.call(mContext, hotel.getPhoneNumber());
             }
         });
-
 
 
     }
@@ -184,7 +187,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
     @Override
     public int getItemCount() {
-        return medicalShopList.size();
+        return hotelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -195,7 +198,6 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
         TextView mLocation;
         TextView mShare;
         TextView mCall;
-        TextView mMap;
         RelativeLayout layoutContent;
         LinearLayout layoutControl;
         Button mButtonValidate;
@@ -206,21 +208,20 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
-            mName = itemView.findViewById(R.id.tv_name);
-            mPhoneNumber = itemView.findViewById(R.id.tv_phone);
-            mLocation = itemView.findViewById(R.id.tv_location);
-            mShare = itemView.findViewById(R.id.tv_share);
-            mCall = itemView.findViewById(R.id.tv_call);
-            mMap = itemView.findViewById(R.id.tv_map);
-            imageView = itemView.findViewById(R.id.img_item);
-            mButtonValidate = itemView.findViewById(R.id.btn_validate);
-            mButtonInValidate = itemView.findViewById(R.id.btn_invalidate);
-            mButtonDelete = itemView.findViewById(R.id.btn_delete);
-            layoutContent = itemView.findViewById(R.id.layout_content);
-            layoutControl = itemView.findViewById(R.id.layout_admin_control);
+            mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
+            mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
+            mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
+            mShare = itemView.findViewById(R.id.tv_contact_vehicle_share);
+            mCall = itemView.findViewById(R.id.tv_contact_vehicle_call);
+            imageView = itemView.findViewById(R.id.img_contact_vehicle);
+            mButtonValidate = itemView.findViewById(R.id.btn_contact_vehicle_validate);
+            mButtonInValidate = itemView.findViewById(R.id.btn_contact_vehicle_invalidate);
+            mButtonDelete = itemView.findViewById(R.id.btn_contact_vehicle_delete);
+            layoutContent = itemView.findViewById(R.id.layout_contact_vehicle_content);
+            layoutControl = itemView.findViewById(R.id.layout_contact_vehicle_admin_control);
         }
 
-        public void delete(final MedicalShop medicalShop, final int position) {
+        public void delete(final Hotel hotel, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
@@ -230,21 +231,21 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
             StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(medicalShop.getPhotoUrl());
+                    .getReferenceFromUrl(hotel.getPhotoUrls().get(0));
             photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("labs");
-                    ref.document(medicalShop.getDocKey())
+                    CollectionReference ref = db.collection("hotels");
+                    ref.document(hotel.getDocKey())
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    medicalShopList.remove(position);
+                                    hotelList.remove(position);
                                     notifyItemRemoved(position);
                                     notifyDataSetChanged();
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, "Hotel deleted", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -269,26 +270,26 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
 
         }
 
-        public void updateIsValidated(final MedicalShop medicalShop, boolean isValidated, final int position) {
+        public void updateIsValidated(final Hotel hotel, boolean isValidated,  final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("medical_shops")
-                    .document(medicalShop.getDocKey())
+            db.collection("hotels")
+                    .document(hotel.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("medical_shops")
-                                    .document(medicalShop.getDocKey())
+                            db.collection("hotels")
+                                    .document(hotel.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            MedicalShop newItem = documentSnapshot.toObject(MedicalShop.class);
-                                            medicalShopList.set(position, newItem);
+                                            Hotel newItem = documentSnapshot.toObject(Hotel.class);
+                                            hotelList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();

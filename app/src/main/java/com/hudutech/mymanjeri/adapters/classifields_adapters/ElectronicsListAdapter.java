@@ -161,6 +161,8 @@ public class ElectronicsListAdapter extends RecyclerView.Adapter<ElectronicsList
 
 
 
+
+
     }
 
 

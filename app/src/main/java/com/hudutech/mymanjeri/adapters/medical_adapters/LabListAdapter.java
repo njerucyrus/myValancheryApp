@@ -162,6 +162,21 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
                 .apply(requestOptions)
                 .into(holder.imageView);
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+lab.getPlace() +" Contact "+lab.getContactNo();
+                Config.share(mContext, lab.getLabName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, lab.getContactNo());
+            }
+        });
+
 
 
     }

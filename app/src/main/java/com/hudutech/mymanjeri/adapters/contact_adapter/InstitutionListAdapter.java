@@ -161,6 +161,24 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
                 .into(holder.imageView);
 
 
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+institution.getPlace() +" Contact "+institution.getContactNo();
+                Config.share(mContext, institution.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, institution.getContactNo());
+            }
+        });
+
+
+
     }
 
 

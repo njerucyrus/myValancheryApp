@@ -163,6 +163,22 @@ public class OpticalListAdapter extends RecyclerView.Adapter<OpticalListAdapter.
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+optical.getPlace() +" Contact "+optical.getPhoneNumber();
+                Config.share(mContext, optical.getShopName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, optical.getPhoneNumber());
+            }
+        });
+
+
 
     }
 

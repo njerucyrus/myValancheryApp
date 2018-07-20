@@ -161,6 +161,24 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
                 .into(holder.imageView);
 
 
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+emergency.getPlace() +" Contact "+emergency.getPhoneNumber();
+                Config.share(mContext, "Art And Culture",desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, emergency.getPhoneNumber());
+            }
+        });
+
+
+
     }
 
 

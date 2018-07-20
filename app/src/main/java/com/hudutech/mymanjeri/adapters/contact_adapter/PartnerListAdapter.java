@@ -161,6 +161,23 @@ public class PartnerListAdapter extends RecyclerView.Adapter<PartnerListAdapter.
                 .into(holder.imageView);
 
 
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+partner.getPlace() +" Contact "+partner.getPhoneNumber();
+                Config.share(mContext, partner.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, partner.getPhoneNumber());
+            }
+        });
+
+
     }
 
 

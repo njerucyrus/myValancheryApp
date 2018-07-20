@@ -156,6 +156,22 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+shop.getShopLocation() +"Type"+ shop.getShopType()+" Contact "+shop.getShopContact();
+                Config.share(mContext, shop.getShopName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, shop.getShopContact());
+            }
+        });
+
+
     }
 
 

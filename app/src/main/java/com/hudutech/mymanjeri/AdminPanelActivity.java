@@ -10,6 +10,7 @@ import com.hudutech.mymanjeri.admin_classifieds.ClassfiedsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
 import com.hudutech.mymanjeri.admin_medical.MedicalEntryPointActivity;
+import com.hudutech.mymanjeri.admin_timing_and_booking.TimingAndBookingEntryPointActivity;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,6 +55,11 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
             case R.id.admin_panel_medical:
                 showActivity(MedicalEntryPointActivity.class);
                 break;
+
+            case R.id.admin_panel_timing_and_booking:
+                showActivity(TimingAndBookingEntryPointActivity.class);
+                break;
+
 
         }
     }

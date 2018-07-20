@@ -160,6 +160,21 @@ public class ArtCultureListAdapter extends RecyclerView.Adapter<ArtCultureListAd
                 .load(artAndCulture.getPhotoUrl())
                 .apply(requestOptions)
                 .into(holder.imageView);
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+artAndCulture.getPlace() +" Contact "+artAndCulture.getPhoneNumber();
+                Config.share(mContext, "Art And Culture",desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, artAndCulture.getPhoneNumber());
+            }
+        });
     }
 
 

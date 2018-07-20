@@ -162,6 +162,22 @@ public class MediaListAdapter extends RecyclerView.Adapter<MediaListAdapter.View
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Media "+media.getMediaName() +"Type "+media.getMediaType()+" Contact "+media.getPhoneNumber();
+                Config.share(mContext, media.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, media.getMediaName());
+            }
+        });
+
+
     }
 
 

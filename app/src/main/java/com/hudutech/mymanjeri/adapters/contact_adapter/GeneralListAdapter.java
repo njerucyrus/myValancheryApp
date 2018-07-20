@@ -158,6 +158,24 @@ public class GeneralListAdapter extends RecyclerView.Adapter<GeneralListAdapter.
                 .into(holder.imageView);
 
 
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+general.getPlace() +" Contact "+general.getPhoneNumber();
+                Config.share(mContext, general.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, general.getPhoneNumber());
+            }
+        });
+
+
+
     }
 
 

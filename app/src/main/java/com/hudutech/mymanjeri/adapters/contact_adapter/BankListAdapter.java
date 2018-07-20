@@ -161,6 +161,24 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
                 .into(holder.imageView);
 
 
+
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Bank Name "+bank.getBankName()+" Place "+bank.getPlace() +" Contact "+bank.getPhoneNumber();
+                Config.share(mContext, "",desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, bank.getPhoneNumber());
+            }
+        });
+
+
+
     }
 
 

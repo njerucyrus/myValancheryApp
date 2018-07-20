@@ -161,6 +161,22 @@ public class ProfessionalListAdapter extends RecyclerView.Adapter<ProfessionalLi
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+professional.getPlace() +" Contact "+professional.getPhoneNumber();
+                Config.share(mContext, professional.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, professional.getPhoneNumber());
+            }
+        });
+
+
 
     }
 

@@ -39,7 +39,7 @@
         <activity android:name=".admin_majery.BecomeDonorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
+                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity"/>
         </activity>
         <activity android:name=".majery_activities.BloodGroupListActivity">
             <meta-data

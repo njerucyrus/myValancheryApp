@@ -161,6 +161,22 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+vehicle.getPlace() +" Contact "+vehicle.getPhoneNumber();
+                Config.share(mContext, vehicle.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, vehicle.getPhoneNumber());
+            }
+        });
+
+
     }
 
 

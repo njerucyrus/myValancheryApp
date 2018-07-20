@@ -163,6 +163,22 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Name "+doctor.getDoctorName() +"Department"+ doctor.getDepartment()+" Contact "+doctor.getPhoneNumber();
+                Config.share(mContext, doctor.getDoctorName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, doctor.getPhoneNumber());
+            }
+        });
+
+
 
     }
 

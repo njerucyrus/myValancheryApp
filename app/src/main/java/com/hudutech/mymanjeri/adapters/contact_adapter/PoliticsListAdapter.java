@@ -158,6 +158,20 @@ public class PoliticsListAdapter extends RecyclerView.Adapter<PoliticsListAdapte
                 .apply(requestOptions)
                 .into(holder.imageView);
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+politics.getPlace() +" Contact "+politics.getPhoneNumber();
+                Config.share(mContext, politics.getName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, politics.getPhoneNumber());
+            }
+        });
 
     }
 

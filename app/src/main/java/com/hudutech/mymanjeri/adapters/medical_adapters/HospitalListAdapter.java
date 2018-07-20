@@ -162,6 +162,22 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
                 .into(holder.imageView);
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+hospital.getPlace() +" Contact "+hospital.getPhoneNumber();
+                Config.share(mContext, hospital.getHospitalName(),desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, hospital.getPhoneNumber());
+            }
+        });
+
+
 
     }
 

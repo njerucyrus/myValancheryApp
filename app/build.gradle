@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.github.tylersuehr7:chips-input-layout:2.3'
+
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     testImplementation 'junit:junit:4.12'

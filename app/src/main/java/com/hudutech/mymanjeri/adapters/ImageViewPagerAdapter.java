@@ -18,7 +18,6 @@ import java.util.List;
 public class ImageViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<Banner> bannerList;
-    private LayoutInflater inflater;
 
     public ImageViewPagerAdapter(Context mContext, List<Banner> bannerList) {
         this.mContext = mContext;
@@ -38,7 +37,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.barner_item, container, false);
         ImageView imageView = view.findViewById(R.id.barner_image);
         Banner banner = bannerList.get(position);

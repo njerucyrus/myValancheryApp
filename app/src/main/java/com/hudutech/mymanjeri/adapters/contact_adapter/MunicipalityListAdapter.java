@@ -186,6 +186,7 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
 
 
 
+
     }
 
 

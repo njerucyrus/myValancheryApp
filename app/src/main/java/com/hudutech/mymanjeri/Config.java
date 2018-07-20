@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.tylersuehr.chips.ChipsInputLayout;
+
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,6 +87,12 @@ public class Config extends AppCompatActivity {
                         valid = false;
                         Toast.makeText(context, "Please fill in " + entry.getKey(), Toast.LENGTH_SHORT).show();
                     }
+                }
+            } else if (object.getClass() == ChipsInputLayout.class) {
+                ChipsInputLayout chipsInputLayout = (ChipsInputLayout)object;
+                if (chipsInputLayout.getSelectedChips().size() <= 0) {
+                    valid = false;
+                    Toast.makeText(context, "Please enter show times.", Toast.LENGTH_SHORT).show();
                 }
             }
         }

@@ -162,6 +162,24 @@ public class LabourerListAdapter extends RecyclerView.Adapter<LabourerListAdapte
 
 
 
+        holder.mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc = "Place "+labourer.getPlace() +" Contact "+labourer.getPhoneNumber();
+                Config.share(mContext, "Art And Culture",desc);
+            }
+        });
+
+        holder.mCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(mContext, labourer.getPhoneNumber());
+            }
+        });
+
+
+
+
     }
 
 
