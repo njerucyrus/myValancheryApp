@@ -56,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String CATEGORY_CLASSIFIEDS = "classifieds";
     private static final String CATEGORY_MEDICAL = "medical";
     private static final String CATEGORY_DIGITAL = "digital";
-    final int delay = 10000; //8 second
+
     HashMap<String, List<CategoryMenu>> menuHashMap;
+
+    final int delay = 10000; //8 second
     Handler handler = new Handler();
     Runnable runnable;
     private ImageViewPagerAdapter mAdapter;

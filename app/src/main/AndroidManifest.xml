@@ -39,7 +39,7 @@
         <activity android:name=".admin_majery.BecomeDonorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity"/>
+                android:value="com.hudutech.mymanjeri.majery_activities.BloodBankActivity" />
         </activity>
         <activity android:name=".majery_activities.BloodGroupListActivity">
             <meta-data
@@ -86,7 +86,7 @@
         <activity android:name=".contact_activities.LabouresActivity" />
         <activity android:name=".contact_activities.InstitutionsActivity" />
         <activity android:name=".timing_and_booking_activities.BusActivity" />
-        <activity android:name=".timing_and_booking_activities.TrainActivity" />
+        <activity android:name=".timing_and_booking_activities.FlightActivity" />
         <activity android:name=".timing_and_booking_activities.FilmActivity" />
         <activity android:name=".timing_and_booking_activities.HotelsActivity" />
         <activity android:name=".timing_and_booking_activities.TravelsActivity" />
@@ -128,7 +128,11 @@
         <activity android:name=".admin_medical.MedicalEntryPointActivity" />
         <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity" />
         <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity" />
-        <activity android:name=".contact_activities.FindPartnerActivity"></activity>
+        <activity android:name=".contact_activities.FindPartnerActivity" />
+        <activity android:name=".timing_and_booking_activities.FilmDetailActivity" />
+        <activity android:name=".timing_and_booking_activities.HotelDetailActivity" />
+        <activity android:name=".timing_and_booking_activities.TravelDetailActivity" />
+        <activity android:name=".timing_and_booking_activities.RestaurantDetailActivity"></activity>
     </application>
 
 </manifest>
