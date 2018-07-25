@@ -27,7 +27,7 @@ public class ShoppingActivity extends AppCompatActivity {
         shopMenuList = new ArrayList<>();
         mAdapter = new ShopMenuAdapter(this, shopMenuList);
         RecyclerView mRecyclerView = findViewById(R.id.shop_menu_recyclerview);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);

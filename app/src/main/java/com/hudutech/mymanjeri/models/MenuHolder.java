@@ -36,7 +36,7 @@ import com.hudutech.mymanjeri.timing_and_booking_activities.BusActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.FilmActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.HotelsActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.RestaurantsActivity;
-import com.hudutech.mymanjeri.timing_and_booking_activities.TrainActivity;
+import com.hudutech.mymanjeri.timing_and_booking_activities.FlightActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.TravelsActivity;
 
 import java.util.ArrayList;
@@ -236,7 +236,7 @@ public class MenuHolder {
         timingAndBooking.add(bus);
 
         CategoryMenu train = new CategoryMenu(
-                "TimingAndBooking", "Train", TrainActivity.class, R.drawable.train_48
+                "TimingAndBooking", "Flight", FlightActivity.class, R.drawable.flight_48
         );
 
         timingAndBooking.add(train);

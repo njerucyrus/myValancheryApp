@@ -4,45 +4,37 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.models.Hotel;
-import com.hudutech.mymanjeri.timing_and_booking_activities.HotelDetailActivity;
+import com.hudutech.mymanjeri.models.Bus;
 
 import java.util.List;
 
-public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> {
+public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.ViewHolder> {
 
-    private List<Hotel> hotelList;
+    private List<Bus> busList;
     private Context mContext;
     private FirebaseFirestore db;
     private ProgressDialog mProgress;
 
-    public HotelListAdapter(Context mContext, List<Hotel> hotelList) {
-        this.hotelList = hotelList;
+    public BusListAdapter(Context mContext, List<Bus> busList) {
+        this.busList = busList;
         this.mContext = mContext;
         this.db = FirebaseFirestore.getInstance();
 
@@ -50,24 +42,20 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
     @NonNull
     @Override
-    public HotelListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_contact_vehicle_item, parent, false);
-        return new HotelListAdapter.ViewHolder(v);
+    public BusListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_bus_item, parent, false);
+        return new BusListAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
-        final Hotel hotel = hotelList.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final Bus bus = busList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
-        holder.imageView.setVisibility(View.VISIBLE);
-        holder.mCall.setVisibility(View.GONE);
-        holder.mShare.setVisibility(View.GONE);
-        holder.mPhoneNumber.setVisibility(View.GONE);
 
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (hotel.isValidated()) {
+            if (bus.isValidated()) {
                 holder.mButtonInValidate.setVisibility(View.VISIBLE);
                 holder.mButtonValidate.setVisibility(View.GONE);
             } else {
@@ -75,6 +63,12 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
                 holder.mButtonValidate.setVisibility(View.VISIBLE);
             }
         }
+
+        holder.mName.setText(bus.getBusName());
+        holder.mStartPoint.setText(bus.getStartPoint());
+        holder.mEndPoint.setText(bus.getEndPoint());
+        holder.mArrival.setText("Arrival Time: "+bus.getArrivalTime());
+        holder.mDeparture.setText("Departure Time: "+bus.getDepartureTime());
 
         holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +80,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.delete(hotel, holder.getAdapterPosition());
+                        holder.delete(bus, holder.getAdapterPosition());
 
                     }
                 });
@@ -113,7 +107,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(hotel, true, holder.getAdapterPosition());
+                        holder.updateIsValidated(bus, true, holder.getAdapterPosition());
 
                     }
                 });
@@ -139,7 +133,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        holder.updateIsValidated(hotel, false, holder.getAdapterPosition());
+                        holder.updateIsValidated(bus, false, holder.getAdapterPosition());
 
                     }
                 });
@@ -155,60 +149,22 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             }
         });
 
-        holder.mName.setText(hotel.getName());
-        holder.mPhoneNumber.setText(hotel.getPhoneNumber());
-        holder.mLocation.setText(hotel.getAddress()+", "+hotel.getPlaceName());
-
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.no_barner);
-
-        Glide.with(mContext)
-                .load(hotel.getPhotoUrls().get(0))
-                .apply(requestOptions)
-                .into(holder.imageView);
-
-
-        holder.mShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String desc = "Place "+hotel.getPlaceName() +" Contact "+hotel.getPhoneNumber();
-                Config.share(mContext, hotel.getName(),desc);
-            }
-        });
-
-        holder.mCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Config.call(mContext, hotel.getPhoneNumber());
-            }
-        });
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, HotelDetailActivity.class)
-                        .putExtra("hotel", hotel)
-                );
-            }
-        });
-
 
     }
 
 
     @Override
     public int getItemCount() {
-        return hotelList.size();
+        return busList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = "ViewHolder";
         TextView mName;
-        ImageView imageView;
-        TextView mPhoneNumber;
-        TextView mLocation;
-        TextView mShare;
-        TextView mCall;
+        TextView mDeparture;
+        TextView mArrival;
+        TextView mStartPoint;
+        TextView mEndPoint;
         RelativeLayout layoutContent;
         LinearLayout layoutControl;
         Button mButtonValidate;
@@ -219,12 +175,11 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
-            mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
-            mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
-            mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
-            mShare = itemView.findViewById(R.id.tv_contact_vehicle_share);
-            mCall = itemView.findViewById(R.id.tv_contact_vehicle_call);
-            imageView = itemView.findViewById(R.id.img_contact_vehicle);
+            mName = itemView.findViewById(R.id.tv_name);
+            mDeparture = itemView.findViewById(R.id.tv_departure_time);
+            mArrival = itemView.findViewById(R.id.tv_arrival_time);
+            mStartPoint = itemView.findViewById(R.id.tv_starting_point);
+            mEndPoint = itemView.findViewById(R.id.tv_ending_point);
             mButtonValidate = itemView.findViewById(R.id.btn_contact_vehicle_validate);
             mButtonInValidate = itemView.findViewById(R.id.btn_contact_vehicle_invalidate);
             mButtonDelete = itemView.findViewById(R.id.btn_contact_vehicle_delete);
@@ -232,7 +187,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             layoutControl = itemView.findViewById(R.id.layout_contact_vehicle_admin_control);
         }
 
-        public void delete(final Hotel hotel, final int position) {
+        public void delete(final Bus bus, final int position) {
             /*
              * First remove the image from firebase storage then
              * delete item from reference. this helps to save on space
@@ -241,66 +196,51 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(hotel.getPhotoUrls().get(0));
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("hotels");
-                    ref.document(hotel.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    hotelList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Hotel deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("buses");
+            ref.document(bus.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            busList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Bus deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final Hotel hotel, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Bus bus, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("hotels")
-                    .document(hotel.getDocKey())
+            db.collection("buses")
+                    .document(bus.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("hotels")
-                                    .document(hotel.getDocKey())
+                            db.collection("buses")
+                                    .document(bus.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
-                                            Hotel newItem = documentSnapshot.toObject(Hotel.class);
-                                            hotelList.set(position, newItem);
+                                            Bus newItem = documentSnapshot.toObject(Bus.class);
+                                            busList.set(position, newItem);
                                             notifyItemChanged(position);
                                             notifyDataSetChanged();
                                             Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
@@ -328,8 +268,6 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
 
         }
-
-
 
 
     }

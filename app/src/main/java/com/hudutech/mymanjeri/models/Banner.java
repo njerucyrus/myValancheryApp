@@ -3,25 +3,27 @@ package com.hudutech.mymanjeri.models;
 public class Banner implements java.io.Serializable {
     private static final long serialVersionUID=1L;
 
-    private String barnerUrl;
+    private String bannerUrl;
     private String docKey;
     //for demo
     private int resId;
+    private boolean start;
 
     public Banner() {}
 
-    public Banner(String barnerUrl, String docKey, int resId) {
-        this.barnerUrl = barnerUrl;
+    public Banner(String bannerUrl, String docKey, int resId, boolean start) {
+        this.bannerUrl = bannerUrl;
         this.resId = resId;
         this.docKey = docKey;
+        this.start = start;
     }
 
-    public String getBarnerUrl() {
-        return barnerUrl;
+    public String getBannerUrl() {
+        return bannerUrl;
     }
 
-    public void setBarnerUrl(String barnerUrl) {
-        this.barnerUrl = barnerUrl;
+    public void setBannerUrl(String bannerUrl) {
+        this.bannerUrl = bannerUrl;
     }
 
     public int getResId() {
@@ -38,5 +40,13 @@ public class Banner implements java.io.Serializable {
 
     public void setDocKey(String docKey) {
         this.docKey = docKey;
+    }
+
+    public boolean isStart() {
+        return start;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
     }
 }

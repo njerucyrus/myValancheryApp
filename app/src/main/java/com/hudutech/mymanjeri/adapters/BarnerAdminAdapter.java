@@ -44,7 +44,7 @@ public class BarnerAdminAdapter extends RecyclerView.Adapter<BarnerAdminAdapter.
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(barner.getBarnerUrl())
+                .load(barner.getBannerUrl())
                 .apply(requestOptions)
                 .into(holder.mBarnerImage);
 

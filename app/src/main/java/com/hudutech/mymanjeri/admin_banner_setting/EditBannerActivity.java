@@ -78,7 +78,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(this)
-                .load(barner.getBarnerUrl())
+                .load(barner.getBannerUrl())
                 .apply(requestOptions)
                 .into(bannerImage);
 
@@ -101,7 +101,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    deleteBarner(barner.getBarnerUrl());
+                    deleteBarner(barner.getBannerUrl());
                 }
             });
 
@@ -124,6 +124,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
         startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,6 +157,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void uploadImages(Uri[] uris) {
 
         mProgress.setMessage("Uploading please wait...");
@@ -191,7 +193,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
                         imageDownloadUrls.add(taskSnapshot.getDownloadUrl().toString());
 
                         DocumentReference docRef = mRootRef.document(barner.getDocKey());
-                        Banner barner1 = new Banner(taskSnapshot.getDownloadUrl().toString(), barner.getDocKey(), 0);
+                        Banner barner1 = new Banner(taskSnapshot.getDownloadUrl().toString(), barner.getDocKey(), 0, false);
 
                         docRef.set(barner1);
 

@@ -192,7 +192,7 @@ public class AdminBarnersActivity extends AppCompatActivity {
                         imageDownloadUrls.add(taskSnapshot.getDownloadUrl().toString());
 
                         DocumentReference docRef = mBarnersRef.document();
-                        Banner barner = new Banner(taskSnapshot.getDownloadUrl().toString(), docRef.getId(), 0);
+                        Banner barner = new Banner(taskSnapshot.getDownloadUrl().toString(), docRef.getId(), 0, false);
 
                         docRef.set(barner);
 

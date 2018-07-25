@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Restaurant;
+import com.hudutech.mymanjeri.timing_and_booking_activities.HotelDetailActivity;
+import com.hudutech.mymanjeri.timing_and_booking_activities.RestaurantDetailActivity;
 
 import java.util.List;
 
@@ -155,7 +158,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         holder.mName.setText(restaurant.getName());
         holder.mPhoneNumber.setText(restaurant.getPhoneNumber());
-        holder.mLocation.setText(restaurant.getPlaceName());
+        holder.mLocation.setText(restaurant.getAddress() +", "+restaurant.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
@@ -178,6 +181,15 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             @Override
             public void onClick(View v) {
                 Config.call(mContext, restaurant.getPhoneNumber());
+            }
+        });
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, RestaurantDetailActivity.class)
+                        .putExtra("restaurant", restaurant)
+                );
             }
         });
 

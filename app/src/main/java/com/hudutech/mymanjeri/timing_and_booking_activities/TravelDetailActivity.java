@@ -49,7 +49,7 @@ public class TravelDetailActivity extends AppCompatActivity {
 
         List<Banner> bannerList = new ArrayList<>();
         for (String imageUrl : travel.getPhotoUrls()) {
-            bannerList.add(new Banner(imageUrl, "", 0));
+            bannerList.add(new Banner(imageUrl, "", 0, false));
         }
         viewPager = findViewById(R.id.viewPager);
         ImageViewPagerAdapter viewPagerAdapter = new ImageViewPagerAdapter(this, bannerList);

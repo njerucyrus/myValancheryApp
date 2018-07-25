@@ -45,7 +45,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(banner.getBarnerUrl())
+                .load(banner.getBannerUrl())
                 .apply(requestOptions)
                 .into(imageView);
 
