@@ -95,7 +95,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
         vehicle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                mVehicleType = position > 0 ? adapterView.getItemAtPosition(position).toString(): null;
+                mVehicleType = position > 0 ? adapterView.getItemAtPosition(position).toString() : null;
             }
 
             @Override
@@ -125,7 +125,7 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
                         mVehicleType
                 );
             } else {
-                Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -307,28 +307,28 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
 
     private boolean validateInputs() {
         boolean valid = true;
-        if (TextUtils.isEmpty(mName.getText().toString().trim())){
+        if (TextUtils.isEmpty(mName.getText().toString().trim())) {
             valid = false;
             mName.setError("*Required!");
-        }else {
+        } else {
             mName.setError(null);
         }
 
-        if (TextUtils.isEmpty(mPlace.getText().toString().trim())){
+        if (TextUtils.isEmpty(mPlace.getText().toString().trim())) {
             valid = false;
             mPlace.setError("*Required!");
-        }else {
+        } else {
             mPlace.setError(null);
         }
 
-        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())){
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
             valid = false;
             mPhoneNumber.setError("*Required!");
-        }else {
-           mPhoneNumber.setError(null);
+        } else {
+            mPhoneNumber.setError(null);
         }
 
-        if (TextUtils.isEmpty(mVehicleType)){
+        if (TextUtils.isEmpty(mVehicleType)) {
             valid = false;
             Toast.makeText(mContext, "Select vehicle type", Toast.LENGTH_SHORT).show();
 
@@ -336,7 +336,6 @@ public class AddVehicleFragment extends Fragment implements View.OnClickListener
 
         return valid;
     }
-
 
 
 }

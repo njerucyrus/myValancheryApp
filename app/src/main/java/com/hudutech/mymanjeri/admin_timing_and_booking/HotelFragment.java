@@ -41,7 +41,6 @@ public class HotelFragment extends Fragment {
     private ProgressDialog mProgress;
 
 
-
     public HotelFragment() {
         // Required empty public constructor
     }
@@ -51,7 +50,7 @@ public class HotelFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_hotel, container, false);
+        View v = inflater.inflate(R.layout.fragment_hotel, container, false);
         mContext = getContext();
         mRef = FirebaseFirestore.getInstance().collection("hotels");
         hotelList = new ArrayList<>();
@@ -80,7 +79,7 @@ public class HotelFragment extends Fragment {
                         if (snapshots.getDocuments().size() > 0) {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Hotel hotel = snapshot.toObject(Hotel.class);
-                                if (hotel !=null) {
+                                if (hotel != null) {
                                     if (Config.isAdmin(mContext)) {
                                         hotelList.add(hotel);
                                     } else if (!Config.isAdmin(mContext)) {
@@ -95,16 +94,12 @@ public class HotelFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
 
 
-
     }
-
-
-
 
 
 }

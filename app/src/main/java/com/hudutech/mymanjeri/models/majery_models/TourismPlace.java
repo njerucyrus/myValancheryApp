@@ -8,7 +8,8 @@ public class TourismPlace implements java.io.Serializable {
     private String docKey;
     private boolean isValidated;
 
-    public TourismPlace() {}
+    public TourismPlace() {
+    }
 
     public TourismPlace(String imageUrl, String placeName, String description, String docKey, boolean isValidated) {
         this.imageUrl = imageUrl;

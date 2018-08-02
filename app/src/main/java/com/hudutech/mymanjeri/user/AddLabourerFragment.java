@@ -341,5 +341,4 @@ public class AddLabourerFragment extends Fragment implements View.OnClickListene
     }
 
 
-
 }

@@ -1,7 +1,7 @@
 package com.hudutech.mymanjeri.models;
 
 public class Banner implements java.io.Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String bannerUrl;
     private String docKey;
@@ -9,7 +9,8 @@ public class Banner implements java.io.Serializable {
     private int resId;
     private boolean start;
 
-    public Banner() {}
+    public Banner() {
+    }
 
     public Banner(String bannerUrl, String docKey, int resId, boolean start) {
         this.bannerUrl = bannerUrl;

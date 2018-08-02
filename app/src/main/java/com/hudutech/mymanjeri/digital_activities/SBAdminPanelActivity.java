@@ -82,12 +82,6 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem item1 = menu.findItem(R.id.action_settings);
-        MenuItem item2 = menu.findItem(R.id.action_enter_data);
-        MenuItem item3 = menu.findItem(R.id.action_add_barner);
-        item1.setVisible(false);
-        item2.setVisible(false);
-        item3.setVisible(false);
 
 
         return true;
@@ -100,7 +94,7 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-      if (id == R.id.action_logout) {
+        if (id == R.id.action_logout) {
             signOut();
         }
 
@@ -120,7 +114,7 @@ public class SBAdminPanelActivity extends AppCompatActivity implements View.OnCl
                 SharedPreferences sharedPrefs = getSharedPreferences("AUTH_DATA",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor sharedPrefEditor = sharedPrefs.edit();
-                sharedPrefEditor.putBoolean("isAdmin",false);
+                sharedPrefEditor.putBoolean("isAdmin", false);
                 sharedPrefEditor.putBoolean("isSBAdmin", false);
                 sharedPrefEditor.apply();
                 sharedPrefEditor.commit();

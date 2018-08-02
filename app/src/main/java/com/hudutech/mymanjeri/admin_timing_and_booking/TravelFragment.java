@@ -98,7 +98,6 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
         mSelectedPinPoint = v.findViewById(R.id.tv_selected_location);
 
 
-
         v.findViewById(R.id.btn_upload_photos).setOnClickListener(this);
         v.findViewById(R.id.btn_submit).setOnClickListener(this);
         v.findViewById(R.id.btn_pick_location).setOnClickListener(this);
@@ -322,7 +321,7 @@ public class TravelFragment extends Fragment implements View.OnClickListener {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e(TAG, "onFailure: "+e.getMessage());
+                                            Log.e(TAG, "onFailure: " + e.getMessage());
                                             Toast.makeText(mContext, "Error occurred while saving detail please try again later", Toast.LENGTH_SHORT).show();
                                         }
                                     });

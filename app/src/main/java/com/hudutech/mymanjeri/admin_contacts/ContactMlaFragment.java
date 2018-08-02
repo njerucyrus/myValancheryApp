@@ -143,12 +143,11 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
                         mAddress.getText().toString()
                 );
             } else {
-                Snackbar.make(v, "Fix the errors above!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Fix the errors above!", Snackbar.LENGTH_LONG).show();
             }
         }
 
     }
-
 
 
     private void submitData(
@@ -228,7 +227,7 @@ public class ContactMlaFragment extends Fragment implements View.OnClickListener
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

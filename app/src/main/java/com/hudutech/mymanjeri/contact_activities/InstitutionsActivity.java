@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.contact_adapter.InstitutionSectionAdapter;
-import com.hudutech.mymanjeri.adapters.contact_adapter.VehicleSectionAdapter;
 
 public class InstitutionsActivity extends AppCompatActivity {
 

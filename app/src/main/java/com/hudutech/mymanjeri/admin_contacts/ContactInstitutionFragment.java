@@ -79,7 +79,7 @@ public class ContactInstitutionFragment extends Fragment implements View.OnClick
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mCategory = position > 0 ? parent.getItemAtPosition(position).toString(): null;
+                mCategory = position > 0 ? parent.getItemAtPosition(position).toString() : null;
 
             }
 
@@ -145,10 +145,10 @@ public class ContactInstitutionFragment extends Fragment implements View.OnClick
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit_institution) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mInstitutionName.getText().toString(),
@@ -157,10 +157,10 @@ public class ContactInstitutionFragment extends Fragment implements View.OnClick
                         mCategory
 
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_institution_photo){
+        } else if (id == R.id.btn_upload_institution_photo) {
             openImageChooser();
         }
 
@@ -204,7 +204,7 @@ public class ContactInstitutionFragment extends Fragment implements View.OnClick
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
 
                     DocumentReference docRef = mInstitutionRef.document();
-                    Institution institution  = new Institution(
+                    Institution institution = new Institution(
                             imageUrl,
                             docRef.getId(),
                             name,
@@ -242,7 +242,7 @@ public class ContactInstitutionFragment extends Fragment implements View.OnClick
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

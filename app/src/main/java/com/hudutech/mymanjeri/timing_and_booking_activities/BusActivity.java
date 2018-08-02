@@ -58,9 +58,23 @@ public class BusActivity extends AppCompatActivity {
         spinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String to  = parent.getItemAtPosition(position).toString();
+                String to = parent.getItemAtPosition(position).toString();
                 String from = spinnerFrom.getSelectedItem().toString();
 
+                showBuses(from, to);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String from = parent.getItemAtPosition(position).toString();
+                String to = spinnerTo.getSelectedItem().toString();
                 showBuses(from, to);
             }
 
@@ -93,8 +107,12 @@ public class BusActivity extends AppCompatActivity {
                                 Bus bus = snapshot.toObject(Bus.class);
                                 if (bus != null) {
 
-                                   from.add(bus.getStartPoint());
-                                    to.add(bus.getEndPoint());
+                                    if (!from.contains(bus.getStartPoint())) {
+                                        from.add(bus.getStartPoint());
+                                    }
+                                    if (!to.contains(bus.getEndPoint())) {
+                                        to.add(bus.getEndPoint());
+                                    }
 
                                 }
                             }
@@ -129,7 +147,7 @@ public class BusActivity extends AppCompatActivity {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Bus bus = snapshot.toObject(Bus.class);
                                 if (bus != null) {
-                                    if(bus.getStartPoint().equals(start) && bus.getEndPoint().equals(end)) {
+                                    if (bus.getStartPoint().equals(start) && bus.getEndPoint().equals(end)) {
 
                                         busList.add(bus);
 

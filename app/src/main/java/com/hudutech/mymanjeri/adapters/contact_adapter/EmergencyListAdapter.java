@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Emergency;
@@ -54,7 +51,7 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Emergency emergency = emergencyList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -161,12 +158,11 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
                 .into(holder.imageView);
 
 
-
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+emergency.getPlace() +" Contact "+emergency.getPhoneNumber();
-                Config.share(mContext, "Art And Culture",desc);
+                String desc = "Place " + emergency.getPlace() + " Contact " + emergency.getPhoneNumber();
+                Config.share(mContext, "Art And Culture", desc);
             }
         });
 
@@ -176,7 +172,6 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
                 Config.call(mContext, emergency.getPhoneNumber());
             }
         });
-
 
 
     }
@@ -227,47 +222,32 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(emergency.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("emergency");
-                    ref.document(emergency.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    emergencyList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Emergency deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("emergency");
+            ref.document(emergency.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            emergencyList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Emergency deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final Emergency emergency, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Emergency emergency, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -314,8 +294,6 @@ public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdap
 
 
         }
-
-
 
 
     }

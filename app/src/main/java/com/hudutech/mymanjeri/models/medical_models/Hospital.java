@@ -105,7 +105,6 @@ public class Hospital implements Serializable {
     }
 
 
-
     public boolean isValidated() {
         return isValidated;
     }

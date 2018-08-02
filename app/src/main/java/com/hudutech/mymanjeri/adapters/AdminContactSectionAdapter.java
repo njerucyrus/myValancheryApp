@@ -35,7 +35,7 @@ public class AdminContactSectionAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ContactAddGeneralFragment();
             case 3:
-                return  new ContactMpFragment();
+                return new ContactMpFragment();
             case 4:
                 return new ContactMlaFragment();
             case 5:
@@ -55,7 +55,7 @@ public class AdminContactSectionAdapter extends FragmentPagerAdapter {
             case 12:
                 return new ContactInstitutionFragment();
             default:
-                return  null;
+                return null;
         }
 
     }

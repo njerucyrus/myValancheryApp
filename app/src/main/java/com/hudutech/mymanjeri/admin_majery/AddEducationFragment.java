@@ -119,7 +119,7 @@ public class AddEducationFragment extends Fragment implements View.OnClickListen
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }

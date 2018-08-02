@@ -2,7 +2,7 @@ package com.hudutech.mymanjeri.models.contact_models;
 
 import java.io.Serializable;
 
-public class Mla implements Serializable{
+public class Mla implements Serializable {
     private static final long serialVersionUID = 1L;
     private String docKey;
     private String photoUrl;

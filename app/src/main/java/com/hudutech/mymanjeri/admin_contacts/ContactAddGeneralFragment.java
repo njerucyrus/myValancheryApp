@@ -62,10 +62,10 @@ public class ContactAddGeneralFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.btn_submit_general) {
-            if (validateInputs()){
+            if (validateInputs()) {
                 submitData(mName.getText().toString(), mPhoneNumber.getText().toString(), mPlace.getText().toString());
-            }else {
-                Snackbar.make(v, "Fix the errors above" , Snackbar.LENGTH_LONG).show();
+            } else {
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -75,21 +75,21 @@ public class ContactAddGeneralFragment extends Fragment implements View.OnClickL
         if (TextUtils.isEmpty(mName.getText().toString().trim())) {
             valid = false;
             mName.setError("*Required!");
-        }else {
+        } else {
             mName.setError(null);
         }
 
         if (TextUtils.isEmpty(mPlace.getText().toString().trim())) {
             valid = false;
             mPlace.setError("*Required!");
-        }else {
+        } else {
             mPlace.setError(null);
         }
 
         if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
             valid = false;
             mPhoneNumber.setError("*Required!");
-        }else {
+        } else {
             mPhoneNumber.setError(null);
         }
 
@@ -123,7 +123,7 @@ public class ContactAddGeneralFragment extends Fragment implements View.OnClickL
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         Toast.makeText(mContext, "Error occurred while submitting data!", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
     }

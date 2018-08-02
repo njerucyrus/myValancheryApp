@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.medical_models.Doctor;
@@ -54,7 +51,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
         final Doctor doctor = doctorList.get(position);
         mProgress = new ProgressDialog(mContext);
 
@@ -166,8 +163,8 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Name "+doctor.getDoctorName() +"Department"+ doctor.getDepartment()+" Contact "+doctor.getPhoneNumber();
-                Config.share(mContext, doctor.getDoctorName(),desc);
+                String desc = "Name " + doctor.getDoctorName() + "Department" + doctor.getDepartment() + " Contact " + doctor.getPhoneNumber();
+                Config.share(mContext, doctor.getDoctorName(), desc);
             }
         });
 
@@ -177,7 +174,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 Config.call(mContext, doctor.getPhoneNumber());
             }
         });
-
 
 
     }
@@ -230,43 +226,28 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(doctor.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("doctors");
-                    ref.document(doctor.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    doctorList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("doctors");
+            ref.document(doctor.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            doctorList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
@@ -289,10 +270,13 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
                                             Doctor newItem = documentSnapshot.toObject(Doctor.class);
-                                            doctorList.set(position, newItem);
-                                            notifyItemChanged(position);
-                                            notifyDataSetChanged();
-                                            Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
+                                            if (newItem !=null) {
+                                                doctorList.set(position, newItem);
+                                                notifyItemChanged(position);
+                                                notifyDataSetChanged();
+                                                Toast.makeText(mContext, newItem.getDoctorName(), Toast.LENGTH_SHORT);
+                                                Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
+                                            }
 
                                         }
                                     })
@@ -317,8 +301,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
 
 
         }
-
-
 
 
     }

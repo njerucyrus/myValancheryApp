@@ -85,8 +85,9 @@ public class EnglishMediumFragment extends Fragment {
                                 if (institution != null) {
                                     if (Config.isAdmin(mContext)) {
                                         institutionList.add(institution);
-                                    } else if (!Config.isAdmin(mContext)){
-                                        if (institution.isValidated()) institutionList.add(institution);
+                                    } else if (!Config.isAdmin(mContext)) {
+                                        if (institution.isValidated())
+                                            institutionList.add(institution);
                                     }
                                 }
                             }
@@ -100,7 +101,7 @@ public class EnglishMediumFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -52,7 +52,7 @@ public class HotelsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getIntent().getStringExtra("menuName"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mBannerRef = FirebaseFirestore.getInstance().collection("banners");
+        mBannerRef = FirebaseFirestore.getInstance().collection("barners");
         mHotelsRef = FirebaseFirestore.getInstance().collection("hotels");
 
         bannerList = new ArrayList<>();
@@ -155,7 +155,6 @@ public class HotelsActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 
 }

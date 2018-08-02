@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class WithdrawActivity extends AppCompatActivity implements View.OnClickListener{
+public class WithdrawActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "WithdrawActivity";
     private static final int OPTION_WITHDRAW = 1;
     private TextInputEditText mAccountNo;
@@ -114,7 +114,7 @@ public class WithdrawActivity extends AppCompatActivity implements View.OnClickL
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Confirm Transaction");
-                builder.setMessage("Withdraw INR "+mAmount.getText().toString().trim());
+                builder.setMessage("Withdraw INR " + mAmount.getText().toString().trim());
                 builder.setCancelable(false);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -141,7 +141,7 @@ public class WithdrawActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void makeWithdraw(String accountNo, float amount, String purpose, Date date) {
-        final float newBalance =  account.getBalance() - amount;
+        final float newBalance = account.getBalance() - amount;
 
         DocumentReference docRef = mTransactionsRef.document();
         String desc = "Withdraw INR " + amount;

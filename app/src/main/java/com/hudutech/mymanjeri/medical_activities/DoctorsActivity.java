@@ -59,13 +59,13 @@ public class DoctorsActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot snapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (snapshots.getDocuments().size() > 0) {
-                            for(DocumentSnapshot snapshot: snapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Doctor doctor = snapshot.toObject(Doctor.class);
                                 if (doctor != null) {
                                     if (Config.isAdmin(getApplicationContext())) {
                                         doctorList.add(doctor);
-                                    } else if (!Config.isAdmin(getApplicationContext())){
-                                        if (doctor.isValidated()){
+                                    } else if (!Config.isAdmin(getApplicationContext())) {
+                                        if (doctor.isValidated()) {
                                             doctorList.add(doctor);
                                         }
                                     }

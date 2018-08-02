@@ -2,8 +2,8 @@ package com.hudutech.mymanjeri.models.contact_models;
 
 import java.io.Serializable;
 
-public class Media implements Serializable{
-    private static final long serialVersionUID=1L;
+public class Media implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String logoUrl;
     private String docKey;
     private String name;

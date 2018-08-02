@@ -8,7 +8,8 @@ public class Education implements java.io.Serializable {
     private String docKey;
     private boolean isValidated;
 
-    public Education() {}
+    public Education() {
+    }
 
     public Education(String imageUrl, String placeName, String description, String docKey, boolean isValidated) {
         this.imageUrl = imageUrl;

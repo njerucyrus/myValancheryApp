@@ -67,7 +67,8 @@ public class ArtAndCultureActivity extends AppCompatActivity {
                                     if (Config.isAdmin(getApplicationContext())) {
                                         artAndCultureList.add(artAndCulture);
                                     } else if (!Config.isAdmin(ArtAndCultureActivity.this)) {
-                                        if (artAndCulture.isValidated()) artAndCultureList.add(artAndCulture);
+                                        if (artAndCulture.isValidated())
+                                            artAndCultureList.add(artAndCulture);
                                     }
                                 }
                             }
@@ -78,7 +79,7 @@ public class ArtAndCultureActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(ArtAndCultureActivity.this, "No data!", Toast.LENGTH_SHORT).show();
                     }
                 });

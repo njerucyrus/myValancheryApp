@@ -29,7 +29,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -57,7 +56,7 @@ public class AddHistoryFragment extends Fragment implements View.OnClickListener
     private Context mContext;
     private ProgressDialog mProgress;
     private StorageReference mStorageRef;
-    private CollectionReference mHistoryRef;
+    private DocumentReference mHistoryRef;
     private Uri photoUri;
 
     public AddHistoryFragment() {
@@ -72,14 +71,14 @@ public class AddHistoryFragment extends Fragment implements View.OnClickListener
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        mHistoryRef = FirebaseFirestore.getInstance().collection("history");
+        mHistoryRef = FirebaseFirestore.getInstance().collection("history").document("history_item");
 
         mProgress = new ProgressDialog(getContext());
 
         mChooseImage = view.findViewById(R.id.btn_history_upload_place_photo);
         mPlaneName = view.findViewById(R.id.txt_history_place_name);
         mDesc = view.findViewById(R.id.txt_history_place_desc);
-        mSelectedPhoto= view.findViewById(R.id.img_history);
+        mSelectedPhoto = view.findViewById(R.id.img_history);
         mSubmit = view.findViewById(R.id.btn_submit_history);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
@@ -115,7 +114,7 @@ public class AddHistoryFragment extends Fragment implements View.OnClickListener
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }
@@ -151,15 +150,14 @@ public class AddHistoryFragment extends Fragment implements View.OnClickListener
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
-                    DocumentReference docRef = mHistoryRef.document();
                     History history = new History(
                             imageUrl,
                             placeName,
                             desc,
-                            docRef.getId(),
+                            mHistoryRef.getId(),
                             true
                     );
-                    docRef.set(history)
+                    mHistoryRef.set(history)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hudutech.mymanjeri.Config;
+import com.hudutech.mymanjeri.MapsActivity;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.majery_models.Shop;
 
@@ -159,8 +161,8 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+shop.getShopLocation() +"Type"+ shop.getShopType()+" Contact "+shop.getShopContact();
-                Config.share(mContext, shop.getShopName(),desc);
+                String desc = "Place " + shop.getShopLocation() + "Type" + shop.getShopType() + " Contact " + shop.getShopContact();
+                Config.share(mContext, shop.getShopName(), desc);
             }
         });
 
@@ -168,6 +170,18 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Config.call(mContext, shop.getShopContact());
+            }
+        });
+
+        holder.mMap.setVisibility(View.VISIBLE);
+        holder.mMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, MapsActivity.class)
+                        .putExtra("lat", shop.getLat())
+                        .putExtra("lng", shop.getLng())
+                        .putExtra("title", shop.getShopName() + "," + shop.getShopLocation())
+                );
             }
         });
 
@@ -194,10 +208,12 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         Button mButtonInValidate;
         Button mButtonDelete;
         View mView;
+        TextView mMap;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;
+            mMap = itemView.findViewById(R.id.tv_map);
             mName = itemView.findViewById(R.id.tv_contact_vehicle_name);
             mPhoneNumber = itemView.findViewById(R.id.tv_contact_vehicle_phone);
             mLocation = itemView.findViewById(R.id.tv_contact_vehicle_location);
@@ -221,7 +237,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
 
-            CollectionReference ref = db.collection("shopping");
+            CollectionReference ref = db.collection("shops");
             ref.document(shop.getDocKey())
                     .delete()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -247,14 +263,14 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            db.collection("shopping")
+            db.collection("shops")
                     .document(shop.getDocKey())
                     .update("validated", isValidated)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("shopping")
+                            db.collection("shops")
                                     .document(shop.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

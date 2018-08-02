@@ -4,9 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.hudutech.mymanjeri.contact_activities.AccountantFragment;
 import com.hudutech.mymanjeri.contact_activities.AdvocatesFragment;
 import com.hudutech.mymanjeri.contact_activities.DocumentWritingFragment;
 import com.hudutech.mymanjeri.contact_activities.EngineersFragment;
+import com.hudutech.mymanjeri.contact_activities.GraphicDesigningFragment;
 
 
 public class ProfessionalSectionAdapter extends FragmentPagerAdapter {
@@ -24,6 +26,13 @@ public class ProfessionalSectionAdapter extends FragmentPagerAdapter {
                 return new AdvocatesFragment();
             case 2:
                 return new DocumentWritingFragment();
+
+            case 3:
+                return new AccountantFragment();
+
+            case 4:
+                return new GraphicDesigningFragment();
+
             default:
                 return null;
         }
@@ -32,7 +41,7 @@ public class ProfessionalSectionAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -46,6 +55,10 @@ public class ProfessionalSectionAdapter extends FragmentPagerAdapter {
                 return "Advocates";
             case 2:
                 return "Document Writing";
+            case 3:
+                return "Accountant";
+            case 4:
+                return "Graphic Designing";
             default:
                 return null;
         }

@@ -4,9 +4,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +24,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
+import com.hudutech.mymanjeri.MapsActivity;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.medical_models.Lab;
 
@@ -62,12 +61,14 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
         //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
-            if (lab.isValidated()) {
-                holder.mButtonInValidate.setVisibility(View.VISIBLE);
-                holder.mButtonValidate.setVisibility(View.GONE);
-            } else {
-                holder.mButtonInValidate.setVisibility(View.GONE);
-                holder.mButtonValidate.setVisibility(View.VISIBLE);
+            if (lab != null) {
+                if (lab.isValidated()) {
+                    holder.mButtonInValidate.setVisibility(View.VISIBLE);
+                    holder.mButtonValidate.setVisibility(View.GONE);
+                } else {
+                    holder.mButtonInValidate.setVisibility(View.GONE);
+                    holder.mButtonValidate.setVisibility(View.VISIBLE);
+                }
             }
         }
 
@@ -165,8 +166,8 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+lab.getPlace() +" Contact "+lab.getContactNo();
-                Config.share(mContext, lab.getLabName(),desc);
+                String desc = "Place " + lab.getPlace() + " Contact " + lab.getContactNo();
+                Config.share(mContext, lab.getLabName(), desc);
             }
         });
 
@@ -177,6 +178,17 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
             }
         });
 
+        holder.mMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, MapsActivity.class)
+
+                        .putExtra("lat", lab.getLat())
+                        .putExtra("lng", lab.getLng())
+                        .putExtra("title", lab.getLabName() + "," + lab.getAddress())
+                );
+            }
+        });
 
 
     }
@@ -229,43 +241,27 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(lab.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("labs");
-                    ref.document(lab.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    labList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
+            CollectionReference ref = db.collection("labs");
+            ref.document(lab.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            labList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, " deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
 
@@ -280,7 +276,7 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            db.collection("doctors")
+                            db.collection("labs")
                                     .document(lab.getDocKey())
                                     .get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -316,8 +312,6 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.ViewHold
 
 
         }
-
-
 
 
     }

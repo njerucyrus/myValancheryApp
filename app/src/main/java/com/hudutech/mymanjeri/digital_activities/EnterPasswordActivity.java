@@ -114,7 +114,7 @@ public class EnterPasswordActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
-                }else {
+                } else {
                     mPassword.setError("*Required");
                     mPassword.requestFocus();
                     Snackbar.make(v, "Password Cannot be empty", Snackbar.LENGTH_LONG).show();
@@ -161,12 +161,12 @@ public class EnterPasswordActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
 
-                        if (e instanceof FirebaseAuthInvalidCredentialsException){
+                        if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(EnterPasswordActivity.this, "Invalid Password!", Toast.LENGTH_SHORT).show();
                             Snackbar.make(mButtonDelete, "Invalid Password!", Snackbar.LENGTH_LONG).show();
                             mPassword.setError("Invalid Password");
 
-                        }else {
+                        } else {
                             Toast.makeText(EnterPasswordActivity.this, "Unable to validate this account. please try again later", Toast.LENGTH_SHORT).show();
                             Snackbar.make(mButtonDelete, "Unable to validate this account. please try again later", Snackbar.LENGTH_LONG).show();
 

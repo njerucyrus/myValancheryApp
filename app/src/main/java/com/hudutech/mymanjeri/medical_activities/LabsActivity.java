@@ -56,13 +56,13 @@ public class LabsActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot snapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (snapshots.getDocuments().size() > 0) {
-                            for(DocumentSnapshot snapshot: snapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Lab lab = snapshot.toObject(Lab.class);
                                 if (lab != null) {
                                     if (Config.isAdmin(getApplicationContext())) {
                                         labList.add(lab);
-                                    } else if (!Config.isAdmin(getApplicationContext())){
-                                        if (lab.isValidated()){
+                                    } else if (!Config.isAdmin(getApplicationContext())) {
+                                        if (lab.isValidated()) {
                                             labList.add(lab);
                                         }
                                     }

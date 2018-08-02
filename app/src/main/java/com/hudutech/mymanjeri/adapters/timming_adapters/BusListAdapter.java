@@ -67,8 +67,8 @@ public class BusListAdapter extends RecyclerView.Adapter<BusListAdapter.ViewHold
         holder.mName.setText(bus.getBusName());
         holder.mStartPoint.setText(bus.getStartPoint());
         holder.mEndPoint.setText(bus.getEndPoint());
-        holder.mArrival.setText("Arrival Time: "+bus.getArrivalTime());
-        holder.mDeparture.setText("Departure Time: "+bus.getDepartureTime());
+        holder.mArrival.setText("Arrival Time: " + bus.getArrivalTime());
+        holder.mDeparture.setText("Departure Time: " + bus.getDepartureTime());
 
         holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override

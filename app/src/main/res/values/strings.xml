@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My App</string>
+    <string name="app_name">My Valanchery</string>
     <string name="action_settings">Admin</string>
     <string name="manjeri">Manjeri</string>
     <string name="app_burner">App burner</string>
@@ -52,6 +52,8 @@
         <item>Engineers</item>
         <item>Advocates</item>
         <item>Document Writing</item>
+        <item>Accountant</item>
+        <item>Graphic Designing</item>
     </string-array>
 
     <string-array name="labourer_category">
@@ -86,7 +88,7 @@
 
     <string-array name="parties">
         <item>Choose Party</item>
-        <item>IVML</item>
+        <item>IUML</item>
         <item>INC</item>
         <item>CPIM</item>
         <item>BJP</item>
@@ -104,7 +106,7 @@
 
     <string-array name="institution_category">
         <item>Choose Category</item>
-        <item>LIP/UP</item>
+        <item>LP/UP</item>
         <item>HSC</item>
         <item>English Medium</item>
         <item>College</item>
@@ -132,4 +134,5 @@
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

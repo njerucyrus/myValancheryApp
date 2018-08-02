@@ -4,19 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hudutech.mymanjeri.contact_activities.BJMFragment;
-import com.hudutech.mymanjeri.contact_activities.CPIFragment;
-import com.hudutech.mymanjeri.contact_activities.CPIMFragment;
 import com.hudutech.mymanjeri.contact_activities.CollegeFragment;
 import com.hudutech.mymanjeri.contact_activities.CouchingCenterFragment;
 import com.hudutech.mymanjeri.contact_activities.EnglishMediumFragment;
 import com.hudutech.mymanjeri.contact_activities.HSCFragment;
-import com.hudutech.mymanjeri.contact_activities.INCFragment;
-import com.hudutech.mymanjeri.contact_activities.INLFragment;
-import com.hudutech.mymanjeri.contact_activities.IUMLFragment;
 import com.hudutech.mymanjeri.contact_activities.LPUPFragment;
-import com.hudutech.mymanjeri.contact_activities.SDPIFragment;
-import com.hudutech.mymanjeri.contact_activities.WPIFragment;
 
 
 public class InstitutionSectionAdapter extends FragmentPagerAdapter {

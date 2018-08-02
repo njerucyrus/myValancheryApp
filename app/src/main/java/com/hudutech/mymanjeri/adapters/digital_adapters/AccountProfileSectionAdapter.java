@@ -24,7 +24,7 @@ public class AccountProfileSectionAdapter extends FragmentPagerAdapter {
                 return new WithdrawsFragment();
 
             default:
-                return  null;
+                return null;
         }
 
     }

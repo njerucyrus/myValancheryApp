@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Institution;
@@ -54,7 +51,7 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Institution institution = institutionList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -161,12 +158,11 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
                 .into(holder.imageView);
 
 
-
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+institution.getPlace() +" Contact "+institution.getContactNo();
-                Config.share(mContext, institution.getName(),desc);
+                String desc = "Place " + institution.getPlace() + " Contact " + institution.getContactNo();
+                Config.share(mContext, institution.getName(), desc);
             }
         });
 
@@ -176,7 +172,6 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
                 Config.call(mContext, institution.getContactNo());
             }
         });
-
 
 
     }
@@ -227,47 +222,32 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(institution.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("institutions");
-                    ref.document(institution.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    institutionList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Institution deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("institutions");
+            ref.document(institution.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            institutionList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Institution deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final Institution institution, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Institution institution, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -314,8 +294,6 @@ public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionList
 
 
         }
-
-
 
 
     }

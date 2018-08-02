@@ -8,11 +8,11 @@
     tools:context=".majery_activities.ShoppingActivity">
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/shopping_banner_viewpager"
+        android:id="@+id/banner_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/colorBg" />
+        android:layout_height="180dp"/>
     <ScrollView
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView

@@ -44,7 +44,7 @@ public class RealEstateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_real_estate, container, false);
+        View v = inflater.inflate(R.layout.fragment_real_estate, container, false);
 
         mContext = getContext();
         mRef = FirebaseFirestore.getInstance().collection("classifields_real_estate");

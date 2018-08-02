@@ -64,7 +64,7 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_add_tourism, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_tourism, container, false);
 
         mContext = getContext();
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -75,7 +75,7 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
         mChooseImage = view.findViewById(R.id.btn_upload_tourism_place_photo);
         mPlaneName = view.findViewById(R.id.txt_place_name);
         mDesc = view.findViewById(R.id.txt_place_desc);
-        mSelectedPhoto= view.findViewById(R.id.img_tourism_selected_place);
+        mSelectedPhoto = view.findViewById(R.id.img_tourism_selected_place);
         mSubmit = view.findViewById(R.id.btn_submit_tourism);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
@@ -111,7 +111,7 @@ public class AddTourismFragment extends Fragment implements View.OnClickListener
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }

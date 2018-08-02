@@ -19,7 +19,7 @@ public class Pet implements Serializable {
     public Pet() {
     }
 
-    public Pet(String docKey,List<String> photoUrls, double amount, String breed, int age, String phoneNumber, String location, String heading, String description, boolean isValidated) {
+    public Pet(String docKey, List<String> photoUrls, double amount, String breed, int age, String phoneNumber, String location, String heading, String description, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrls = photoUrls;
         this.amount = amount;

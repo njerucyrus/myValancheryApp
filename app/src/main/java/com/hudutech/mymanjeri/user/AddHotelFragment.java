@@ -334,7 +334,7 @@ public class AddHotelFragment extends Fragment implements View.OnClickListener {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e(TAG, "onFailure: "+e.getMessage());
+                                            Log.e(TAG, "onFailure: " + e.getMessage());
                                             Toast.makeText(mContext, "Error occurred while saving detail please try again later", Toast.LENGTH_SHORT).show();
                                         }
                                     });
@@ -438,8 +438,6 @@ public class AddHotelFragment extends Fragment implements View.OnClickListener {
         }
         return valid;
     }
-
-
 
 
 }

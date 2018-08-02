@@ -34,7 +34,6 @@ public class ManageSBAccountsActivity extends AppCompatActivity {
     private TextView tvNoData;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,7 @@ public class ManageSBAccountsActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (queryDocumentSnapshots.getDocuments().size() > 0) {
-                            for (DocumentSnapshot snapshot: queryDocumentSnapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                                 SBankAccount account = snapshot.toObject(SBankAccount.class);
                                 sBankAccountList.add(account);
                             }

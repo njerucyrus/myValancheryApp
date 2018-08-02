@@ -80,7 +80,7 @@ public class DepositsFragment extends Fragment {
     private void loadTransactions() {
         mProgress.setMessage("Loading please wait...");
         mProgress.show();
-         SharedPreferences sharedPrefs = mContext.getSharedPreferences("SELECTED_ACC_USER",
+        SharedPreferences sharedPrefs = mContext.getSharedPreferences("SELECTED_ACC_USER",
                 Context.MODE_PRIVATE);
         final String userUid = sharedPrefs.getString("userUid", null);
 
@@ -91,22 +91,22 @@ public class DepositsFragment extends Fragment {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                       if (queryDocumentSnapshots.getDocuments().size() > 0) {
-                           if (mProgress.isShowing()) mProgress.dismiss();
+                        if (queryDocumentSnapshots.getDocuments().size() > 0) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
 
-                           for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
-                               TransactionRecord record = snapshot.toObject(TransactionRecord.class);
-                               if (record != null)
-                               if (record.getTransactionType() == 0 && record.getUserUid().equals(userUid)) {
-                                   transactionRecordList.add(record);
-                               }
-                           }
-                           mAdapter.notifyDataSetChanged();
+                                TransactionRecord record = snapshot.toObject(TransactionRecord.class);
+                                if (record != null)
+                                    if (record.getTransactionType() == 0 && record.getUserUid().equals(userUid)) {
+                                        transactionRecordList.add(record);
+                                    }
+                            }
+                            mAdapter.notifyDataSetChanged();
 
-                       }else {
+                        } else {
                             tvNoData.setVisibility(View.VISIBLE);
-                       }
+                        }
 
                     }
                 })

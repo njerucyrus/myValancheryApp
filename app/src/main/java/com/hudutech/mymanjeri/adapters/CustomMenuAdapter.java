@@ -9,8 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.hudutech.mymanjeri.AdminPanelActivity;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.auth.LoginActivity;
 import com.hudutech.mymanjeri.models.CategoryMenu;
 
 import java.util.List;
@@ -43,6 +49,21 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
             @Override
             public void onClick(View v) {
 
+                if (menu.getGotoGlass() == AdminPanelActivity.class) {
+                    FirebaseUser  user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        if (Config.isAdmin(mContext)) {
+                            mContext.startActivity(new Intent(mContext, menu.getGotoGlass())
+                                    .putExtra("menuName", menu.getMenuName())
+                            );
+                        } else {
+                            Toast.makeText(mContext, "You are not authorised to view this page", Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                    }
+                }
+
                 mContext.startActivity(new Intent(mContext, menu.getGotoGlass())
                         .putExtra("menuName", menu.getMenuName())
                         .putExtra("url", menu.getOptionalUrl())
@@ -61,6 +82,7 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
         ImageView mMenuIcon;
         TextView tvMenuText;
         View mView;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             mView = itemView;

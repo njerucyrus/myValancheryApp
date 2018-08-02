@@ -85,7 +85,7 @@ public class FireForceFragment extends Fragment {
                                 if (vehicle != null) {
                                     if (Config.isAdmin(mContext)) {
                                         emergencyList.add(vehicle);
-                                    } else if (!Config.isAdmin(mContext)){
+                                    } else if (!Config.isAdmin(mContext)) {
                                         if (vehicle.isValidated()) emergencyList.add(vehicle);
                                     }
                                 }
@@ -100,7 +100,7 @@ public class FireForceFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

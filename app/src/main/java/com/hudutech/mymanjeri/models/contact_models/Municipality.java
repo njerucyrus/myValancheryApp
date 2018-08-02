@@ -19,7 +19,7 @@ public class Municipality implements Serializable {
     public Municipality() {
     }
 
-    public Municipality(String docKey, String photoUrl, String name, String phoneNumber, String mobileNumber, String address, String party, String designation, String wardNo,String wardName, boolean isValidated) {
+    public Municipality(String docKey, String photoUrl, String name, String phoneNumber, String mobileNumber, String address, String party, String designation, String wardNo, String wardName, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrl = photoUrl;
         this.name = name;

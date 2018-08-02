@@ -25,6 +25,8 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         actionBar.setTitle("User Panel");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+
         findViewById(R.id.user_panel_add_blood_bank).setOnClickListener(this);
         findViewById(R.id.user_panel_add_shops).setOnClickListener(this);
         findViewById(R.id.user_panel_add_vehicles).setOnClickListener(this);
@@ -38,6 +40,8 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
 
         layout = findViewById(R.id.layout_userpanel_menu_ui);
     }
+
+
 
     @Override
     public void onClick(View v) {

@@ -30,6 +30,7 @@
                 android:background="@color/colorLightGrey"
                 android:fontFamily="@font/century_gothic"
                 android:text="Title"
+                android:textSize="16sp"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite" />
 
@@ -45,6 +46,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/tv_place"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -54,6 +56,7 @@
                         android:textColor="@color/colorPrimaryText" />
 
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/tv_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -80,6 +83,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/tv_shows"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -105,6 +109,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/tv_show_times"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -132,6 +137,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/tv_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -146,6 +152,57 @@
 
 
             </android.support.v7.widget.CardView>
+
+            <LinearLayout
+
+                android:visibility="gone"
+                android:gravity="end"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
+                android:id="@+id/layout_admin_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_invalidate"
+                    android:gravity="center"
+                    android:background="@drawable/button_ui_primary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="In Validate"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp" />
+
+                <Button
+                    android:id="@+id/btn_validate"
+                    android:gravity="center"
+                    android:background="@drawable/button_ui_primary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Validate"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp" />
+
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:gravity="center"
+                    android:background="@drawable/button_ui_danger"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Delete"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>

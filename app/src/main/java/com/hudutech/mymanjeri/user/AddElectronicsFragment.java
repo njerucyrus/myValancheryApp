@@ -122,7 +122,7 @@ public class AddElectronicsFragment extends Fragment implements View.OnClickList
                         mHeading.getText().toString(),
                         mDesc.getText().toString()
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above!", Snackbar.LENGTH_LONG).show();
             }
         }

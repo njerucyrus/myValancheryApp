@@ -30,7 +30,6 @@ public class EducationActivity extends AppCompatActivity {
     private ProgressDialog mProgress;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,23 +53,23 @@ public class EducationActivity extends AppCompatActivity {
     private void fetchData() {
         mProgress.setMessage("Loading please wait...");
         mProgress.show();
-       mEducationRef.get()
-       .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-           @Override
-           public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-               if (mProgress.isShowing()) mProgress.dismiss();
-               for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                   Education education = snapshot.toObject(Education.class);
-                   educationList.add(education);
-               }
-               mAdapter.notifyDataSetChanged();
-           }
-       })
-       .addOnFailureListener(new OnFailureListener() {
-           @Override
-           public void onFailure(@NonNull Exception e) {
-               Log.e(TAG, "onFailure: "+e.getMessage() );
-           }
-       });
+        mEducationRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (mProgress.isShowing()) mProgress.dismiss();
+                        for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                            Education education = snapshot.toObject(Education.class);
+                            educationList.add(education);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: " + e.getMessage());
+                    }
+                });
     }
 }

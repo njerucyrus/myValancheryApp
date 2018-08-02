@@ -28,7 +28,7 @@ public class MedicalShopsActivity extends AppCompatActivity {
     private List<MedicalShop> medicalShopList;
     private CollectionReference mRef;
     private ProgressDialog mProgress;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +60,13 @@ public class MedicalShopsActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot snapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (snapshots.getDocuments().size() > 0) {
-                            for(DocumentSnapshot snapshot: snapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 MedicalShop medicalShop = snapshot.toObject(MedicalShop.class);
                                 if (medicalShop != null) {
                                     if (Config.isAdmin(getApplicationContext())) {
                                         medicalShopList.add(medicalShop);
-                                    } else if (!Config.isAdmin(getApplicationContext())){
-                                        if (medicalShop.isValidated()){
+                                    } else if (!Config.isAdmin(getApplicationContext())) {
+                                        if (medicalShop.isValidated()) {
                                             medicalShopList.add(medicalShop);
                                         }
                                     }

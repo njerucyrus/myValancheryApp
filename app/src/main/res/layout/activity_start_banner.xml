@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin_banner_setting.StartBannerActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_upload_photo"
+            android:layout_margin="8dp"
+            android:text="Upload Start Banner Image"
+            android:drawableStart="@drawable/ic_add_a_photo_black_24dp"
+            android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_margin="8dp"
+            android:text="Current Image"
+            android:textAlignment="center"
+            android:fontFamily="@font/century_gothic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

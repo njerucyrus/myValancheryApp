@@ -21,9 +21,12 @@
         android:layout_marginTop="172dp"
         android:background="@color/colorWhite"
         android:gravity="end"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal">
+
+    </LinearLayout>
 
     <TextView
+        android:textSize="16sp"
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,11 +48,11 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textSize="16sp"
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:drawableRight="@drawable/ic_location_on_black_24dp"
             android:fontFamily="@font/century_gothic"
             android:text="6th Streat, Majeri" />
 
@@ -57,6 +60,7 @@
     </LinearLayout>
 
     <TextView
+        android:textSize="16sp"
         android:id="@+id/tv_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

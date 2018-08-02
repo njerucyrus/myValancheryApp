@@ -4,6 +4,7 @@ import android.net.Uri;
 
 public class SelectedImage {
     private Uri imageUri;
+
     public SelectedImage() {
     }
 

@@ -119,10 +119,10 @@ public class AddShoppingFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_add_shop){
+        if (id == R.id.btn_add_shop) {
             if (validateInputs()) {
                 submitShop();
-            }else {
+            } else {
                 Snackbar.make(v, "Please fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         } else if (id == R.id.btn_select_shop_location) {
@@ -135,14 +135,14 @@ public class AddShoppingFragment extends Fragment implements View.OnClickListene
         if (TextUtils.isEmpty(mShopName.getText().toString().trim())) {
             valid = false;
             mShopName.setError("*Required");
-        }else {
+        } else {
             mShopName.setError(null);
         }
 
         if (TextUtils.isEmpty(mContact.getText().toString().trim())) {
             valid = false;
             mContact.setError("*Required");
-        }else {
+        } else {
             mContact.setError(null);
         }
 
@@ -209,7 +209,7 @@ public class AddShoppingFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.d(TAG, "onFailure: "+e.getMessage());
+                        Log.d(TAG, "onFailure: " + e.getMessage());
                     }
                 });
     }

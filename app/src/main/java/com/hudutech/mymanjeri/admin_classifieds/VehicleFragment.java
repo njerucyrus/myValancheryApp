@@ -48,7 +48,7 @@ public class VehicleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_vehicle, container, false);
+        View v = inflater.inflate(R.layout.fragment_vehicle, container, false);
 
         mContext = getContext();
         mRef = FirebaseFirestore.getInstance().collection("classifields_vehicles");

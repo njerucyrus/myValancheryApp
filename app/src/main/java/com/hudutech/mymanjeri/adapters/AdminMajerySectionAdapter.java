@@ -32,7 +32,7 @@ public class AdminMajerySectionAdapter extends FragmentPagerAdapter {
             case 2:
                 return new AddTourismFragment();
             case 3:
-                return  new AddHistoryFragment();
+                return new AddHistoryFragment();
             case 4:
                 return new AddShoppingFragment();
 
@@ -43,7 +43,7 @@ public class AdminMajerySectionAdapter extends FragmentPagerAdapter {
                 return new AddEducationFragment();
 
             default:
-                return  null;
+                return null;
         }
 
     }

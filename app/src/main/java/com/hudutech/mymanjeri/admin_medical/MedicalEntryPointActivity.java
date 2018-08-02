@@ -14,6 +14,8 @@ public class MedicalEntryPointActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_entry_point);
+        getSupportActionBar().setTitle("Medical");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewPager mViewPager = findViewById(R.id.admin_contact_view_pager);
         AdminMedicalSectionAdapter mSectionsPagerAdapter = new AdminMedicalSectionAdapter(getSupportFragmentManager());

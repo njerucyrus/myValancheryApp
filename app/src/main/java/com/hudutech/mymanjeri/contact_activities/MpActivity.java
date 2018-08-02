@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Mp;
 
@@ -64,28 +66,36 @@ public class MpActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot snapshot) {
 
                         mProgress.dismiss();
-                            if (snapshot.exists()) {
-                                Mp mp = snapshot.toObject(Mp.class);
-                                if (mp != null) {
-                                    tvName.setText(mp.getName());
-                                    tvConstituency.setText(mp.getConstituency());
-                                    tvParty.setText(mp.getParty());
-                                    tvMobile.setText(mp.getMobile());
-                                    tvPhone.setText(mp.getPhone());
-                                    tvEmail.setText(mp.getEmail());
-                                    tvFax.setText("");
-                                    tvAddress.setText(mp.getAddress());
-                                    RequestOptions requestOptions = new RequestOptions()
-                                            .placeholder(R.drawable.user_96);
+                        if (snapshot.exists()) {
+                            final Mp mp = snapshot.toObject(Mp.class);
+                            if (mp != null) {
+                                tvName.setText(mp.getName());
+                                tvConstituency.setText(mp.getConstituency());
+                                tvParty.setText(mp.getParty());
+                                tvMobile.setText(mp.getMobile());
+                                tvPhone.setText(mp.getPhone());
+                                tvEmail.setText(mp.getEmail());
+                                tvFax.setText("");
+                                tvAddress.setText(mp.getAddress());
+                                RequestOptions requestOptions = new RequestOptions()
+                                        .placeholder(R.drawable.user_96);
 
-                                    Glide.with(MpActivity.this)
-                                            .load(mp.getPhotoUrl())
-                                            .apply(requestOptions)
-                                            .into(imgPhoto);
-                                }else {
-                                    Toast.makeText(MpActivity.this, "No data!", Toast.LENGTH_SHORT).show();
-                                }
+                                Glide.with(MpActivity.this)
+                                        .load(mp.getPhotoUrl())
+                                        .apply(requestOptions)
+                                        .into(imgPhoto);
+
+                                TextView call = findViewById(R.id.tv_call);
+                                call.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Config.call(MpActivity.this, mp.getPhone());
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(MpActivity.this, "No data!", Toast.LENGTH_SHORT).show();
                             }
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

@@ -111,7 +111,7 @@ public class DepositActivity extends AppCompatActivity implements View.OnClickLi
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Confirm Transaction");
-                builder.setMessage("Deposit INR "+mAmount.getText().toString().trim());
+                builder.setMessage("Deposit INR " + mAmount.getText().toString().trim());
                 builder.setCancelable(false);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

@@ -238,6 +238,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                             User user = new User(
                                     email,
+                                    "",
+                                    "",
                                     false,
                                     false
                             );

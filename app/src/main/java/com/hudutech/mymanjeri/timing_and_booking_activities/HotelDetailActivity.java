@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -41,7 +42,7 @@ public class HotelDetailActivity extends AppCompatActivity {
         hotelName.setText(hotel.getName());
 
         TextView address = findViewById(R.id.tv_address);
-        address.setText(hotel.getAddress() + ", " + hotel.getPlaceName());
+        address.setText(hotel.getPlaceName());
 
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         ratingBar.setRating(hotel.getStarRating());
@@ -49,6 +50,15 @@ public class HotelDetailActivity extends AppCompatActivity {
 
         TextView details = findViewById(R.id.tv_details);
         details.setText(hotel.getMoreInfo());
+
+        TextView call = findViewById(R.id.tv_call);
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(HotelDetailActivity.this, hotel.getPhoneNumber());
+            }
+        });
 
 
         List<Banner> bannerList = new ArrayList<>();

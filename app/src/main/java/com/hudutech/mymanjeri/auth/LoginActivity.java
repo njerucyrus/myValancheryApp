@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Snackbar.make(view, "Please correct the errors above to continue",
                                 Snackbar.LENGTH_LONG).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(LoginActivity.this, "No internet connection please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -297,10 +297,10 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager !=null) {
+        if (connectivityManager != null) {
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        }else {
+        } else {
             return false;
         }
     }

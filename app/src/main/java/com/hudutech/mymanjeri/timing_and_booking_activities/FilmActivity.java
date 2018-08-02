@@ -35,14 +35,14 @@ public class FilmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_film);
         getSupportActionBar().setTitle(getIntent().getStringExtra("menuName"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
+
         filmList = new ArrayList<>();
         mRef = FirebaseFirestore.getInstance().collection("films");
         mProgress = new ProgressDialog(this);
         mAdapter = new FilmListAdapter(this, filmList);
-        
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.setHasFixedSize(true);
@@ -62,7 +62,7 @@ public class FilmActivity extends AppCompatActivity {
                         if (snapshots.getDocuments().size() > 0) {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Film film = snapshot.toObject(Film.class);
-                                if (film !=null) {
+                                if (film != null) {
                                     if (film.isValidated()) filmList.add(film);
                                 }
                             }
@@ -74,7 +74,7 @@ public class FilmActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
 

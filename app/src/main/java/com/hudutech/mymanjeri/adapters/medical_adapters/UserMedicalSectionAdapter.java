@@ -28,13 +28,13 @@ public class UserMedicalSectionAdapter extends FragmentPagerAdapter {
             case 2:
                 return new AyourvedicHospitalFragment();
             case 3:
-                return  new DentalHospitalFragment();
+                return new DentalHospitalFragment();
             case 4:
                 return new OphthalHospitalFragment();
             case 5:
                 return new PhysioHospitalFragment();
             default:
-                return  null;
+                return null;
         }
 
     }
@@ -53,7 +53,7 @@ public class UserMedicalSectionAdapter extends FragmentPagerAdapter {
             case 1:
                 return "Homeo";
             case 2:
-                return "Ayurverdic";
+                return "Ayurvedic";
             case 3:
                 return "Dental";
             case 4:

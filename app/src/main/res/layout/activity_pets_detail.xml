@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".classifields_activities.PetsDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/colorBg" />
+
+        <LinearLayout
+            android:id="@+id/slider_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="172dp"
+            android:background="@color/colorWhite"
+            android:gravity="end"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slider_dots"
+            android:background="@color/colorLightGrey"
+            android:fontFamily="@font/century_gothic"
+            android:gravity="start"
+            android:padding="8dp"
+            android:text="Name"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layout_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/century_gothic"
+                android:text="INR 1600" />
+
+            <TextView
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/century_gothic"
+                android:text="Location" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:id="@+id/layout_desc"
+            android:gravity="start"
+            android:layout_below="@+id/layout_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="8dp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:text="Breed"
+                    android:fontFamily="@font/century_gothic"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_breed"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:text="Some Breed"
+                    android:fontFamily="@font/century_gothic"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="8dp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:text="Age"
+                    android:fontFamily="@font/century_gothic"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_age"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:text="Some age"
+                    android:fontFamily="@font/century_gothic"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="1dp"
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:drawableLeft="@drawable/ic_phone_black_48dp"
+                    android:drawableStart="@drawable/ic_phone_black_48dp"
+                    android:fontFamily="@font/century_gothic"
+                    android:text="Make a Call"
+                    android:textColor="@color/colorPrimaryText" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

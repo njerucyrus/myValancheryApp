@@ -34,11 +34,11 @@ import java.util.List;
  */
 public class ShopItemFragment extends Fragment {
     private static final String TAG = "ShopItemFragment";
-   private CollectionReference mRef;
-   private ShopListAdapter mAdapter;
-   private List<Shop> shopList;
-   private Context mContext;
-   private ProgressDialog mProgress;
+    private CollectionReference mRef;
+    private ShopListAdapter mAdapter;
+    private List<Shop> shopList;
+    private Context mContext;
+    private ProgressDialog mProgress;
 
     public ShopItemFragment() {
         // Required empty public constructor
@@ -49,14 +49,14 @@ public class ShopItemFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_shop_item, container, false);
+        View v = inflater.inflate(R.layout.fragment_shop_item, container, false);
         mRef = FirebaseFirestore.getInstance().collection("shopping");
         mContext = getContext();
 
         shopList = new ArrayList<>();
         mAdapter = new ShopListAdapter(mContext, shopList);
 
-        RecyclerView mRecyclerView  = v.findViewById(R.id.admin_contact_vehicle_list_recyclerview);
+        RecyclerView mRecyclerView = v.findViewById(R.id.admin_contact_vehicle_list_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
@@ -96,7 +96,7 @@ public class ShopItemFragment extends Fragment {
                                 }
                             }
                             mAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             Toast.makeText(mContext, "No data!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -105,7 +105,7 @@ public class ShopItemFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.d(TAG, "onFailure: "+e.getMessage());
+                        Log.d(TAG, "onFailure: " + e.getMessage());
 
                     }
                 });

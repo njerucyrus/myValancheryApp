@@ -79,7 +79,6 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,7 +123,7 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
         final int id = v.getId();
         if (id == R.id.btn_choose_real_estate_images) {
             openImageChooser();
-        } else if (id==R.id.btn_submit_real_estate) {
+        } else if (id == R.id.btn_submit_real_estate) {
             if (validateInputs()) {
                 submitData(
                         imageUris,
@@ -135,7 +134,7 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
                         mDesc.getText().toString()
                 );
             } else {
-                Snackbar.make(v,  "Fix the errors above", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -165,7 +164,7 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
                 imageUris[0] = data.getData();
             }
             showSelectedImages(imageUris);
-        } 
+        }
 
     }
 
@@ -184,7 +183,6 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
         }
         mAdapter.notifyDataSetChanged();
     }
-
 
 
     private void openImageChooser() {
@@ -295,7 +293,6 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
     }
 
 
-
     private void submitData(
             Uri[] uris,
             final double amount,
@@ -360,6 +357,12 @@ public class AddRealEstateFragment extends Fragment implements View.OnClickListe
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
+                                            mImageViewPager.setVisibility(View.GONE);
+                                            mAmount.setText("");
+                                            mPhoneNumber.setText("");
+                                            mLocation.setText("");
+                                            mHeading.setText("");
+                                            mDesc.setText("");
                                             Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
                                         }
                                     })

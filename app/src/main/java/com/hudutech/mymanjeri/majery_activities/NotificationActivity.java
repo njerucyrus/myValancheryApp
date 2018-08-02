@@ -31,7 +31,6 @@ public class NotificationActivity extends AppCompatActivity {
     private NotificationAdapter mAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +63,7 @@ public class NotificationActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
 
-                        for (DocumentSnapshot snapshot: queryDocumentSnapshots.getDocuments()) {
+                        for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                             CustomNotification notification = snapshot.toObject(CustomNotification.class);
                             customNotificationList.add(notification);
                         }
@@ -75,7 +74,7 @@ public class NotificationActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
 

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Bank;
@@ -54,7 +51,7 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Bank bank = bankList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -161,12 +158,11 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
                 .into(holder.imageView);
 
 
-
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Bank Name "+bank.getBankName()+" Place "+bank.getPlace() +" Contact "+bank.getPhoneNumber();
-                Config.share(mContext, "",desc);
+                String desc = "Bank Name " + bank.getBankName() + " Place " + bank.getPlace() + " Contact " + bank.getPhoneNumber();
+                Config.share(mContext, "", desc);
             }
         });
 
@@ -176,7 +172,6 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
                 Config.call(mContext, bank.getPhoneNumber());
             }
         });
-
 
 
     }
@@ -227,47 +222,32 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(bank.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("banks");
-                    ref.document(bank.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    bankList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Bank deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("banks");
+            ref.document(bank.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            bankList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Bank deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final Bank bank, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Bank bank, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -314,8 +294,6 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
 
 
         }
-
-
 
 
     }

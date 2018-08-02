@@ -26,7 +26,6 @@ import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.adapters.contact_adapter.InstitutionListAdapter;
 import com.hudutech.mymanjeri.models.contact_models.Institution;
-import com.hudutech.mymanjeri.models.contact_models.Politics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +85,9 @@ public class CollegeFragment extends Fragment {
                                 if (institution != null) {
                                     if (Config.isAdmin(mContext)) {
                                         institutionList.add(institution);
-                                    } else if (!Config.isAdmin(mContext)){
-                                        if (institution.isValidated()) institutionList.add(institution);
+                                    } else if (!Config.isAdmin(mContext)) {
+                                        if (institution.isValidated())
+                                            institutionList.add(institution);
                                     }
                                 }
                             }
@@ -101,7 +101,7 @@ public class CollegeFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

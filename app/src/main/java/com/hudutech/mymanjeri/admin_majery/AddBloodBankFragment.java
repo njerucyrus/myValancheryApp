@@ -197,6 +197,7 @@ public class AddBloodBankFragment extends Fragment implements View.OnClickListen
                     String imageUrl = taskSnapshot.getDownloadUrl().toString();
                     DocumentReference docRef = donorsRef.document();
                     BloodDonor donor = new BloodDonor(
+                            docRef.getId(),
                             fullName,
                             phoneNumber,
                             bloodGroup,

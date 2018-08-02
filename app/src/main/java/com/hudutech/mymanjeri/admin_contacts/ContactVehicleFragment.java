@@ -93,7 +93,7 @@ public class ContactVehicleFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

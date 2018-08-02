@@ -29,7 +29,7 @@ public class MunicipalityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_municipality, container, false);
+        View v = inflater.inflate(R.layout.fragment_municipality, container, false);
         TextView mName = v.findViewById(R.id.tv_name);
         TextView mDesignation = v.findViewById(R.id.tv_designation);
         TextView mWardNo = v.findViewById(R.id.tv_ward_no);
@@ -42,7 +42,7 @@ public class MunicipalityFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            Municipality mObject = (Municipality)bundle.getSerializable("municipality");
+            Municipality mObject = (Municipality) bundle.getSerializable("municipality");
             if (mObject != null) {
                 mName.setText(mObject.getName());
                 mDesignation.setText(mObject.getDesignation());

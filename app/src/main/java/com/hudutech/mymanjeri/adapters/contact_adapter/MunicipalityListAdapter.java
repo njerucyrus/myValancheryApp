@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +26,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.contact_activities.MunicipalityFragment;
@@ -58,7 +55,7 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Municipality municipality = municipalityList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -160,7 +157,7 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
                 args.putSerializable("municipality", municipality);
                 detailFragment.setArguments(args);
 
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
@@ -172,7 +169,7 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
 
         holder.mName.setText(municipality.getName());
         holder.mDesignation.setText(municipality.getDesignation());
-        holder.mWardNo.setText("Ward "+municipality.getWardNo());
+        holder.mWardNo.setText("Ward " + municipality.getWardNo());
 
 
         RequestOptions requestOptions = new RequestOptions()
@@ -182,9 +179,6 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
                 .load(municipality.getPhotoUrl())
                 .apply(requestOptions)
                 .into(holder.imageView);
-
-
-
 
 
     }
@@ -232,47 +226,32 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(municipality.getPhotoUrl());
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("municipality");
-                    ref.document(municipality.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    municipalityList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Municipality deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("municipality");
+            ref.document(municipality.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            municipalityList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Municipality deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 
-        public void updateIsValidated(final Municipality municipality, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Municipality municipality, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -319,8 +298,6 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityLi
 
 
         }
-
-
 
 
     }

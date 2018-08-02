@@ -138,7 +138,7 @@ public class FilmFragment extends Fragment implements View.OnClickListener {
         if (id == R.id.btn_submit) {
             if (Config.validateInputs(mContext, inputs)) {
                 List<String> times = new ArrayList<>();
-                for (Chip chip: timeChips.getSelectedChips()) {
+                for (Chip chip : timeChips.getSelectedChips()) {
                     times.add(chip.getTitle());
                 }
                 submitData(

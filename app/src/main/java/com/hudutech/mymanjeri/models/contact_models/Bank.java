@@ -3,7 +3,7 @@ package com.hudutech.mymanjeri.models.contact_models;
 import java.io.Serializable;
 
 public class Bank implements Serializable {
-    private static final long serialVersionUID =1L;
+    private static final long serialVersionUID = 1L;
     private String docKey;
     private String photoUrl;
     private String bankName;
@@ -15,7 +15,7 @@ public class Bank implements Serializable {
 
     }
 
-    public Bank(String docKey,String photoUrl,String bankName, String phoneNumber, String place, boolean isValidated) {
+    public Bank(String docKey, String photoUrl, String bankName, String phoneNumber, String place, boolean isValidated) {
         this.docKey = docKey;
         this.photoUrl = photoUrl;
         this.bankName = bankName;

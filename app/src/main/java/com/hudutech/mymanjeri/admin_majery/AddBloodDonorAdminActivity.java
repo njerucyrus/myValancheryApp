@@ -130,8 +130,9 @@ public class AddBloodDonorAdminActivity extends AppCompatActivity {
 
     }
 
-    private void submitDonorData(String fullName, String phoneNumber, String bloodGroup, String otherInfo, String address, String avator, boolean isValidated) {
+    private void submitDonorData(String fullName, final String phoneNumber, String bloodGroup, String otherInfo, String address, String avator, boolean isValidated) {
         BloodDonor donor = new BloodDonor(
+                bloodDonorsRef.getId(),
                 fullName,
                 phoneNumber,
                 bloodGroup,
@@ -151,6 +152,11 @@ public class AddBloodDonorAdminActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AddBloodDonorAdminActivity.this, "Data Submitted Successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), BloodBankActivity.class));
+                        mFullName.setText("");
+                        mPhoneNumber.setText("");
+                        mOtherInfo.setText("");
+                        mAddress.setText("");
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

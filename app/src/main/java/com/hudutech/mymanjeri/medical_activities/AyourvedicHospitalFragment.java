@@ -69,7 +69,7 @@ public class AyourvedicHospitalFragment extends Fragment {
     private void loadData() {
         mProgress.setMessage("loading...");
         mProgress.show();
-        mRef.whereEqualTo("category", "Ayourvedic")
+        mRef.whereEqualTo("category", "Ayurvedic")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

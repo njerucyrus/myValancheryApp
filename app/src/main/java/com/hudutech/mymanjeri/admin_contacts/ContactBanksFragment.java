@@ -41,7 +41,7 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContactBanksFragment extends Fragment implements View.OnClickListener{
+public class ContactBanksFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ContactBanksFragment";
     private static final int IMAGE_PICK = 100;
     private TextInputEditText mBankName;
@@ -126,10 +126,10 @@ public class ContactBanksFragment extends Fragment implements View.OnClickListen
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit_bank) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mBankName.getText().toString(),
@@ -137,10 +137,10 @@ public class ContactBanksFragment extends Fragment implements View.OnClickListen
                         mPlace.getText().toString()
 
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_bank_photo){
+        } else if (id == R.id.btn_upload_bank_photo) {
             openImageChooser();
         }
 
@@ -219,7 +219,7 @@ public class ContactBanksFragment extends Fragment implements View.OnClickListen
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

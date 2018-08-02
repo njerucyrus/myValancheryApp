@@ -2,6 +2,7 @@ package com.hudutech.mymanjeri.models.majery_models;
 
 public class BloodDonor implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
+    private String docKey;
     private String fullName;
     private String phoneNumber;
     private String bloodGroup;
@@ -11,9 +12,11 @@ public class BloodDonor implements java.io.Serializable {
     private boolean isValidated;
 
 
-    public BloodDonor() {}
+    public BloodDonor() {
+    }
 
-    public BloodDonor(String fullName, String phoneNumber, String bloodGroup, String otherDetails, String address, String avator, boolean isValidated) {
+    public BloodDonor(String docKey, String fullName, String phoneNumber, String bloodGroup, String otherDetails, String address, String avator, boolean isValidated) {
+        this.docKey = docKey;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.bloodGroup = bloodGroup;
@@ -21,6 +24,14 @@ public class BloodDonor implements java.io.Serializable {
         this.address = address;
         this.avator = avator;
         this.isValidated = isValidated;
+    }
+
+    public String getDocKey() {
+        return docKey;
+    }
+
+    public void setDocKey(String docKey) {
+        this.docKey = docKey;
     }
 
     public String getFullName() {

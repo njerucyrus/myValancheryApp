@@ -27,7 +27,7 @@ public class OpticalActivity extends AppCompatActivity {
     private List<Optical> opticalList;
     private CollectionReference mRef;
     private ProgressDialog mProgress;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +56,13 @@ public class OpticalActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot snapshots) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         if (snapshots.getDocuments().size() > 0) {
-                            for(DocumentSnapshot snapshot: snapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Optical optical = snapshot.toObject(Optical.class);
                                 if (optical != null) {
                                     if (Config.isAdmin(getApplicationContext())) {
                                         opticalList.add(optical);
-                                    } else if (!Config.isAdmin(getApplicationContext())){
-                                        if (optical.isValidated()){
+                                    } else if (!Config.isAdmin(getApplicationContext())) {
+                                        if (optical.isValidated()) {
                                             opticalList.add(optical);
                                         }
                                     }

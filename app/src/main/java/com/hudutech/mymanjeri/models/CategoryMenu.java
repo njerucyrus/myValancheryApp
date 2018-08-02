@@ -15,7 +15,7 @@ public class CategoryMenu implements java.io.Serializable {
     public CategoryMenu() {
     }
 
-    public CategoryMenu(String menuCategory,String menuName,  Class<?> gotoGlass, int iconResId) {
+    public CategoryMenu(String menuCategory, String menuName, Class<?> gotoGlass, int iconResId) {
         this.menuCategory = menuCategory;
         this.menuName = menuName;
         this.gotoGlass = gotoGlass;

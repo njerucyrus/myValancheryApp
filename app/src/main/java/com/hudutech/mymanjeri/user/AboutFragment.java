@@ -12,6 +12,7 @@ import com.hudutech.mymanjeri.R;
 
 public class AboutFragment extends Fragment {
     private Context mContext;
+
     public AboutFragment() {
         // Required empty public constructor
     }

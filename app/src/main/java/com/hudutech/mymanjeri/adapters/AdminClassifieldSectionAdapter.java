@@ -27,11 +27,11 @@ public class AdminClassifieldSectionAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ElectronicsFragment();
             case 3:
-                return  new PetsFragment();
+                return new PetsFragment();
             case 4:
                 return new OtherFragment();
             default:
-                return  null;
+                return null;
         }
 
     }

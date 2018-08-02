@@ -117,7 +117,7 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
                         mEmergencyType
                 );
             } else {
-                Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -298,24 +298,24 @@ public class AddEmergencyFragment extends Fragment implements View.OnClickListen
 
     private boolean validateInputs() {
         boolean valid = true;
-        if (TextUtils.isEmpty(mName.getText().toString().trim())){
+        if (TextUtils.isEmpty(mName.getText().toString().trim())) {
             valid = false;
             mName.setError("*Required!");
-        }else {
+        } else {
             mName.setError(null);
         }
 
-        if (TextUtils.isEmpty(mPlace.getText().toString().trim())){
+        if (TextUtils.isEmpty(mPlace.getText().toString().trim())) {
             valid = false;
             mPlace.setError("*Required!");
-        }else {
+        } else {
             mPlace.setError(null);
         }
 
-        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())){
+        if (TextUtils.isEmpty(mPhoneNumber.getText().toString().trim())) {
             valid = false;
             mPhoneNumber.setError("*Required!");
-        }else {
+        } else {
             mPhoneNumber.setError(null);
         }
 

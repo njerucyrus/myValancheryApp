@@ -30,6 +30,7 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
     private ShopListAdapter mAdapter;
     private List<Shop> shopList;
     private ProgressDialog mProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
         mAdapter = new ShopListAdapter(this, shopList);
         mRef = FirebaseFirestore.getInstance().collection("shops");
 
-        RecyclerView mRecyclerView  = findViewById(R.id.admin_contact_vehicle_list_recyclerview);
+        RecyclerView mRecyclerView = findViewById(R.id.admin_contact_vehicle_list_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
@@ -75,7 +76,7 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
                                 }
                             }
                             mAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             Toast.makeText(ShopMenuDetailActivity.this, "No data!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -84,7 +85,7 @@ public class ShopMenuDetailActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.d(TAG, "onFailure: "+e.getMessage());
+                        Log.d(TAG, "onFailure: " + e.getMessage());
 
                     }
                 });

@@ -1,6 +1,7 @@
 package com.hudutech.mymanjeri;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,9 +18,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,11 +38,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.adapters.CustomMenuAdapter;
 import com.hudutech.mymanjeri.adapters.ImageViewPagerAdapter;
-import com.hudutech.mymanjeri.admin_banner_setting.AdminBarnersActivity;
-import com.hudutech.mymanjeri.admin_majery.AddBloodDonorAdminActivity;
-import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
-import com.hudutech.mymanjeri.auth.LoginActivity;
-import com.hudutech.mymanjeri.auth.RegisterActivity;
 import com.hudutech.mymanjeri.models.Banner;
 import com.hudutech.mymanjeri.models.CategoryMenu;
 import com.hudutech.mymanjeri.models.MenuHolder;
@@ -56,10 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String CATEGORY_CLASSIFIEDS = "classifieds";
     private static final String CATEGORY_MEDICAL = "medical";
     private static final String CATEGORY_DIGITAL = "digital";
-
-    HashMap<String, List<CategoryMenu>> menuHashMap;
-
     final int delay = 10000; //8 second
+    HashMap<String, List<CategoryMenu>> menuHashMap;
     Handler handler = new Handler();
     Runnable runnable;
     private ImageViewPagerAdapter mAdapter;
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
     private int[] pagerIndex = {-1};
 
+    private Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +80,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setTitle("\t\t\t\tMy Valanchery");
-        getSupportActionBar().setIcon(R.drawable.ic_person_white_24dp);
+
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        showStartBanner();
 
 
         mRootRef = FirebaseFirestore.getInstance().collection("barners");
@@ -217,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
         return true;
     }
 
@@ -225,73 +232,23 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            if (isAdmin()) {
-                showActivity(AddBloodDonorAdminActivity.class);
-            } else if (!isAdmin() && mCurrentUser == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("You Need Admin Privileges to access this menu");
-                builder.setMessage("Do you have admin account ?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        showActivity(LoginActivity.class);
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        showActivity(RegisterActivity.class);
-                    }
-                });
-
-                builder.show();
-            } else if (!isAdmin() && mCurrentUser != null) {
-                Toast.makeText(getApplicationContext(), "You are not Authorised to use this menu", Toast.LENGTH_SHORT).show();
-            }
-            return true;
-        } else if (id == R.id.action_add_barner) {
-
-            if (isAdmin()) {
-                showActivity(AdminBarnersActivity.class);
-            } else if (!isAdmin() && mCurrentUser == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("You Need Admin Privileges to access this menu");
-                builder.setMessage("Do you have admin account ?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        showActivity(LoginActivity.class);
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        showActivity(RegisterActivity.class);
-                    }
-                });
-
-                builder.show();
-            } else if (!isAdmin() && mCurrentUser != null) {
-                Toast.makeText(getApplicationContext(), "You are not Authorised to use this menu", Toast.LENGTH_SHORT).show();
-            }
-
-        } else if (id == R.id.action_enter_data) {
-            showActivity(DataEntryActivity.class);
-        } else if (id == R.id.action_logout) {
+        if (id == R.id.action_logout) {
             signOut();
-        } else if (id == R.id.action_test_user_panel) {
-            showActivity(UserPanelActivity.class);
-        } else if (id == R.id.action_test_admin_panel) {
+        } else if (id == R.id.action_user_panel) {
 
-            showActivity(AdminPanelActivity.class);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            if (mAuth.getCurrentUser() != null) {
+                startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
+            } else {
+                //CREATE ACCOUNT//
+                startActivity(new Intent(MainActivity.this, JoinActivity.class));
+            }
+
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -410,7 +367,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //[CATEGORY MENUS LOGIC HERE]
+    private void showStartBanner() {
+        TextView txtClose;
+
+        dialog.setContentView(R.layout.layout_start_banner);
+        txtClose = (TextView) dialog.findViewById(R.id.txt_close);
+        final ImageView mSelectedPhoto = (ImageView) dialog.findViewById(R.id.imageView);
+
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("start_banners").document("banner");
+        docRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Banner banner = documentSnapshot.toObject(Banner.class);
+                            mSelectedPhoto.setVisibility(View.VISIBLE);
+                            RequestOptions requestOptions = new RequestOptions()
+                                    .placeholder(R.drawable.no_barner);
+
+                            Glide.with(MainActivity.this)
+                                    .load(banner.getBannerUrl())
+                                    .apply(requestOptions)
+                                    .into(mSelectedPhoto);
+                        }
+                    }
+                });
+
+
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 
 
 }

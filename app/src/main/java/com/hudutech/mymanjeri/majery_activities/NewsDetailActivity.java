@@ -13,14 +13,16 @@ import com.hudutech.mymanjeri.models.majery_models.News;
 public class NewsDetailActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        News news = (News)getIntent().getSerializableExtra("news");
+        News news = (News) getIntent().getSerializableExtra("news");
+
+        getSupportActionBar().setTitle(news.getNewsHeading());
+
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 

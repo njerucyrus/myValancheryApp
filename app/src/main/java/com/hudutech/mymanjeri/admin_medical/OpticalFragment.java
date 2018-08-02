@@ -86,7 +86,6 @@ public class OpticalFragment extends Fragment implements View.OnClickListener {
         mSelectedPinPoint = v.findViewById(R.id.tv_location);
 
 
-
         v.findViewById(R.id.btn_upload_photo).setOnClickListener(this);
 
         v.findViewById(R.id.btn_submit).setOnClickListener(this);
@@ -158,10 +157,10 @@ public class OpticalFragment extends Fragment implements View.OnClickListener {
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mHospitalName.getText().toString(),
@@ -172,10 +171,10 @@ public class OpticalFragment extends Fragment implements View.OnClickListener {
                         lng
 
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_photo){
+        } else if (id == R.id.btn_upload_photo) {
             openImageChooser();
         } else if (id == R.id.btn_select_location) {
             showPlacePicker();
@@ -260,7 +259,7 @@ public class OpticalFragment extends Fragment implements View.OnClickListener {
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

@@ -52,12 +52,12 @@ import java.io.IOException;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FindPartnerFragment extends Fragment implements View.OnClickListener{
+public class FindPartnerFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "FindPartnerFragment";
     private static final int IMAGE_PICK = 1;
-    private Context mContext;
     private static final String MALE = "Male";
     private static final String FEMALE = "Female";
+    private Context mContext;
     private Button mUploadPhoto;
     private RadioGroup mRadioGroupGender;
     private TextInputEditText mName;
@@ -203,7 +203,7 @@ public class FindPartnerFragment extends Fragment implements View.OnClickListene
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
-                                    Log.e(TAG, "onFailure: "+e.getMessage());
+                                    Log.e(TAG, "onFailure: " + e.getMessage());
                                     Toast.makeText(mContext, "Error occurred! please try again later", Toast.LENGTH_SHORT).show();
                                 }
                             });

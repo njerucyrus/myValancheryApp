@@ -48,7 +48,7 @@ public class RestaurantFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_restaurant, container, false);
+        View v = inflater.inflate(R.layout.fragment_restaurant, container, false);
         mContext = getContext();
         mRef = FirebaseFirestore.getInstance().collection("restaurants");
         restaurantList = new ArrayList<>();
@@ -77,11 +77,12 @@ public class RestaurantFragment extends Fragment {
                         if (snapshots.getDocuments().size() > 0) {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Restaurant restaurant = snapshot.toObject(Restaurant.class);
-                                if (restaurant !=null) {
+                                if (restaurant != null) {
                                     if (Config.isAdmin(mContext)) {
                                         restaurantList.add(restaurant);
                                     } else if (!Config.isAdmin(mContext)) {
-                                        if (restaurant.isValidated()) restaurantList.add(restaurant);
+                                        if (restaurant.isValidated())
+                                            restaurantList.add(restaurant);
                                     }
                                 }
                             }
@@ -92,10 +93,9 @@ public class RestaurantFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
-
 
 
     }

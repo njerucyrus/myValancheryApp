@@ -161,8 +161,8 @@ public class PoliticsListAdapter extends RecyclerView.Adapter<PoliticsListAdapte
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+politics.getPlace() +" Contact "+politics.getPhoneNumber();
-                Config.share(mContext, politics.getName(),desc);
+                String desc = "Place " + politics.getPlace() + " Contact " + politics.getPhoneNumber();
+                Config.share(mContext, politics.getName(), desc);
             }
         });
 

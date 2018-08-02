@@ -85,7 +85,7 @@ public class FemaleFragment extends Fragment {
                                 if (partner != null) {
                                     if (Config.isAdmin(mContext)) {
                                         partnerList.add(partner);
-                                    } else if (!Config.isAdmin(mContext)){
+                                    } else if (!Config.isAdmin(mContext)) {
                                         if (partner.isValidated()) partnerList.add(partner);
                                     }
                                 }
@@ -100,7 +100,7 @@ public class FemaleFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

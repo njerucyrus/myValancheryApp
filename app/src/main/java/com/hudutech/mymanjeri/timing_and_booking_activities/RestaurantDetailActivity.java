@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,11 +42,20 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         hotelName.setText(restaurant.getName());
 
         TextView address = findViewById(R.id.tv_address);
-        address.setText(restaurant.getAddress() + ", " + restaurant.getPlaceName());
+        address.setText(restaurant.getPlaceName());
 
 
         TextView details = findViewById(R.id.tv_details);
         details.setText(restaurant.getMoreInfo());
+
+        TextView call = findViewById(R.id.tv_call);
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.call(RestaurantDetailActivity.this, restaurant.getPhoneNumber());
+            }
+        });
 
 
         List<Banner> bannerList = new ArrayList<>();

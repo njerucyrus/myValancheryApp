@@ -35,7 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".majery_activities.BloodBankActivity" />
+        <activity android:name=".majery_activities.BloodBankActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".admin_majery.BecomeDonorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -67,47 +71,207 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hudutech.mymanjeri.admin_banner_setting.AdminBarnersActivity" />
         </activity>
-        <activity android:name=".majery_activities.NewsActivity" />
-        <activity android:name=".majery_activities.TourismActivity" />
-        <activity android:name=".majery_activities.HistoryActivity" />
-        <activity android:name=".majery_activities.ShoppingActivity" />
-        <activity android:name=".majery_activities.EducationActivity" />
-        <activity android:name=".contact_activities.VehicleActivity" />
-        <activity android:name=".contact_activities.EmergencyActivity" />
-        <activity android:name=".contact_activities.GeneralActivity" />
-        <activity android:name=".contact_activities.MpActivity" />
-        <activity android:name=".contact_activities.MlaActivity" />
-        <activity android:name=".contact_activities.PoliticsActivity" />
-        <activity android:name=".contact_activities.MediaActivity" />
-        <activity android:name=".contact_activities.ArtAndCultureActivity" />
-        <activity android:name=".contact_activities.MunicipalityActivity" />
-        <activity android:name=".contact_activities.BanksActivity" />
-        <activity android:name=".contact_activities.ProfessionalsActivity" />
-        <activity android:name=".contact_activities.LabouresActivity" />
-        <activity android:name=".contact_activities.InstitutionsActivity" />
-        <activity android:name=".timing_and_booking_activities.BusActivity" />
-        <activity android:name=".timing_and_booking_activities.FlightActivity" />
-        <activity android:name=".timing_and_booking_activities.FilmActivity" />
-        <activity android:name=".timing_and_booking_activities.HotelsActivity" />
-        <activity android:name=".timing_and_booking_activities.TravelsActivity" />
-        <activity android:name=".timing_and_booking_activities.RestaurantsActivity" />
-        <activity android:name=".classifields_activities.RealEstateActivity" />
-        <activity android:name=".classifields_activities.VehicleActivity" />
-        <activity android:name=".classifields_activities.ElectronicsActivity" />
-        <activity android:name=".classifields_activities.PetsActivity" />
-        <activity android:name=".classifields_activities.OthersActivity" />
-        <activity android:name=".medical_activities.HospitalsActivity" />
-        <activity android:name=".medical_activities.DoctorsActivity" />
-        <activity android:name=".medical_activities.LabsActivity" />
-        <activity android:name=".medical_activities.MedicalShopsActivity" />
-        <activity android:name=".medical_activities.OpticalActivity" />
-        <activity android:name=".admin_majery.DataEntryActivity" />
-        <activity android:name=".majery_activities.NotificationActivity" />
-        <activity android:name=".majery_activities.NewsDetailActivity" />
-        <activity android:name=".majery_activities.EducationDetailActivity" />
+        <activity android:name=".majery_activities.NewsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.TourismActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.HistoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.ShoppingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.EducationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.VehicleActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.EmergencyActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.GeneralActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.MpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.MlaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.PoliticsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.MediaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.ArtAndCultureActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.MunicipalityActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.BanksActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.ProfessionalsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.LabouresActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.InstitutionsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.BusActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.FlightActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.FilmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.HotelsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.TravelsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.RestaurantsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.RealEstateActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.VehicleActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.ElectronicsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.PetsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.OthersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".medical_activities.HospitalsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".medical_activities.DoctorsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".medical_activities.LabsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".medical_activities.MedicalShopsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".medical_activities.OpticalActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".admin_majery.DataEntryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.NotificationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".majery_activities.NewsDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".majery_activities.NewsActivity" />
+        </activity>
+        <activity android:name=".majery_activities.EducationDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.majery_activities.EducationActivity" />
+        </activity>
         <activity android:name=".majery_activities.CustomNotificationDetailActivity" />
-        <activity android:name=".majery_activities.ShopMenuDetailActivity" />
-        <activity android:name=".digital_activities.DigitalWebViewActivity" />
+        <activity android:name=".majery_activities.ShopMenuDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".majery_activities.ShoppingActivity" />
+        </activity>
+        <activity android:name=".digital_activities.DigitalWebViewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".digital_activities.SBAdminPanelActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -117,22 +281,122 @@
         <activity android:name=".digital_activities.DepositActivity" />
         <activity android:name=".digital_activities.WithdrawActivity" />
         <activity android:name=".digital_activities.ManageSBAccountsActivity" />
-        <activity android:name=".digital_activities.StatementsActivity" />
+        <activity android:name=".digital_activities.StatementsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".digital_activities.SelectAccountActivity" />
         <activity android:name=".digital_activities.EnterPasswordActivity" />
-        <activity android:name=".user.UserPanelActivity" />
+        <activity android:name=".user.UserPanelActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".user.ClassifieldsMenuActivity" />
-        <activity android:name=".AdminPanelActivity" />
+        <activity android:name=".AdminPanelActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".admin_banner_setting.BannerSettingEntryPointActivity" />
-        <activity android:name=".admin_contacts.ContactsEntryPointActivity" />
-        <activity android:name=".admin_medical.MedicalEntryPointActivity" />
-        <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity" />
-        <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity" />
-        <activity android:name=".contact_activities.FindPartnerActivity" />
-        <activity android:name=".timing_and_booking_activities.FilmDetailActivity" />
-        <activity android:name=".timing_and_booking_activities.HotelDetailActivity" />
-        <activity android:name=".timing_and_booking_activities.TravelDetailActivity" />
-        <activity android:name=".timing_and_booking_activities.RestaurantDetailActivity"></activity>
+        <activity android:name=".admin_contacts.ContactsEntryPointActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".admin_medical.MedicalEntryPointActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".admin_timing_and_booking.TimingAndBookingEntryPointActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".contact_activities.FindPartnerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.FilmDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".timing_and_booking_activities.FilmActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.HotelDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".timing_and_booking_activities.HotelsActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.TravelDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".timing_and_booking_activities.TravelsActivity" />
+        </activity>
+        <activity android:name=".timing_and_booking_activities.RestaurantDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".timing_and_booking_activities.RestaurantsActivity" />
+        </activity>
+        <activity android:name=".majery_activities.TourismDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hudutech.mymanjeri.majery_activities.TourismActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.ElectronicsDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".classifields_activities.ElectronicsActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.OtherDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".classifields_activities.OthersActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.PetsDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".classifields_activities.PetsActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.VehicleDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".classifields_activities.VehicleActivity" />
+        </activity>
+        <activity android:name=".classifields_activities.RealEstateDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".classifields_activities.RealEstateActivity" />
+        </activity>
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".admin_banner_setting.StartBannerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".LoginUserActivity" />
+
+        <activity android:name=".AdminLiveTvActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".digital_activities.LiveTvActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,3 @@
-
-
 package com.hudutech.mymanjeri.admin_banner_setting;
 
 import android.annotation.TargetApi;
@@ -47,21 +45,21 @@ import java.util.List;
 public class AdminBarnersActivity extends AppCompatActivity {
     private static final String TAG = "AdminBarnersActivity";
 
-   private static final int IMAGE_PICK = 1;
-   private Uri[] imageUris;
-   private Uri imageUri;
-   private ProgressDialog mProgress;
-   private StorageReference mStorageRef;
-   private CollectionReference mBarnersRef;
-   private RecyclerView mRecylerView;
-   private BarnerAdminAdapter mAdapter;
-   private List<Banner> barnerList;
+    private static final int IMAGE_PICK = 1;
+    private Uri[] imageUris;
+    private Uri imageUri;
+    private ProgressDialog mProgress;
+    private StorageReference mStorageRef;
+    private CollectionReference mBarnersRef;
+    private RecyclerView mRecylerView;
+    private BarnerAdminAdapter mAdapter;
+    private List<Banner> barnerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_barners);
-        getSupportActionBar().setTitle("Banners");
+        getSupportActionBar().setTitle("Banners Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mProgress = new ProgressDialog(this);
@@ -76,7 +74,7 @@ public class AdminBarnersActivity extends AppCompatActivity {
         mRecylerView.setHasFixedSize(true);
         loadBarners();
 
-        ImageButton btnUploadImage = (ImageButton)findViewById(R.id.btn_choose_img_admin);
+        ImageButton btnUploadImage = (ImageButton) findViewById(R.id.btn_choose_img_admin);
 
         btnUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +90,7 @@ public class AdminBarnersActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (queryDocumentSnapshots.getDocuments().size() > 0) {
-                            for (DocumentSnapshot snapshot: queryDocumentSnapshots.getDocuments()) {
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                                 Banner barner = snapshot.toObject(Banner.class);
                                 barnerList.add(barner);
                             }
@@ -104,7 +102,7 @@ public class AdminBarnersActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: "+e.getMessage());
+                        Log.d(TAG, "onFailure: " + e.getMessage());
                     }
                 });
     }
@@ -118,6 +116,8 @@ public class AdminBarnersActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Images"), IMAGE_PICK);
     }
 
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -148,10 +148,9 @@ public class AdminBarnersActivity extends AppCompatActivity {
                 loadBarners();
 
 
-
             }
         } else {
-           // No baner images selected selected
+            // No baner images selected selected
             Toast.makeText(this, "No images selected.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -163,7 +162,7 @@ public class AdminBarnersActivity extends AppCompatActivity {
         mProgress.setCanceledOnTouchOutside(false);
 
         mProgress.show();
-        final List<String>  imageDownloadUrls = new ArrayList<>();
+        final List<String> imageDownloadUrls = new ArrayList<>();
 
 
         for (Uri uri : uris) {
@@ -231,7 +230,6 @@ public class AdminBarnersActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

@@ -28,13 +28,14 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddNotificationFragment extends Fragment implements View.OnClickListener{
+public class AddNotificationFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "AddNotificationFragment";
     private TextInputEditText mNotification;
     private Button mSubmit;
     private Context mContext;
     private ProgressDialog mProgress;
     private CollectionReference mNotifRef;
+
     public AddNotificationFragment() {
         // Required empty public constructor
     }
@@ -58,10 +59,10 @@ public class AddNotificationFragment extends Fragment implements View.OnClickLis
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.btn_submit_notification) {
-            if (validateInputs()){
+            if (validateInputs()) {
                 submitData(mNotification.getText().toString().trim());
-            }else {
-                Snackbar.make(v, "Fix the errors above",Snackbar.LENGTH_LONG).show();
+            } else {
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -84,6 +85,7 @@ public class AddNotificationFragment extends Fragment implements View.OnClickLis
                     public void onSuccess(Void aVoid) {
                         if (mProgress.isShowing()) mProgress.dismiss();
                         Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                        mNotification.setText("");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -97,10 +99,10 @@ public class AddNotificationFragment extends Fragment implements View.OnClickLis
 
     private boolean validateInputs() {
         boolean valid = true;
-        if (TextUtils.isEmpty(mNotification.getText().toString().trim())){
+        if (TextUtils.isEmpty(mNotification.getText().toString().trim())) {
             valid = false;
             mNotification.setError("*Required");
-        }else {
+        } else {
             mNotification.setError(null);
         }
         return valid;

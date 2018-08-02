@@ -96,7 +96,6 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
         mSelectedPinPoint = v.findViewById(R.id.selected_restaurant_map_location);
 
 
-
         v.findViewById(R.id.btn_choose_restaurant_images).setOnClickListener(this);
         v.findViewById(R.id.btn_submit_restaurant).setOnClickListener(this);
         v.findViewById(R.id.btn_select_restaurant_location).setOnClickListener(this);
@@ -320,7 +319,7 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e(TAG, "onFailure: "+e.getMessage());
+                                            Log.e(TAG, "onFailure: " + e.getMessage());
                                             Toast.makeText(mContext, "Error occurred while saving detail please try again later", Toast.LENGTH_SHORT).show();
                                         }
                                     });
@@ -420,8 +419,6 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
         }
         return valid;
     }
-
-
 
 
 }

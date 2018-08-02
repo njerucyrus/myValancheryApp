@@ -14,6 +14,8 @@ public class ClassfiedsEntryPointActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classfieds_entry_point);
+        getSupportActionBar().setTitle("Classifieds");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewPager mViewPager = findViewById(R.id.admin_view_pager);
         AdminClassifieldSectionAdapter mSectionsPagerAdapter = new AdminClassifieldSectionAdapter(getSupportFragmentManager());

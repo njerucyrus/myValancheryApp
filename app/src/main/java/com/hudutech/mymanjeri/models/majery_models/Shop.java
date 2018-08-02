@@ -11,7 +11,8 @@ public class Shop implements java.io.Serializable {
     private double lng;
     private boolean isValidated;
 
-    public Shop() {}
+    public Shop() {
+    }
 
     public Shop(String shopName, String shopContact, String shopLocation, String shopType, String docKey, double lat, double lng, boolean isValidated) {
         this.shopName = shopName;

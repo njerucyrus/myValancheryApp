@@ -60,6 +60,7 @@ public class ContactPoliticsFragment extends Fragment implements View.OnClickLis
     private String photoUploaded = null;
     private ArrayList<Object> inputs;
     private Spinner spinner;
+
     public ContactPoliticsFragment() {
         // Required empty public constructor
     }
@@ -146,10 +147,10 @@ public class ContactPoliticsFragment extends Fragment implements View.OnClickLis
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit_politics) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mName.getText().toString(),
@@ -158,10 +159,10 @@ public class ContactPoliticsFragment extends Fragment implements View.OnClickLis
                         mPlace.getText().toString(),
                         mParty
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_politics_photo){
+        } else if (id == R.id.btn_upload_politics_photo) {
             openImageChooser();
         }
 
@@ -243,7 +244,7 @@ public class ContactPoliticsFragment extends Fragment implements View.OnClickLis
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 
@@ -269,8 +270,6 @@ public class ContactPoliticsFragment extends Fragment implements View.OnClickLis
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Image"), IMAGE_PICK);
     }
-
-
 
 
 }

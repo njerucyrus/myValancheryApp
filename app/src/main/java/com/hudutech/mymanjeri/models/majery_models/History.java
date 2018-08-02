@@ -1,6 +1,6 @@
 package com.hudutech.mymanjeri.models.majery_models;
 
-public class History implements java.io.Serializable{
+public class History implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private String imageUrl;
     private String placeName;
@@ -8,7 +8,8 @@ public class History implements java.io.Serializable{
     private String docKey;
     private boolean isValidated;
 
-    public History() {}
+    public History() {
+    }
 
     public History(String imageUrl, String placeName, String description, String docKey, boolean isValidated) {
         this.imageUrl = imageUrl;

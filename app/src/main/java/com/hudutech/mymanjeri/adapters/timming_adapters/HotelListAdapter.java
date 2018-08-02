@@ -56,14 +56,14 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Hotel hotel = hotelList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
         holder.imageView.setVisibility(View.VISIBLE);
         holder.mCall.setVisibility(View.GONE);
         holder.mShare.setVisibility(View.GONE);
-        holder.mPhoneNumber.setVisibility(View.GONE);
+        holder.mPhoneNumber.setVisibility(View.VISIBLE);
 
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
@@ -157,7 +157,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
         holder.mName.setText(hotel.getName());
         holder.mPhoneNumber.setText(hotel.getPhoneNumber());
-        holder.mLocation.setText(hotel.getAddress()+", "+hotel.getPlaceName());
+        holder.mLocation.setText(hotel.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
@@ -171,8 +171,8 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+hotel.getPlaceName() +" Contact "+hotel.getPhoneNumber();
-                Config.share(mContext, hotel.getName(),desc);
+                String desc = "Place " + hotel.getPlaceName() + " Contact " + hotel.getPhoneNumber();
+                Config.share(mContext, hotel.getName(), desc);
             }
         });
 
@@ -281,7 +281,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
         }
 
-        public void updateIsValidated(final Hotel hotel, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Hotel hotel, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -328,8 +328,6 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
 
         }
-
-
 
 
     }

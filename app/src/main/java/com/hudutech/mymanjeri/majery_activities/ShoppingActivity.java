@@ -1,21 +1,46 @@
 package com.hudutech.mymanjeri.majery_activities;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.adapters.ImageViewPagerAdapter;
 import com.hudutech.mymanjeri.adapters.majery_adapters.ShopMenuAdapter;
+import com.hudutech.mymanjeri.models.Banner;
 import com.hudutech.mymanjeri.models.majery_models.ShopMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingActivity extends AppCompatActivity {
+    private static final String TAG = "ShoppingActivity";
+    final int delay = 10000; // seconds to delay
+    Handler handler = new Handler();
+    Runnable runnable;
     private List<ShopMenu> shopMenuList;
     private ShopMenuAdapter mAdapter;
+    private ImageViewPagerAdapter imageAdapter;
+    private ViewPager mViewPager;
+    private List<Banner> barnerList;
+    private FirebaseFirestore db;
+    private CollectionReference mRootRef;
+    private CollectionReference mUsersRef;
+    private FirebaseUser mCurrentUser;
+    private int[] pagerIndex = {-1};
 
 
     @Override
@@ -27,14 +52,49 @@ public class ShoppingActivity extends AppCompatActivity {
         shopMenuList = new ArrayList<>();
         mAdapter = new ShopMenuAdapter(this, shopMenuList);
         RecyclerView mRecyclerView = findViewById(R.id.shop_menu_recyclerview);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
+
+        mRootRef = FirebaseFirestore.getInstance().collection("barners");
+
+        barnerList = new ArrayList<>();
+        mViewPager = findViewById(R.id.banner_viewpager);
+        imageAdapter = new ImageViewPagerAdapter(this, barnerList);
+        mViewPager.setAdapter(imageAdapter);
+
+        loadBanners();
+
         loadShopMenus();
 
 
     }
+
+
+    private void loadBanners() {
+        mRootRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.getDocuments().size() > 0) {
+                            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                                Banner barner = snapshot.toObject(Banner.class);
+                                barnerList.add(barner);
+
+                            }
+                            imageAdapter.notifyDataSetChanged();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: " + e.getMessage());
+                    }
+                });
+    }
+
 
     private void loadShopMenus() {
         ShopMenu iceCream = new ShopMenu(
@@ -95,7 +155,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu builders = new ShopMenu(
                 "Builders",
-                R.drawable.no_icon_48,
+                R.drawable.builders_64,
                 ShopMenuDetailActivity.class
         );
         shopMenuList.add(builders);
@@ -220,7 +280,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu computerShop = new ShopMenu(
                 "Computer Shop",
-                R.drawable.no_icon_48,
+                R.drawable.computer_shop48,
                 ShopMenuDetailActivity.class
         );
 
@@ -247,7 +307,7 @@ public class ShoppingActivity extends AppCompatActivity {
 
         ShopMenu tiles_and_sanitary = new ShopMenu(
                 "Tiles&Sanitary",
-                R.drawable.no_icon_48,
+                R.drawable.tiles_and_sanitary48,
                 ShopMenuDetailActivity.class
         );
 
@@ -264,5 +324,25 @@ public class ShoppingActivity extends AppCompatActivity {
 
         mAdapter.notifyDataSetChanged();
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    pagerIndex[0]++;
+                                    if (pagerIndex[0] >= imageAdapter.getCount()) {
+                                        pagerIndex[0] = 0;
+                                    }
+
+                                    mViewPager.setCurrentItem(pagerIndex[0]);
+                                    runnable = this;
+
+                                    handler.postDelayed(runnable, delay);
+                                }
+                            }
+                , delay);
+        super.onStart();
     }
 }

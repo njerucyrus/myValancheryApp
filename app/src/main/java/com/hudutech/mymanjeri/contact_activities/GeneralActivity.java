@@ -78,7 +78,7 @@ public class GeneralActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(GeneralActivity.this, "No data!", Toast.LENGTH_SHORT).show();
                     }
                 });

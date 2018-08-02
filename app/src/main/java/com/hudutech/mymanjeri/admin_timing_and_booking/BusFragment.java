@@ -41,7 +41,6 @@ public class BusFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
 
 
-
     public BusFragment() {
         // Required empty public constructor
     }
@@ -81,9 +80,9 @@ public class BusFragment extends Fragment implements View.OnClickListener {
         if (id == R.id.btn_submit) {
             if (Config.validateInputs(mContext, inputs)) {
 
-                submit(mBusName.getText().toString(), mStartingPoint.getText().toString(),mEndingPoint.getText().toString(), mWay.getText().toString(), mArrivalTime.getText().toString(), mDepartureTime.getText().toString());
+                submit(mBusName.getText().toString(), mStartingPoint.getText().toString(), mEndingPoint.getText().toString(), mWay.getText().toString(), mArrivalTime.getText().toString(), mDepartureTime.getText().toString());
 
-            } else  {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
@@ -110,7 +109,7 @@ public class BusFragment extends Fragment implements View.OnClickListener {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                      if (mProgress.isShowing()) mProgress.dismiss();
+                        if (mProgress.isShowing()) mProgress.dismiss();
                         Toast.makeText(mContext, "Submitted successfully", Toast.LENGTH_SHORT).show();
                         Config.clearInputs(inputs);
 

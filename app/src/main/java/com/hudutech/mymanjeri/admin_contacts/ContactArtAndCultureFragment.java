@@ -72,8 +72,6 @@ public class ContactArtAndCultureFragment extends Fragment implements View.OnCli
         mSelectedPhoto = v.findViewById(R.id.img_art_photo);
 
 
-
-
         v.findViewById(R.id.btn_upload_art_photo).setOnClickListener(this);
 
         v.findViewById(R.id.btn_submit_art).setOnClickListener(this);
@@ -128,10 +126,10 @@ public class ContactArtAndCultureFragment extends Fragment implements View.OnCli
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit_art) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mName.getText().toString(),
@@ -140,10 +138,10 @@ public class ContactArtAndCultureFragment extends Fragment implements View.OnCli
 
 
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_art_photo){
+        } else if (id == R.id.btn_upload_art_photo) {
             openImageChooser();
         }
 
@@ -220,7 +218,7 @@ public class ContactArtAndCultureFragment extends Fragment implements View.OnCli
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

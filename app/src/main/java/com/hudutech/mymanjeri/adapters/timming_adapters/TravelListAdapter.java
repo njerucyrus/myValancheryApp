@@ -30,7 +30,6 @@ import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Travel;
-import com.hudutech.mymanjeri.timing_and_booking_activities.HotelDetailActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.TravelDetailActivity;
 
 import java.util.List;
@@ -57,7 +56,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Travel travel = travelList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
@@ -65,7 +64,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         holder.mCall.setVisibility(View.GONE);
         holder.mShare.setVisibility(View.GONE);
         holder.mPhoneNumber.setVisibility(View.GONE);
-        
+
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
             if (travel.isValidated()) {
@@ -158,7 +157,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
         holder.mName.setText(travel.getName());
         holder.mPhoneNumber.setText(travel.getPhoneNumber());
-        holder.mLocation.setText(travel.getAddress() +", "+travel.getPlaceName());
+        holder.mLocation.setText(travel.getAddress() + ", " + travel.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
@@ -172,8 +171,8 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+travel.getPlaceName() +" Contact "+travel.getPhoneNumber();
-                Config.share(mContext, travel.getName(),desc);
+                String desc = "Place " + travel.getPlaceName() + " Contact " + travel.getPhoneNumber();
+                Config.share(mContext, travel.getName(), desc);
             }
         });
 
@@ -281,7 +280,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
         }
 
-        public void updateIsValidated(final Travel travel, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Travel travel, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -328,8 +327,6 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
 
         }
-
-
 
 
     }

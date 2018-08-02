@@ -48,9 +48,9 @@ public class SBAccountsAdapter extends RecyclerView.Adapter<SBAccountsAdapter.Vi
                 .apply(requestOptions)
                 .into(holder.mAccountPhoto);
 
-        String accountNo = "Account No: "+account.getAccountNo();
-        String batchNo = "Batch No: "+account.getBatchNo();
-        String name = "Holder Name: "+account.getCustomerName();
+        String accountNo = "Account No: " + account.getAccountNo();
+        String batchNo = "Batch No: " + account.getBatchNo();
+        String name = "Holder Name: " + account.getCustomerName();
 
         holder.mAccountNo.setText(accountNo);
         holder.mBatchNo.setText(batchNo);
@@ -58,13 +58,12 @@ public class SBAccountsAdapter extends RecyclerView.Adapter<SBAccountsAdapter.Vi
         holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //Go to enter password to delete activity.
+                //Go to enter password to delete activity.
                 mContext.startActivity(new Intent(mContext, EnterPasswordActivity.class)
                         .putExtra("account", account)
                 );
             }
         });
-
 
 
     }

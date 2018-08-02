@@ -1,7 +1,6 @@
 package com.hudutech.mymanjeri.majery_activities;
 
 
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,7 +40,7 @@ public class BloodGroupListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blood_group_list);
         ActionBar ab = getSupportActionBar();
         String bloodGroup = getIntent().getStringExtra("bloodGroup");
-        ab.setTitle(bloodGroup+" Blood Banks.");
+        ab.setTitle(bloodGroup + " Blood Banks.");
         ab.setDisplayHomeAsUpEnabled(true);
 
         donorList = new ArrayList<>();
@@ -80,7 +79,7 @@ public class BloodGroupListActivity extends AppCompatActivity {
                         if (donorList.size() == 0) {
 
                             noData.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             noData.setVisibility(View.GONE);
                         }
                     }
@@ -92,7 +91,7 @@ public class BloodGroupListActivity extends AppCompatActivity {
                         if (donorList.size() == 0) {
 
                             noData.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             noData.setVisibility(View.GONE);
                         }
 

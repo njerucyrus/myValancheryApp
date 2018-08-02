@@ -4,9 +4,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +23,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.classifields_activities.RealEstateDetailActivity;
 import com.hudutech.mymanjeri.models.classifields_models.RealEstate;
 
 import java.util.List;
@@ -146,7 +145,7 @@ public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAd
                 builder.show();
             }
         });
-        String amount = "INR "+realEstate.getAmount();
+        String amount = "INR " + realEstate.getAmount();
         holder.tvTitle.setText(realEstate.getDescription());
         holder.tvPrice.setText(amount);
 
@@ -159,6 +158,15 @@ public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAd
                 .apply(requestOptions)
                 .into(holder.imageView);
 
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, RealEstateDetailActivity.class)
+                        .putExtra("realEstate", realEstate)
+
+                );
+            }
+        });
 
 
     }
@@ -204,47 +212,31 @@ public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAd
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(realEstate.getPhotoUrls().get(0));
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("classifields_real_estate");
-                    ref.document(realEstate.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    realEstateList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "record deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
+            CollectionReference ref = db.collection("classifields_real_estate");
+            ref.document(realEstate.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            realEstateList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "record deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
 
-        public void updateIsValidated(final RealEstate  realEstate, boolean isValidated, final int position) {
+        public void updateIsValidated(final RealEstate realEstate, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -291,8 +283,6 @@ public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAd
 
 
         }
-
-
 
 
     }

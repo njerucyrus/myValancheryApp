@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hudutech.mymanjeri.R;
-import com.hudutech.mymanjeri.admin_majery.BecomeDonorActivity;
+import com.hudutech.mymanjeri.admin_majery.AddBloodDonorAdminActivity;
 
 public class BloodBankActivity extends AppCompatActivity implements View.OnClickListener {
     private String bloodGroup = null;
@@ -81,7 +81,7 @@ public class BloodBankActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.img_become_donor:
-                showActivity(BecomeDonorActivity.class, "");
+                showActivity(AddBloodDonorAdminActivity.class, "");
                 break;
 
 

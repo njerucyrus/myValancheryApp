@@ -1,7 +1,9 @@
 package com.hudutech.mymanjeri.models;
 
+import com.hudutech.mymanjeri.AdminPanelActivity;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.auth.LoginActivity;
+import com.hudutech.mymanjeri.classifields_activities.ElectronicsActivity;
 import com.hudutech.mymanjeri.classifields_activities.OthersActivity;
 import com.hudutech.mymanjeri.classifields_activities.PetsActivity;
 import com.hudutech.mymanjeri.classifields_activities.RealEstateActivity;
@@ -34,9 +36,9 @@ import com.hudutech.mymanjeri.medical_activities.MedicalShopsActivity;
 import com.hudutech.mymanjeri.medical_activities.OpticalActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.BusActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.FilmActivity;
+import com.hudutech.mymanjeri.timing_and_booking_activities.FlightActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.HotelsActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.RestaurantsActivity;
-import com.hudutech.mymanjeri.timing_and_booking_activities.FlightActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.TravelsActivity;
 
 import java.util.ArrayList;
@@ -44,7 +46,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MenuHolder {
-    private HashMap<String, List<CategoryMenu>> menuHashMap = new HashMap<>();
     private static final String CATEGORY_MAJERY = "manjery";
     private static final String CATEGORY_CALL_US = "call_us";
     private static final String CATEGORY_CONTACTS_1 = "contacts_1";
@@ -53,6 +54,7 @@ public class MenuHolder {
     private static final String CATEGORY_CLASSIFIEDS = "classifieds";
     private static final String CATEGORY_MEDICAL = "medical";
     private static final String CATEGORY_DIGITAL = "digital";
+    private HashMap<String, List<CategoryMenu>> menuHashMap = new HashMap<>();
 
 
     public MenuHolder() {
@@ -104,9 +106,6 @@ public class MenuHolder {
         majeryMenus.add(historyMenu);
 
 
-
-
-
         CategoryMenu education = new CategoryMenu(
                 "Majery", "Education", EducationActivity.class, R.drawable.education_48
         );
@@ -132,7 +131,6 @@ public class MenuHolder {
         contactUsMenu.add(vehicle);
 
 
-
         CategoryMenu professionals = new CategoryMenu(
                 "Call Us", "Professionals", ProfessionalsActivity.class, R.drawable.proffesional_48
         );
@@ -150,8 +148,6 @@ public class MenuHolder {
         contactUsMenu.add(partner);
 
         this.menuHashMap.put(CATEGORY_CALL_US, contactUsMenu);
-
-
 
 
     }
@@ -180,7 +176,6 @@ public class MenuHolder {
                 "Contact1", "MLA", MlaActivity.class, R.drawable.mla_48
         );
         contact1Menus.add(mla);
-
 
 
         CategoryMenu art_and_culture = new CategoryMenu(
@@ -255,7 +250,7 @@ public class MenuHolder {
 
 
         CategoryMenu travels = new CategoryMenu(
-                "TimingAndBooking", "Travel", TravelsActivity.class, R.drawable.travel_48
+                "TimingAndBooking", "Travels", TravelsActivity.class, R.drawable.travels48
         );
         timingAndBooking.add(travels);
 
@@ -276,13 +271,13 @@ public class MenuHolder {
         classfields.add(realEstate);
 
         CategoryMenu vehicle = new CategoryMenu(
-                "Classifieds", "Vehicle", VehicleActivity.class, R.drawable.vehicles_48
+                "Classifieds", "Vehicle", com.hudutech.mymanjeri.classifields_activities.VehicleActivity.class, R.drawable.vehicles_48
         );
 
         classfields.add(vehicle);
 
         CategoryMenu electronics = new CategoryMenu(
-                "Classifieds", "Electronics", FilmActivity.class, R.drawable.electronics_48
+                "Classifieds", "Electronics", ElectronicsActivity.class, R.drawable.electronics_48
         );
 
         classfields.add(electronics);
@@ -311,7 +306,7 @@ public class MenuHolder {
         );
         medical.add(hospitals);
 
-        CategoryMenu doctor= new CategoryMenu(
+        CategoryMenu doctor = new CategoryMenu(
                 "Medical", "Doctors", DoctorsActivity.class, R.drawable.doctor_48
         );
 
@@ -343,14 +338,14 @@ public class MenuHolder {
         List<CategoryMenu> digitalMenu = new ArrayList<>();
 
         CategoryMenu certificate = new CategoryMenu(
-                "Digital", "Certificate", DigitalWebViewActivity.class, R.drawable.no_icon_48
+                "Digital", "Certificate", DigitalWebViewActivity.class, R.drawable.certificate48
         );
         certificate.setOptionalUrl("https://cr.lsgkerala.gov.in/");
         digitalMenu.add(certificate);
 
 
         CategoryMenu psc = new CategoryMenu(
-                "Digital", "Psc Registration", DigitalWebViewActivity.class, R.drawable.sdac_48
+                "Digital", "PSC", DigitalWebViewActivity.class, R.drawable.psc48
         );
 
         psc.setOptionalUrl("https://thulasi.psc.kerala.gov.in/thulasi/");
@@ -364,18 +359,23 @@ public class MenuHolder {
         digitalMenu.add(railway);
 
         CategoryMenu results = new CategoryMenu(
-                "Digital", "Results", DigitalWebViewActivity.class, R.drawable.no_icon_48
+                "Digital", "Results", DigitalWebViewActivity.class, R.drawable.result48
         );
 
         results.setOptionalUrl("http://www.results.itschool.gov.in/");
         digitalMenu.add(results);
 
 
-
         CategoryMenu sbBank = new CategoryMenu(
                 "Digital", "S Bank", LoginActivity.class, R.drawable.sbank_48
         );
         digitalMenu.add(sbBank);
+
+        CategoryMenu adminPanel = new CategoryMenu(
+                "Digital", "Admin Panel", AdminPanelActivity.class,
+                R.drawable.manage_accounts_64
+        );
+        digitalMenu.add(adminPanel);
 
 
         this.menuHashMap.put(CATEGORY_DIGITAL, digitalMenu);

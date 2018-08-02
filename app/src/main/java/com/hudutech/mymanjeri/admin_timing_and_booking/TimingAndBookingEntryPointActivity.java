@@ -14,6 +14,8 @@ public class TimingAndBookingEntryPointActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timing_and_booking_entry_point);
+        getSupportActionBar().setTitle("Timing And Booking");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ViewPager mViewPager = findViewById(R.id.admin_contact_view_pager);
         TimingSectionAdapter mSectionsPagerAdapter = new TimingSectionAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);

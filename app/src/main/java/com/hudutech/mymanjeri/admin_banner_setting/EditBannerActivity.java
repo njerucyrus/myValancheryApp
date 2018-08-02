@@ -41,14 +41,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditBannerActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditBannerActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "EditBannerActivity";
+    private static final int IMAGE_PICK = 1;
     private Banner barner;
     private ProgressDialog mProgress;
     private CollectionReference mRootRef;
-
-
-    private static final int IMAGE_PICK = 1;
     private Uri[] imageUris;
     private Uri imageUri;
     private StorageReference mStorageRef;
@@ -72,7 +70,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         mProgress = new ProgressDialog(this);
-        barner = (Banner)getIntent().getSerializableExtra("barner");
+        barner = (Banner) getIntent().getSerializableExtra("barner");
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
@@ -88,7 +86,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.btn_edit_change_banner){
+        if (id == R.id.btn_edit_change_banner) {
             //change image
             openImageChooser();
         } else if (id == R.id.btn_edit_delete_banner) {
@@ -96,7 +94,7 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Are you sure you want to delete?");
-            builder.setMessage("The file will be lost permanently" );
+            builder.setMessage("The file will be lost permanently");
             builder.setCancelable(false);
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
@@ -234,7 +232,6 @@ public class EditBannerActivity extends AppCompatActivity implements View.OnClic
         }
 
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

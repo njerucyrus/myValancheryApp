@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".classifields_activities.VehicleActivity">
 
+    <LinearLayout
+        android:background="@color/colorBg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/admin_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -37,7 +37,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Film film = filmList.get(position);
 
         RequestOptions requestOptions = new RequestOptions()
@@ -54,7 +54,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 mContext.startActivity(new Intent(mContext, FilmDetailActivity.class)
-                        .putExtra("film",film)
+                        .putExtra("film", film)
                 );
             }
         });

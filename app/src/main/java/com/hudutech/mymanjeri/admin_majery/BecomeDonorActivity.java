@@ -79,6 +79,7 @@ public class BecomeDonorActivity extends AppCompatActivity {
 
     private void submitDonorData(String fullName, String phoneNumber, String bloodGroup, boolean isValidated) {
         BloodDonor donor = new BloodDonor(
+                bloodDonorsRef.getId(),
                 fullName,
                 phoneNumber,
                 bloodGroup,

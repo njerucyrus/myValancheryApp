@@ -88,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             User user = new User(
                                     email,
+                                    "",
+                                    "",
                                     false,
                                     false
                             );

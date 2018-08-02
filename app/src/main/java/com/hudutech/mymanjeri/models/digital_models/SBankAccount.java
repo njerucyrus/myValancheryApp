@@ -1,6 +1,6 @@
 package com.hudutech.mymanjeri.models.digital_models;
 
-public class SBankAccount implements java.io.Serializable{
+public class SBankAccount implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
     private String docKey;
@@ -39,12 +39,12 @@ public class SBankAccount implements java.io.Serializable{
         return userUid;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
     public void setUserUid(String userUid) {
         this.userUid = userUid;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
     public void setPhotoUrl(String photoUrl) {

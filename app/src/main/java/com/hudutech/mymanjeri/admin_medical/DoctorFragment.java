@@ -126,10 +126,10 @@ public class DoctorFragment extends Fragment implements View.OnClickListener {
         inputs.add(stringInputs);
 
 
-        final  int id = v.getId();
+        final int id = v.getId();
 
         if (id == R.id.btn_submit) {
-            if (Config.validateInputs(mContext,inputs)){
+            if (Config.validateInputs(mContext, inputs)) {
                 submitData(
                         photoUri,
                         mDoctorName.getText().toString(),
@@ -137,10 +137,10 @@ public class DoctorFragment extends Fragment implements View.OnClickListener {
                         mDepartment.getText().toString()
 
                 );
-            }else {
+            } else {
                 Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
-        } else if (id == R.id.btn_upload_photo){
+        } else if (id == R.id.btn_upload_photo) {
             openImageChooser();
         }
 
@@ -219,7 +219,7 @@ public class DoctorFragment extends Fragment implements View.OnClickListener {
 
                     if (mProgress.isShowing()) mProgress.dismiss();
                     Toast.makeText(mContext, "Error occurred.", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: "+e.getMessage() );
+                    Log.e(TAG, "onFailure: " + e.getMessage());
 
                 }
 

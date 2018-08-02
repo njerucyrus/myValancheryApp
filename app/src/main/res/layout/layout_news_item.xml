@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="88dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
     android:background="@color/colorWhite"
     >
-
 
     <ImageView
         android:id="@+id/img_news_icon"
@@ -23,8 +22,9 @@
         android:layout_toEndOf="@+id/img_news_icon"
         android:fontFamily="@font/century_gothic"
         android:text="News Headlines"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/colorPrimaryText" />
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlack" />
 
     <TextView
         android:id="@+id/tv_news_content"
@@ -32,12 +32,64 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_news_headline"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_toRightOf="@+id/img_news_icon"
         android:fontFamily="@font/century_gothic"
-        android:text="News Headlines"
-        android:textAppearance="?android:textAppearanceSmall"
+        android:text="News Content"
+        android:textSize="16sp"
         android:textColor="@color/colorPrimaryText"
         android:visibility="gone" />
 
+    <LinearLayout
+        android:layout_below="@+id/tv_news_content"
+        android:visibility="gone"
+        android:gravity="end"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_admin_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_invalidate"
+            android:gravity="center"
+            android:background="@drawable/button_ui_primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="In Validate"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+        <Button
+            android:id="@+id/btn_validate"
+            android:gravity="center"
+            android:background="@drawable/button_ui_primary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Validate"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:gravity="center"
+            android:background="@drawable/button_ui_danger"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Delete"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

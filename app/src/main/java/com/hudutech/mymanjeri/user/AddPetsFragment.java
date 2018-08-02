@@ -108,7 +108,7 @@ public class AddPetsFragment extends Fragment implements View.OnClickListener {
         final int id = v.getId();
         if (id == R.id.btn_choose_pets_images) {
             openImageChooser();
-        } else if (id==R.id.btn_submit_pets) {
+        } else if (id == R.id.btn_submit_pets) {
             if (validateInputs()) {
                 submitData(
                         imageUris,
@@ -121,7 +121,7 @@ public class AddPetsFragment extends Fragment implements View.OnClickListener {
                         mDesc.getText().toString()
                 );
             } else {
-                Snackbar.make(v,  "Fix the errors above", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Fix the errors above", Snackbar.LENGTH_LONG).show();
             }
         }
     }
@@ -170,7 +170,6 @@ public class AddPetsFragment extends Fragment implements View.OnClickListener {
         }
         mAdapter.notifyDataSetChanged();
     }
-
 
 
     private void openImageChooser() {
@@ -294,7 +293,6 @@ public class AddPetsFragment extends Fragment implements View.OnClickListener {
 
         return valid;
     }
-
 
 
     private void submitData(

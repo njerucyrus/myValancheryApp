@@ -30,7 +30,6 @@ import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Restaurant;
-import com.hudutech.mymanjeri.timing_and_booking_activities.HotelDetailActivity;
 import com.hudutech.mymanjeri.timing_and_booking_activities.RestaurantDetailActivity;
 
 import java.util.List;
@@ -57,15 +56,15 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Restaurant restaurant = restaurantList.get(position);
         mProgress = new ProgressDialog(mContext);
         //Show views accordingly
         holder.imageView.setVisibility(View.VISIBLE);
         holder.mCall.setVisibility(View.GONE);
         holder.mShare.setVisibility(View.GONE);
-        holder.mPhoneNumber.setVisibility(View.GONE);
-        
+        holder.mPhoneNumber.setVisibility(View.VISIBLE);
+
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
             if (restaurant.isValidated()) {
@@ -158,7 +157,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         holder.mName.setText(restaurant.getName());
         holder.mPhoneNumber.setText(restaurant.getPhoneNumber());
-        holder.mLocation.setText(restaurant.getAddress() +", "+restaurant.getPlaceName());
+        holder.mLocation.setText(restaurant.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
@@ -172,8 +171,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Place "+restaurant.getPlaceName() +" Contact "+restaurant.getPhoneNumber();
-                Config.share(mContext, restaurant.getName(),desc);
+                String desc = "Place " + restaurant.getPlaceName() + " Contact " + restaurant.getPhoneNumber();
+                Config.share(mContext, restaurant.getName(), desc);
             }
         });
 
@@ -282,7 +281,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         }
 
-        public void updateIsValidated(final Restaurant restaurant, boolean isValidated,  final int position) {
+        public void updateIsValidated(final Restaurant restaurant, boolean isValidated, final int position) {
             mProgress.setMessage("Updating please wait...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
@@ -329,8 +328,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
 
         }
-
-
 
 
     }

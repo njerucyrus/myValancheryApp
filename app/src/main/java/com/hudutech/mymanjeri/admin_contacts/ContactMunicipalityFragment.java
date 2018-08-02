@@ -227,19 +227,19 @@ public class ContactMunicipalityFragment extends Fragment implements View.OnClic
 
                     DocumentReference docRef = mMunicipalityRef.document();
 
-                   Municipality municipality = new Municipality(
-                           docRef.getId(),
-                           imageUrl,
-                           name,
-                           phoneNumber,
-                           mobile,
-                           address,
-                           party,
-                           designation,
-                           wardNo,
-                           wardName,
-                           Config.isAdmin(mContext)
-                   );
+                    Municipality municipality = new Municipality(
+                            docRef.getId(),
+                            imageUrl,
+                            name,
+                            phoneNumber,
+                            mobile,
+                            address,
+                            party,
+                            designation,
+                            wardNo,
+                            wardName,
+                            Config.isAdmin(mContext)
+                    );
 
                     docRef.set(municipality)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {

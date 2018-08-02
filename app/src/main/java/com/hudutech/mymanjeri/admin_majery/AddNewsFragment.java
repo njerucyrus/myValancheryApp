@@ -81,7 +81,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
         mChooseImage = view.findViewById(R.id.btn_add_news_photo);
         mNewsHeading = view.findViewById(R.id.txt_news_heading);
         mNews = view.findViewById(R.id.txt_news);
-        mSelectedPhoto= view.findViewById(R.id.img_news);
+        mSelectedPhoto = view.findViewById(R.id.img_news);
         mSubmit = view.findViewById(R.id.btn_submit_news);
         mChooseImage.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
@@ -117,7 +117,7 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                         .apply(requestOptions)
                         .into(mSelectedPhoto);
 
-            }else {
+            } else {
                 mSelectedPhoto.setVisibility(View.GONE);
             }
         }
@@ -168,6 +168,9 @@ public class AddNewsFragment extends Fragment implements View.OnClickListener {
                                 public void onSuccess(Void aVoid) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
                                     Toast.makeText(mContext, "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                                    mSelectedPhoto.setVisibility(View.GONE);
+                                    mNewsHeading.setText("");
+                                    mNews.setText("");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

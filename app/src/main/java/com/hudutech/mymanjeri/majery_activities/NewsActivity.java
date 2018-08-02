@@ -32,6 +32,9 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity {
     private static final String TAG = "NewsActivity";
+    final int delay = 10000; //8 second
+    Handler handler = new Handler();
+    Runnable runnable;
     private RecyclerView mRecyclerView;
     private List<News> newsList;
     private NewsAdapter mAdapter;
@@ -39,14 +42,9 @@ public class NewsActivity extends AppCompatActivity {
     private CollectionReference mRootRef;
     private CollectionReference mBannerRef;
     private ProgressDialog mProgress;
-
     private ViewPager mViewPager;
     private List<Banner> barnerList;
     private ImageViewPagerAdapter bannerAdpter;
-
-    Handler handler = new Handler();
-    final int delay = 10000; //8 second
-    Runnable runnable;
     private int[] pagerIndex = {-1};
 
     @Override
@@ -145,7 +143,7 @@ public class NewsActivity extends AppCompatActivity {
                         if (newsList.size() == 0) {
 
                             noData.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             noData.setVisibility(View.GONE);
                         }
                     }
@@ -157,7 +155,7 @@ public class NewsActivity extends AppCompatActivity {
                         if (newsList.size() == 0) {
 
                             noData.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             noData.setVisibility(View.GONE);
                         }
 

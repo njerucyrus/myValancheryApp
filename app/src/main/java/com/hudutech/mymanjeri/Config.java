@@ -89,7 +89,7 @@ public class Config extends AppCompatActivity {
                     }
                 }
             } else if (object.getClass() == ChipsInputLayout.class) {
-                ChipsInputLayout chipsInputLayout = (ChipsInputLayout)object;
+                ChipsInputLayout chipsInputLayout = (ChipsInputLayout) object;
                 if (chipsInputLayout.getSelectedChips().size() <= 0) {
                     valid = false;
                     Toast.makeText(context, "Please enter show times.", Toast.LENGTH_SHORT).show();

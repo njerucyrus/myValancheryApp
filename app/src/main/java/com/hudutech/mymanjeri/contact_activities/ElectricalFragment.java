@@ -82,7 +82,7 @@ public class ElectricalFragment extends Fragment {
                                 if (labourer != null) {
                                     if (Config.isAdmin(mContext)) {
                                         labourerList.add(labourer);
-                                    } else if (!Config.isAdmin(mContext)){
+                                    } else if (!Config.isAdmin(mContext)) {
                                         if (labourer.isValidated()) labourerList.add(labourer);
                                     }
                                 }
@@ -97,7 +97,7 @@ public class ElectricalFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });

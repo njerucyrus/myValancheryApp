@@ -27,11 +27,11 @@ public class AdminMedicalSectionAdapter extends FragmentPagerAdapter {
             case 2:
                 return new LabFragment();
             case 3:
-                return  new MedicalShopFragment();
+                return new MedicalShopFragment();
             case 4:
                 return new OpticalFragment();
             default:
-                return  null;
+                return null;
         }
 
     }

@@ -85,7 +85,7 @@ public class ChannelsFragment extends Fragment {
                                 if (media != null) {
                                     if (Config.isAdmin(mContext)) {
                                         mediaList.add(media);
-                                    } else if (!Config.isAdmin(mContext)){
+                                    } else if (!Config.isAdmin(mContext)) {
                                         if (media.isValidated()) mediaList.add(media);
                                     }
                                 }
@@ -100,7 +100,7 @@ public class ChannelsFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (mProgress.isShowing()) mProgress.dismiss();
-                        Log.e(TAG, "onFailure: "+e.getMessage());
+                        Log.e(TAG, "onFailure: " + e.getMessage());
                         Toast.makeText(mContext, "Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 });
