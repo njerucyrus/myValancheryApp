@@ -47,57 +47,59 @@
             android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_below="@+id/scrollView"
+            android:visibility="gone"
+            android:gravity="end"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:id="@+id/layout_admin_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_invalidate"
+                android:gravity="center"
+                android:background="@drawable/button_ui_primary"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="In Validate"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp" />
+
+            <Button
+                android:id="@+id/btn_validate"
+                android:gravity="center"
+                android:background="@drawable/button_ui_primary"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Validate"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:gravity="center"
+                android:background="@drawable/button_ui_danger"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Delete"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp" />
+
+
+        </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_below="@+id/scrollView"
-        android:visibility="gone"
-        android:gravity="end"
-        android:layout_marginBottom="4dp"
-        android:orientation="horizontal"
-        android:id="@+id/layout_admin_control"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_invalidate"
-            android:gravity="center"
-            android:background="@drawable/button_ui_primary"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="In Validate"
-            android:textColor="@color/colorWhite"
-            android:textSize="12sp"
-            android:layout_marginBottom="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp" />
-
-        <Button
-            android:id="@+id/btn_validate"
-            android:gravity="center"
-            android:background="@drawable/button_ui_primary"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Validate"
-            android:textColor="@color/colorWhite"
-            android:textSize="12sp"
-            android:layout_marginBottom="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp" />
-
-        <Button
-            android:id="@+id/btn_delete"
-            android:gravity="center"
-            android:background="@drawable/button_ui_danger"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Delete"
-            android:textColor="@color/colorWhite"
-            android:textSize="12sp"
-            android:layout_marginBottom="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp" />
-
-
-    </LinearLayout>
 
 </RelativeLayout>

@@ -146,7 +146,7 @@ public class PetsListAdapter extends RecyclerView.Adapter<PetsListAdapter.ViewHo
             }
         });
         String amount = "INR " + pet.getAmount();
-        holder.tvTitle.setText(pet.getDescription());
+        holder.tvTitle.setText(pet.getHeading());
         holder.tvPrice.setText(amount);
 
 

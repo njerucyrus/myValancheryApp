@@ -74,7 +74,7 @@ public class BJMFragment extends Fragment {
         mProgress.setCanceledOnTouchOutside(true);
         mProgress.show();
 
-        mRef.whereEqualTo("party", "BJM").get()
+        mRef.whereEqualTo("party", "BJP").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {

@@ -146,7 +146,7 @@ public class RealEstateListAdapter extends RecyclerView.Adapter<RealEstateListAd
             }
         });
         String amount = "INR " + realEstate.getAmount();
-        holder.tvTitle.setText(realEstate.getDescription());
+        holder.tvTitle.setText(realEstate.getHeading());
         holder.tvPrice.setText(amount);
 
 

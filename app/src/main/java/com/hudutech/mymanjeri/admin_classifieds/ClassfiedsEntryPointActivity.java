@@ -23,4 +23,9 @@ public class ClassfiedsEntryPointActivity extends AppCompatActivity {
         TabLayout mTabLayout = findViewById(R.id.admin_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

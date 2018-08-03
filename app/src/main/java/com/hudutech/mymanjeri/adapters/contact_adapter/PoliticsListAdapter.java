@@ -148,7 +148,7 @@ public class PoliticsListAdapter extends RecyclerView.Adapter<PoliticsListAdapte
 
         holder.mName.setText(politics.getName());
         holder.mPhoneNumber.setText(politics.getPhoneNumber());
-        holder.mLocation.setText(politics.getPlace());
+        holder.mLocation.setText(politics.getDesignation());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);

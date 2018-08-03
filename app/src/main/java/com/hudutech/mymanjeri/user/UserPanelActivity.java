@@ -148,10 +148,8 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        int count = getFragmentManager().getBackStackEntryCount();
-        if (count == 1) {
-            getFragmentManager().popBackStack();
-            moveTaskToBack(false);
+        if (getFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
         } else {
             super.onBackPressed();
         }

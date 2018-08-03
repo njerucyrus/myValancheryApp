@@ -78,7 +78,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.admin_panel_live_tv:
-                showActivity(StartBannerActivity.class);
+                showActivity(AdminLiveTvActivity.class);
                 break;
 
             case R.id.admin_panel_logout:

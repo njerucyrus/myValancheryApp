@@ -146,7 +146,7 @@ public class ElectronicsListAdapter extends RecyclerView.Adapter<ElectronicsList
             }
         });
         String amount = "INR " + electronic.getAmount();
-        holder.tvTitle.setText(electronic.getDescription());
+        holder.tvTitle.setText(electronic.getHeading());
         holder.tvPrice.setText(amount);
 
 

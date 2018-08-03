@@ -318,7 +318,7 @@
         <activity android:name=".admin_classifieds.ClassfiedsEntryPointActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".AdminPanelActivity" />
         </activity>
         <activity android:name=".contact_activities.FindPartnerActivity">
             <meta-data

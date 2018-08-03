@@ -3,6 +3,7 @@ package com.hudutech.mymanjeri.timing_and_booking_activities;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -195,6 +196,9 @@ private FirebaseFirestore db;
                         
                         if (mProgress.isShowing()) mProgress.dismiss();
                         Toast.makeText(FilmDetailActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(FilmDetailActivity.this, FilmActivity.class)
+                                .putExtra("menuName", "Films")
+                        );
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

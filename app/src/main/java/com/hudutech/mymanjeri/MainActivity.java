@@ -223,6 +223,11 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        MenuItem login = menu.findItem(R.id.action_logout);
+
+        if (mCurrentUser == null) {
+            login.setVisible(false);
+        }
 
         return true;
     }
@@ -351,7 +356,9 @@ public class MainActivity extends AppCompatActivity {
                 sharedPrefEditor.putBoolean("isSBAdmin", false);
                 sharedPrefEditor.apply();
                 sharedPrefEditor.commit();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
                 Toast.makeText(MainActivity.this, "You Are logged out", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
         });

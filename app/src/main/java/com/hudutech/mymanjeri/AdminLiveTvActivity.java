@@ -50,6 +50,7 @@ public class AdminLiveTvActivity extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     if (mProgress.isShowing()) mProgress.dismiss();
                                     Toast.makeText(AdminLiveTvActivity.this, "Submitted successfully", Toast.LENGTH_SHORT).show();
+                                    mLink.setText("");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.contact_models.Municipality;
 
@@ -42,7 +43,7 @@ public class MunicipalityFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            Municipality mObject = (Municipality) bundle.getSerializable("municipality");
+            final Municipality mObject = (Municipality) bundle.getSerializable("municipality");
             if (mObject != null) {
                 mName.setText(mObject.getName());
                 mDesignation.setText(mObject.getDesignation());
@@ -61,6 +62,14 @@ public class MunicipalityFragment extends Fragment {
                         .load(mObject.getPhotoUrl())
                         .apply(requestOptions)
                         .into(imageView);
+
+                TextView call = v.findViewById(R.id.tv_call);
+                call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Config.call(getContext(), mObject.getPhoneNumber());
+                    }
+                });
             }
         }
 

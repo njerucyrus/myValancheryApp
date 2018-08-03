@@ -63,7 +63,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         holder.imageView.setVisibility(View.VISIBLE);
         holder.mCall.setVisibility(View.GONE);
         holder.mShare.setVisibility(View.GONE);
-        holder.mPhoneNumber.setVisibility(View.GONE);
+        holder.mPhoneNumber.setVisibility(View.VISIBLE);
 
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
@@ -157,7 +157,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
         holder.mName.setText(travel.getName());
         holder.mPhoneNumber.setText(travel.getPhoneNumber());
-        holder.mLocation.setText(travel.getAddress() + ", " + travel.getPlaceName());
+        holder.mLocation.setText(travel.getPlaceName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);

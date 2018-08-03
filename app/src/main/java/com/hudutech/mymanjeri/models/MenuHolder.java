@@ -22,6 +22,7 @@ import com.hudutech.mymanjeri.contact_activities.PoliticsActivity;
 import com.hudutech.mymanjeri.contact_activities.ProfessionalsActivity;
 import com.hudutech.mymanjeri.contact_activities.VehicleActivity;
 import com.hudutech.mymanjeri.digital_activities.DigitalWebViewActivity;
+import com.hudutech.mymanjeri.digital_activities.LiveTvActivity;
 import com.hudutech.mymanjeri.majery_activities.BloodBankActivity;
 import com.hudutech.mymanjeri.majery_activities.EducationActivity;
 import com.hudutech.mymanjeri.majery_activities.HistoryActivity;
@@ -337,6 +338,11 @@ public class MenuHolder {
     private void initDigital() {
         List<CategoryMenu> digitalMenu = new ArrayList<>();
 
+        CategoryMenu liveTv = new CategoryMenu(
+                "Digital", "Live Tv", LiveTvActivity.class, R.drawable.live_tv2_48
+        );
+        digitalMenu.add(liveTv);
+
         CategoryMenu certificate = new CategoryMenu(
                 "Digital", "Certificate", DigitalWebViewActivity.class, R.drawable.certificate48
         );
@@ -371,9 +377,10 @@ public class MenuHolder {
         );
         digitalMenu.add(sbBank);
 
+
         CategoryMenu adminPanel = new CategoryMenu(
                 "Digital", "Admin Panel", AdminPanelActivity.class,
-                R.drawable.manage_accounts_64
+                R.drawable.admin48
         );
         digitalMenu.add(adminPanel);
 

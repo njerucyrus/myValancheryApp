@@ -63,7 +63,7 @@ public class FilmActivity extends AppCompatActivity {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Film film = snapshot.toObject(Film.class);
                                 if (film != null) {
-                                    if (film.isValidated()) filmList.add(film);
+                                    filmList.add(film);
                                 }
                             }
                             mAdapter.notifyDataSetChanged();

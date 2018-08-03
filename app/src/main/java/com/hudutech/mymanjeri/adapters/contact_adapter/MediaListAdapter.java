@@ -146,9 +146,9 @@ public class MediaListAdapter extends RecyclerView.Adapter<MediaListAdapter.View
             }
         });
 
-        holder.mName.setText(media.getMediaName());
+        holder.mName.setText(media.getName());
         holder.mPhoneNumber.setText(media.getPhoneNumber());
-        holder.mLocation.setText(media.getName());
+        holder.mLocation.setText(media.getMediaName());
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);

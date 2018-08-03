@@ -52,7 +52,7 @@ public class TravelsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getIntent().getStringExtra("menuName"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mBannerRef = FirebaseFirestore.getInstance().collection("banners");
+        mBannerRef = FirebaseFirestore.getInstance().collection("barners");
         mTravelRef = FirebaseFirestore.getInstance().collection("travel");
 
         bannerList = new ArrayList<>();

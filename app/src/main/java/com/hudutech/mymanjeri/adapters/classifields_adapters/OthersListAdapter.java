@@ -146,7 +146,7 @@ public class OthersListAdapter extends RecyclerView.Adapter<OthersListAdapter.Vi
             }
         });
         String amount = "INR " + otherClassifield.getAmount();
-        holder.tvTitle.setText(otherClassifield.getDescription());
+        holder.tvTitle.setText(otherClassifield.getHeading());
         holder.tvPrice.setText(amount);
 
 
