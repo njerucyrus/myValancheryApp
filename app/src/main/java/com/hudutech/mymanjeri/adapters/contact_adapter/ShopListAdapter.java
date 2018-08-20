@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.MapsActivity;
 import com.hudutech.mymanjeri.R;
+import com.hudutech.mymanjeri.majery_activities.ShopDetailActivity;
 import com.hudutech.mymanjeri.models.majery_models.Shop;
 
 import java.util.List;
@@ -147,13 +148,14 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
 
         holder.mName.setText(shop.getShopName());
         holder.mPhoneNumber.setText(shop.getShopContact());
-        holder.mLocation.setText(shop.getShopLocation());
+        holder.mLocation.setText("");
+
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.no_barner);
 
         Glide.with(mContext)
-                .load(R.drawable.no_barner)
+                .load(shop.getPhotoUrls().get(0))
                 .apply(requestOptions)
                 .into(holder.imageView);
 
@@ -181,6 +183,15 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
                         .putExtra("lat", shop.getLat())
                         .putExtra("lng", shop.getLng())
                         .putExtra("title", shop.getShopName() + "," + shop.getShopLocation())
+                );
+            }
+        });
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, ShopDetailActivity.class)
+                        .putExtra("shop",shop)
                 );
             }
         });

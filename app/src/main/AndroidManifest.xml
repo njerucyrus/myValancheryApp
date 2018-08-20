@@ -31,7 +31,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -385,18 +384,17 @@
         </activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginUserActivity" />
-
         <activity android:name=".AdminLiveTvActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity android:name=".digital_activities.LiveTvActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".majery_activities.ShopDetailActivity"></activity>
     </application>
 
 </manifest>

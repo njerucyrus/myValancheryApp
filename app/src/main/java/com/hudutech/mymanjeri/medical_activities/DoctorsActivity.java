@@ -41,7 +41,7 @@ public class DoctorsActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
         doctorList = new ArrayList<>();
         mAdapter = new DoctorListAdapter(this, doctorList);
-        RecyclerView mRecyclerView = findViewById(R.id.list_recyclerview);
+        RecyclerView mRecyclerView = findViewById(R.id.doctor_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
@@ -62,13 +62,7 @@ public class DoctorsActivity extends AppCompatActivity {
                             for (DocumentSnapshot snapshot : snapshots.getDocuments()) {
                                 Doctor doctor = snapshot.toObject(Doctor.class);
                                 if (doctor != null) {
-                                    if (Config.isAdmin(getApplicationContext())) {
-                                        doctorList.add(doctor);
-                                    } else if (!Config.isAdmin(getApplicationContext())) {
-                                        if (doctor.isValidated()) {
-                                            doctorList.add(doctor);
-                                        }
-                                    }
+                                    doctorList.add(doctor);
                                 }
                             }
                             mAdapter.notifyDataSetChanged();

@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hudutech.mymanjeri.AdminPanelActivity;
 import com.hudutech.mymanjeri.MainActivity;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.digital_activities.SBAdminPanelActivity;
@@ -167,28 +168,31 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            if (getIntent().getStringExtra("menuName").equals("S Bank")) {
-                if (mProgress.isShowing()) {
-                    mProgress.dismiss();
-                }
+            if (getIntent().getExtras() != null) {
+                if (getIntent().getStringExtra("menuName").equals("S Bank")) {
+                    if (mProgress.isShowing()) {
+                        mProgress.dismiss();
+                    }
 
-                if (isAdmin() || isSBAdmin()) {
-                    startActivity(new Intent(this, SBAdminPanelActivity.class)
-                            .putExtra("menuName", getIntent().getStringExtra("menuName")));
+                    if (isAdmin() || isSBAdmin()) {
+                        startActivity(new Intent(this, SBAdminPanelActivity.class)
+                                .putExtra("menuName", getIntent().getStringExtra("menuName")));
+
+                    } else {
+
+                        goToAccount(user);
+
+                    }
 
                 } else {
-
-                    goToAccount(user);
-
+                    startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
+                    finish();
                 }
 
             } else {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-
-        } else {
-            if (mProgress.isShowing()) {
-                mProgress.dismiss();
+                if (mProgress.isShowing()) {
+                    mProgress.dismiss();
+                }
             }
         }
     }
@@ -306,4 +310,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+        super.onBackPressed();
+    }
 }

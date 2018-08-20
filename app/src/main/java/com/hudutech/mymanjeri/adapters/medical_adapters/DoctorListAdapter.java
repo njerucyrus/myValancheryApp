@@ -55,8 +55,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         final Doctor doctor = doctorList.get(position);
         mProgress = new ProgressDialog(mContext);
 
-        holder.mMap.setVisibility(View.GONE);
-        //Show views accordingly
         if (Config.isAdmin(mContext)) {
             holder.layoutControl.setVisibility(View.VISIBLE);
             if (doctor.isValidated()) {
@@ -67,6 +65,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 holder.mButtonValidate.setVisibility(View.VISIBLE);
             }
         }
+        holder.mMap.setVisibility(View.GONE);
+        //Show views accordingly
+
 
         holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +164,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String desc = "Name " + doctor.getDoctorName() + "Department" + doctor.getDepartment() + " Contact " + doctor.getPhoneNumber();
+                String desc = "Department " + doctor.getDepartment() + " Contact " + doctor.getPhoneNumber();
                 Config.share(mContext, doctor.getDoctorName(), desc);
             }
         });
@@ -174,6 +175,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 Config.call(mContext, doctor.getPhoneNumber());
             }
         });
+
+
+
 
 
     }
@@ -269,14 +273,15 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             if (mProgress.isShowing()) mProgress.dismiss();
+
                                             Doctor newItem = documentSnapshot.toObject(Doctor.class);
                                             if (newItem !=null) {
                                                 doctorList.set(position, newItem);
                                                 notifyItemChanged(position);
-                                                notifyDataSetChanged();
-                                                Toast.makeText(mContext, newItem.getDoctorName(), Toast.LENGTH_SHORT);
                                                 Toast.makeText(mContext, "Updated successfully.", Toast.LENGTH_SHORT).show();
+                                                notifyDataSetChanged();
                                             }
+
 
                                         }
                                     })

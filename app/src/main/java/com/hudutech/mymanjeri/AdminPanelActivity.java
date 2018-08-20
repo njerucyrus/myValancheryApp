@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.hudutech.mymanjeri.admin_banner_setting.AdminBarnersActivity;
 import com.hudutech.mymanjeri.admin_banner_setting.StartBannerActivity;
 import com.hudutech.mymanjeri.admin_classifieds.ClassfiedsEntryPointActivity;
@@ -19,6 +20,7 @@ import com.hudutech.mymanjeri.admin_contacts.ContactsEntryPointActivity;
 import com.hudutech.mymanjeri.admin_majery.DataEntryActivity;
 import com.hudutech.mymanjeri.admin_medical.MedicalEntryPointActivity;
 import com.hudutech.mymanjeri.admin_timing_and_booking.TimingAndBookingEntryPointActivity;
+import com.hudutech.mymanjeri.auth.LoginActivity;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -128,4 +130,22 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onStart() {
+      if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+          Toast.makeText(this, "You are not allowed to view this page. login first", Toast.LENGTH_SHORT).show();
+          startActivity(new Intent(this, LoginActivity.class).putExtra("menuName", "admin"));
+      } else {
+          if (!Config.isAdmin(this)) {
+              Toast.makeText(this, "Access denied You are not an admin.", Toast.LENGTH_SHORT).show();
+          }
+      }
+        super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        super.onBackPressed();
+    }
 }

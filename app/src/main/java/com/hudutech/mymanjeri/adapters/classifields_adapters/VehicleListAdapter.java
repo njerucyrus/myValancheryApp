@@ -146,7 +146,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.
             }
         });
         String amount = "INR " + vehicle.getAmount();
-        holder.tvTitle.setText(vehicle.getDescription());
+        holder.tvTitle.setText(vehicle.getHeading());
         holder.tvPrice.setText(amount);
 
 

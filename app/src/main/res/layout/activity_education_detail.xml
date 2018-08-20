@@ -40,6 +40,11 @@
         android:layout_below="@+id/img_education_detail_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <TextView
             android:fontFamily="@font/century_gothic"
             android:textColor="@color/colorPrimaryText"
@@ -98,6 +103,7 @@
                 android:layout_height="36dp" />
 
 
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

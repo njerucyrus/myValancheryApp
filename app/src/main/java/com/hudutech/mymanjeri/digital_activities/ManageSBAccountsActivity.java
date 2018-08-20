@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -71,6 +72,8 @@ public class ManageSBAccountsActivity extends AppCompatActivity {
                                 sBankAccountList.add(account);
                             }
                             mAdapter.notifyDataSetChanged();
+                        } else {
+                            tvNoData.setVisibility(View.VISIBLE);
                         }
 
                     }

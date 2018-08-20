@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.AppLaunchChecker;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -85,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        showStartBanner();
+        AppLaunchChecker.onActivityCreate(this);
+        if (AppLaunchChecker.hasStartedFromLauncher(MainActivity.this)) {
+            showStartBanner();
+        }
+
+
 
 
         mRootRef = FirebaseFirestore.getInstance().collection("barners");
@@ -244,14 +250,14 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             signOut();
         } else if (id == R.id.action_user_panel) {
+            startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
 
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            if (mAuth.getCurrentUser() != null) {
-                startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
-            } else {
-                //CREATE ACCOUNT//
-                startActivity(new Intent(MainActivity.this, JoinActivity.class));
-            }
+//            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//            if (mAuth.getCurrentUser() != null) {
+//            } else {
+//                //CREATE ACCOUNT//
+//                startActivity(new Intent(MainActivity.this, JoinActivity.class));
+//            }
 
 
         }

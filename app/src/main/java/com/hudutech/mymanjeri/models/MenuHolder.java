@@ -354,7 +354,7 @@ public class MenuHolder {
                 "Digital", "PSC", DigitalWebViewActivity.class, R.drawable.psc48
         );
 
-        psc.setOptionalUrl("https://thulasi.psc.kerala.gov.in/thulasi/");
+        psc.setOptionalUrl("https://thulasi.psc.kerala.gov.in/");
         digitalMenu.add(psc);
 
 

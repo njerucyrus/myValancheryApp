@@ -1,7 +1,12 @@
 package com.hudutech.mymanjeri.models.majery_models;
 
+import java.util.List;
+
 public class Shop implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
+    private String place;
+    private List<String> photoUrls;
+    private double rating;
     private String shopName;
     private String shopContact;
     private String shopLocation;
@@ -14,7 +19,10 @@ public class Shop implements java.io.Serializable {
     public Shop() {
     }
 
-    public Shop(String shopName, String shopContact, String shopLocation, String shopType, String docKey, double lat, double lng, boolean isValidated) {
+    public Shop(String place, List<String> photoUrls, double rating, String shopName, String shopContact, String shopLocation, String shopType, String docKey, double lat, double lng, boolean isValidated) {
+        this.place = place;
+        this.photoUrls = photoUrls;
+        this.rating = rating;
         this.shopName = shopName;
         this.shopContact = shopContact;
         this.shopLocation = shopLocation;
@@ -23,6 +31,30 @@ public class Shop implements java.io.Serializable {
         this.lat = lat;
         this.lng = lng;
         this.isValidated = isValidated;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public List<String> getPhotoUrls() {
+        return photoUrls;
+    }
+
+    public void setPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getShopName() {

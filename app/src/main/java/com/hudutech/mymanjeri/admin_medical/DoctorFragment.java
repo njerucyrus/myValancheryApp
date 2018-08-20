@@ -190,7 +190,7 @@ public class DoctorFragment extends Fragment implements View.OnClickListener {
                             name,
                             phoneNumber,
                             department,
-                            Config.isAdmin(mContext)
+                           true
                     );
 
                     docRef.set(doctor)

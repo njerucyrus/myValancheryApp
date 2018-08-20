@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.hudutech.mymanjeri.Config;
 import com.hudutech.mymanjeri.R;
 import com.hudutech.mymanjeri.models.Hotel;
@@ -241,43 +238,28 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             mProgress.setMessage("Deleting...");
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
-            StorageReference photoRef = FirebaseStorage.getInstance()
-                    .getReferenceFromUrl(hotel.getPhotoUrls().get(0));
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    CollectionReference ref = db.collection("hotels");
-                    ref.document(hotel.getDocKey())
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    hotelList.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyDataSetChanged();
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Hotel deleted", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    if (mProgress.isShowing()) mProgress.dismiss();
-                                    Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
-                                }
-                            });
 
+            CollectionReference ref = db.collection("hotels");
+            ref.document(hotel.getDocKey())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            hotelList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Hotel deleted", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if (mProgress.isShowing()) mProgress.dismiss();
+                            Toast.makeText(mContext, "Failed to delete", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    if (mProgress.isShowing()) mProgress.dismiss();
-                    // Uh-oh, an error occurred!
-                    Log.d(TAG, "onFailure: did not delete file");
-                    Toast.makeText(mContext, "Error occurred. data not deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 

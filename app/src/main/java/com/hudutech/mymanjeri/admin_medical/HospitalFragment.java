@@ -249,7 +249,7 @@ public class HospitalFragment extends Fragment implements View.OnClickListener {
                             address,
                             mLat,
                             mLng,
-                            Config.isAdmin(mContext)
+                            true
                     );
 
                     docRef.set(hospital)

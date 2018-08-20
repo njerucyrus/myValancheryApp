@@ -26,10 +26,11 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
     private static final String TAG = "CustomMenuAdapter";
     private List<CategoryMenu> categoryMenuList;
     private Context mContext;
-
+    private FirebaseUser user;
     public CustomMenuAdapter(Context mContext, List<CategoryMenu> categoryMenuList) {
         this.categoryMenuList = categoryMenuList;
         this.mContext = mContext;
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
     }
 
@@ -50,7 +51,7 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
             public void onClick(View v) {
 
                 if (menu.getGotoGlass() == AdminPanelActivity.class) {
-                    FirebaseUser  user = FirebaseAuth.getInstance().getCurrentUser();
+
                     if (user != null) {
                         if (Config.isAdmin(mContext)) {
                             mContext.startActivity(new Intent(mContext, menu.getGotoGlass())
@@ -59,7 +60,8 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Vi
                         } else {
                             Toast.makeText(mContext, "You are not authorised to view this page", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
+                    }
+                    if (user == null){
                         mContext.startActivity(new Intent(mContext, LoginActivity.class));
                     }
                 }

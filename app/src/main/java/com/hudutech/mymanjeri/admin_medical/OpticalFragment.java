@@ -230,7 +230,7 @@ public class OpticalFragment extends Fragment implements View.OnClickListener {
                             address,
                             mLat,
                             mLng,
-                            Config.isAdmin(mContext)
+                       true
                     );
 
                     docRef.set(optical)

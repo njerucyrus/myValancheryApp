@@ -61,9 +61,10 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
     private Uri[] imageUris = new Uri[0];
     private ViewPager mImageViewPager;
     private TextView tvSelectedImgs;
-    private ProgressDialog mProgress;
     private List<String> imageDownloadUrls;
     private StorageReference mStorageRef;
+    private ProgressDialog mProgress;
+
     private CollectionReference mRestaurantRef;
     private TextView mSelectedPinPoint;
 
@@ -87,6 +88,7 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
         View v = inflater.inflate(R.layout.fragment_add_restaurant, container, false);
         mImageViewPager = v.findViewById(R.id.selected_restaurant_viewpager_images);
         tvSelectedImgs = v.findViewById(R.id.tv_restaurant_selected_imgs);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         mRestaurantName = v.findViewById(R.id.txt_restaurant_name);
         mPlaceName = v.findViewById(R.id.txt_restaurant_place_name);
@@ -102,7 +104,7 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
 
         mContext = getContext();
         mProgress = new ProgressDialog(getContext());
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         mRestaurantRef = FirebaseFirestore.getInstance().collection("restaurants");
 
         return v;

@@ -7,7 +7,7 @@
     tools:context=".medical_activities.DoctorsActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_recyclerview"
+        android:id="@+id/doctor_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
