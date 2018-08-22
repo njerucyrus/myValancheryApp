@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338688394267:android:973720f96adc5df0",
+        "android_client_info": {
+          "package_name": "com.hudutech.myvalancery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338688394267-k47687ouehp9rigt1ov485734h600qmr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hudutech.myvalancery",
+            "certificate_hash": "8195a77dbd40aa92857769fb8e39aff64b418fd2"
+          }
+        },
+        {
+          "client_id": "338688394267-5hrv1e11cjlah7sgd99dd90i4csp0ect.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH-dn0QKpIFLmGxKBNPHqzcDqI_lg21Cc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338688394267-5hrv1e11cjlah7sgd99dd90i4csp0ect.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

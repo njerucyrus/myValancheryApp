@@ -48,6 +48,16 @@
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/colorPrimaryText" />
 
+            <TextView
+                android:id="@+id/tv_way"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/century_gothic"
+                android:text="Way"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -85,6 +95,7 @@
                 android:drawableStart="@drawable/ic_location_on_red_24dp"
                 android:fontFamily="@font/century_gothic"
                 android:text="Ending Point" />
+
 
         </LinearLayout>
 
