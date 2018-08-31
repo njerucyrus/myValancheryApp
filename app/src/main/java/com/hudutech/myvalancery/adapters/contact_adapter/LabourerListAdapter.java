@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Labourer;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class LabourerListAdapter extends RecyclerView.Adapter<LabourerListAdapter.ViewHolder> {
 
     private List<Labourer> labourerList;

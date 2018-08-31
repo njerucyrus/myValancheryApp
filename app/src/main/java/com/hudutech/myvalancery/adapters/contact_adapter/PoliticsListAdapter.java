@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Politics;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class PoliticsListAdapter extends RecyclerView.Adapter<PoliticsListAdapter.ViewHolder> {
 
     private List<Politics> politicsList;

@@ -67,7 +67,7 @@ public class PoliticsSectionAdapter extends FragmentPagerAdapter {
             case 5:
                 return "SDPI";
             case 6:
-                return "WPI";
+                return "PDP";
             case 7:
                 return "INL";
             default:

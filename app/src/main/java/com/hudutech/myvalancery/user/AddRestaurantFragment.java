@@ -279,7 +279,7 @@ public class AddRestaurantFragment extends Fragment implements View.OnClickListe
                 //with the same name this saves on firebase storage. by removing duplicates
                 //get the filename. ensure to overwrite the existing file
 
-                String fileName = getFileName(uri);
+                String fileName = mRestaurantRef.document().getId();
 
                 UploadTask uploadTask = mStorageRef.child("images")
                         .child(fileName)

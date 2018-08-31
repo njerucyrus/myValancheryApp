@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Vehicle;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.ViewHolder> {
 
     private List<Vehicle> vehicleList;

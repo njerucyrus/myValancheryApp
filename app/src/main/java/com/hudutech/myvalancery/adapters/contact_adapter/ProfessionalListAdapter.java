@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Professional;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ProfessionalListAdapter extends RecyclerView.Adapter<ProfessionalListAdapter.ViewHolder> {
 
     private List<Professional> professionalList;

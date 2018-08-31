@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Institution;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class InstitutionListAdapter extends RecyclerView.Adapter<InstitutionListAdapter.ViewHolder> {
 
     private List<Institution> institutionList;

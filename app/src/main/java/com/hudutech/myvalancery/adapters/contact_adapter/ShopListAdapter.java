@@ -32,8 +32,6 @@ import com.hudutech.myvalancery.models.majery_models.Shop;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHolder> {
 
     private List<Shop> shopList;

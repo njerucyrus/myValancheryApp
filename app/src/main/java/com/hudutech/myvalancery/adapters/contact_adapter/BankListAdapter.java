@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Bank;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHolder> {
 
     private List<Bank> bankList;

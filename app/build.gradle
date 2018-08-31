@@ -6,8 +6,8 @@ android {
         applicationId "com.hudutech.myvalancery"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 3
-        versionName "2.1"
+        versionCode 5
+        versionName "2.1.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

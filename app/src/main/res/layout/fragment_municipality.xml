@@ -34,12 +34,14 @@
                     android:gravity="center"
                     android:textAlignment="center"
                     android:text="Name"
+                    android:textSize="16sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:textSize="16sp"
                     android:id="@+id/tv_designation"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -68,6 +70,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:textSize="16sp"
                         android:textColor="@color/colorSecondaryText"
                         android:gravity="center"
                         android:text="Ward"
@@ -76,6 +79,8 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:textSize="16sp"
+
                         android:id="@+id/tv_ward_no"
                         android:gravity="center"
                         android:text="10"
@@ -96,6 +101,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:textSize="16sp"
+
                         android:textColor="@color/colorSecondaryText"
                         android:gravity="center"
                         android:text="Ward Name"
@@ -104,6 +111,8 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:textSize="16sp"
+
                         android:id="@+id/tv_ward_name"
                         android:gravity="center"
                         android:text="Name of the word"
@@ -124,6 +133,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:textSize="16sp"
+
                         android:textColor="@color/colorSecondaryText"
                         android:gravity="center"
                         android:text="Party"
@@ -132,6 +143,8 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:textSize="16sp"
+
                         android:id="@+id/tv_party"
                         android:gravity="center"
                         android:text="Party Name"
@@ -160,6 +173,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:textSize="16sp"
+
                         android:textColor="@color/colorSecondaryText"
                         android:gravity="center"
                         android:text="Mobile"
@@ -168,6 +183,8 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:textSize="16sp"
+
                         android:id="@+id/tv_mobile"
                         android:gravity="center"
                         android:text="mobile no"
@@ -188,6 +205,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:textSize="16sp"
+
                         android:textColor="@color/colorSecondaryText"
                         android:gravity="center"
                         android:text="Phone"
@@ -196,6 +215,8 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:textSize="16sp"
+
                         android:id="@+id/tv_phone"
                         android:gravity="center"
                         android:text="Phone no"
@@ -217,11 +238,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="16sp"
+
                     android:text="Address"
                     android:layout_margin="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:textSize="16sp"
+
                     android:id="@+id/tv_address"
                     android:layout_margin="8dp"
                     android:textColor="@color/colorPrimaryText"
@@ -245,6 +270,7 @@
                 android:gravity="center">
 
                 <TextView
+                    
                     android:id="@+id/tv_call"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -138,7 +138,7 @@ public class AddHistoryFragment extends Fragment implements View.OnClickListener
 
             //get the filename. ensure to overwrite the existing file
             //with the same name this saves on firebase storage. by removing duplicates
-            String fileName = getFileName(photoUri);
+            String fileName = mHistoryRef.getId();
 
             UploadTask uploadTask = mStorageRef.child("images")
                     .child(fileName)

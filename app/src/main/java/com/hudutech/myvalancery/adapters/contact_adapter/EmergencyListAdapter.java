@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Emergency;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class EmergencyListAdapter extends RecyclerView.Adapter<EmergencyListAdapter.ViewHolder> {
 
     private List<Emergency> emergencyList;

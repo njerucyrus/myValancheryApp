@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.General;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class GeneralListAdapter extends RecyclerView.Adapter<GeneralListAdapter.ViewHolder> {
 
     private List<General> generalList;

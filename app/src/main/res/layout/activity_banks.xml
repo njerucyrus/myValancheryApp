@@ -7,6 +7,7 @@
     tools:context=".contact_activities.BanksActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/recyclerViewBg"
         android:id="@+id/banks_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.digital_models.Partner;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class PartnerListAdapter extends RecyclerView.Adapter<PartnerListAdapter.ViewHolder> {
 
     private List<Partner> partnerList;

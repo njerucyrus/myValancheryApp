@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.ArtAndCulture;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ArtCultureListAdapter extends RecyclerView.Adapter<ArtCultureListAdapter.ViewHolder> {
 
     private List<ArtAndCulture> artAndCultureList;

@@ -29,8 +29,6 @@ import com.hudutech.myvalancery.models.contact_models.Media;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class MediaListAdapter extends RecyclerView.Adapter<MediaListAdapter.ViewHolder> {
 
     private List<Media> mediaList;
