@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Find Partner Here"
                 android:textAlignment="center"
@@ -40,7 +40,7 @@
                 android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_add_a_photo_black_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Upload Photo" />
 
             <ImageView
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Male"
                     android:textColor="@color/colorPrimaryText" />
 
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Female"
                     android:textColor="@color/colorPrimaryText" />
             </RadioGroup>
@@ -84,7 +84,7 @@
                     android:id="@+id/txt_findpartner_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Name" />
 
             </android.support.design.widget.TextInputLayout>
@@ -98,7 +98,7 @@
                     android:id="@+id/txt_findpartner_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Place" />
 
             </android.support.design.widget.TextInputLayout>
@@ -112,7 +112,7 @@
                     android:id="@+id/txt_findpartner_religion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Religion" />
 
             </android.support.design.widget.TextInputLayout>
@@ -126,7 +126,7 @@
                     android:id="@+id/txt_findpartner_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Age" />
 
             </android.support.design.widget.TextInputLayout>
@@ -141,7 +141,7 @@
                     android:id="@+id/txt_findpartner_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Phone Number" />
 
             </android.support.design.widget.TextInputLayout>
@@ -155,7 +155,7 @@
                     android:id="@+id/txt_findpartner_moredetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="More Details" />
 
             </android.support.design.widget.TextInputLayout>
@@ -165,7 +165,7 @@
                 android:layout_margin="8dp"
                 android:text="Submit"
                 android:layout_gravity="center"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:background="@drawable/button_ui_primary"
                 android:textColor="@color/colorWhite"
                 android:layout_width="200dp"

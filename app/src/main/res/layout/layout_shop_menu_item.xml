@@ -18,7 +18,7 @@
         android:layout_height="32dp" />
     <TextView
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/century_gothic"
+        android:fontFamily="sans-serif-condensed"
         android:textColor="@color/colorPrimaryText"
         android:text="Menu Title"
         android:textSize="12sp"

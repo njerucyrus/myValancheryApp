@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:textAlignment="center"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryText"
             android:layout_margin="8dp"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Valancery"
                 android:textColor="@color/colorPrimaryText" />
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Contacts"
                 android:textColor="@color/colorPrimaryText" />
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Timing &amp; Booking"
                 android:textColor="@color/colorPrimaryText" />
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Classifieds"
                 android:textColor="@color/colorPrimaryText" />
@@ -147,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Medical"
                 android:textColor="@color/colorPrimaryText" />
@@ -172,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Banner Setting"
                 android:textColor="@color/colorPrimaryText" />
@@ -197,7 +197,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Opening Banner"
                 android:textColor="@color/colorPrimaryText" />
@@ -222,7 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Live TV"
                 android:textColor="@color/colorPrimaryText" />
@@ -247,7 +247,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="Logout"
                 android:textColor="@color/colorPrimaryText" />

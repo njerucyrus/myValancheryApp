@@ -23,7 +23,7 @@
                 android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_add_a_photo_black_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Upload Photo" />
 
             <ImageView
@@ -44,7 +44,7 @@
                     android:id="@+id/txt_education_place_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Place Name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +57,7 @@
                     android:id="@+id/txt__education_place_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Description"
                     android:inputType="textMultiLine" />
             </android.support.design.widget.TextInputLayout>

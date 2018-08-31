@@ -34,7 +34,7 @@
                 android:drawableLeft="@drawable/ic_location_on_green_24dp"
                 android:layout_margin="8dp"
                 android:text="Starting Point"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -64,7 +64,7 @@
                 android:layout_margin="8dp"
                 android:layout_gravity="center_vertical"
                 android:text="Ending Point"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -129,7 +129,7 @@
             android:layout_margin="8dp"
             android:id="@+id/btn_submit"
             android:text="Submit"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

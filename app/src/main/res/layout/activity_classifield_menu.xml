@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:text="Real Estate"
                     android:textColor="@color/colorPrimaryText" />
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:text="Vehicle"
                     android:textColor="@color/colorPrimaryText" />
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:text="Electronics"
                     android:textColor="@color/colorPrimaryText" />
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:text="Pets"
                     android:textColor="@color/colorPrimaryText" />
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
                     android:text="Other"
                     android:textColor="@color/colorPrimaryText" />

@@ -20,7 +20,7 @@
                     android:id="@+id/txt_add_notification"
                     android:hint="Enter Notification"
                     android:inputType="textMultiLine"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -31,7 +31,7 @@
                 android:padding="8dp"
                 android:layout_gravity="center"
                 android:text="Submit"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/button_ui_primary"
                 android:layout_width="140dp"

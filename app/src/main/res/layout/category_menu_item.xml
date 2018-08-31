@@ -21,7 +21,7 @@
         android:layout_marginTop="2dp"
         android:text="Menu Item"
         android:gravity="center"
-        android:fontFamily="@font/century_gothic"
+        android:fontFamily="sans-serif-condensed"
         android:textColor="@color/colorPrimaryText"
         android:id="@+id/tv_menu_text"
         android:layout_width="wrap_content"

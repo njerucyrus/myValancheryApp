@@ -36,11 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/slider_dots"
             android:background="@color/colorLightGrey"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="start"
             android:padding="8dp"
             android:text="Name"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textAlignment="textStart"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:orientation="horizontal">
 
             <TextView
@@ -60,8 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/century_gothic"
-                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
                 android:text="INR 1600" />
 
             <TextView
@@ -71,8 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/century_gothic"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Location" />
 
         </LinearLayout>
@@ -85,14 +85,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_margin="8dp"
-            android:id="@+id/tv_desc"
-            android:text="Some Desc"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/desc_lbl" />
+            <ScrollView
+                android:layout_marginBottom="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_margin="8dp"
+                    android:id="@+id/tv_desc"
+                    android:text="Some Desc"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </ScrollView>
+
+
 
         </LinearLayout>
 
@@ -117,7 +123,7 @@
                     android:layout_margin="8dp"
                     android:drawableLeft="@drawable/ic_phone_black_48dp"
                     android:drawableStart="@drawable/ic_phone_black_48dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Make a Call"
                     android:textColor="@color/colorPrimaryText" />
 

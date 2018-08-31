@@ -67,7 +67,7 @@
         <TextView
             android:layout_margin="16dp"
             android:id="@+id/tv_login"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:text="Or  Login"
             android:textSize="18sp"

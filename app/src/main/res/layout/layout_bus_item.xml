@@ -17,43 +17,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="2dp"
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="4dp"
+                android:textSize="16sp"
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Bus Name"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText" />
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginLeft="8dp" />
 
             <TextView
+                android:layout_marginBottom="4dp"
+                android:drawableLeft="@drawable/ic_location_on_green_24dp"
+                android:drawableStart="@drawable/ic_location_on_green_24dp"
+                android:textSize="16sp"
                 android:id="@+id/tv_departure_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
+
                 android:text="Departure Time"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/colorPrimaryText" />
 
             <TextView
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableLeft="@drawable/ic_location_on_red_24dp"
+                android:drawableStart="@drawable/ic_location_on_red_24dp"
+                android:textSize="16sp"
                 android:id="@+id/tv_arrival_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Arrival Time"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/colorPrimaryText" />
 
             <TextView
+                android:layout_margin="8dp"
+                android:textSize="16sp"
                 android:id="@+id/tv_way"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Way"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textColor="@color/colorPrimaryText" />
@@ -61,39 +75,38 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="256dp"
+
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/layout_text"
-            android:layout_toRightOf="@id/layout_text"
+            android:layout_marginTop="22dp"
             android:gravity="end"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_alignParentRight="true">
 
             <TextView
+                android:textSize="16sp"
                 android:id="@+id/tv_starting_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="8dp"
-                android:drawableLeft="@drawable/ic_location_on_green_24dp"
-                android:drawableStart="@drawable/ic_location_on_green_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Starting Point" />
 
             <TextView
+                android:textSize="16sp"
                 android:id="@+id/tv_ending_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="8dp"
-                android:drawableLeft="@drawable/ic_location_on_red_24dp"
-                android:drawableStart="@drawable/ic_location_on_red_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Ending Point" />
 
 

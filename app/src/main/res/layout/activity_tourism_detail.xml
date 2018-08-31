@@ -27,7 +27,7 @@
             android:layout_height="180dp" />
             <TextView
                 android:id="@+id/textView"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_margin="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/colorPrimaryText"

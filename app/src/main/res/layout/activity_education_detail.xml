@@ -33,7 +33,7 @@
         android:textColor="@color/colorWhite"
 
         android:textSize="14sp"
-        android:fontFamily="@font/century_gothic"
+        android:fontFamily="sans-serif-condensed"
         android:textStyle="normal" />
     <ScrollView
         android:id="@+id/scrollView"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content">
 
         <TextView
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:textColor="@color/colorPrimaryText"
             android:id="@+id/tv_education_content"
             android:layout_margin="8dp"

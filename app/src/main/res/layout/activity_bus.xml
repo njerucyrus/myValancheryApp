@@ -22,7 +22,7 @@
                 android:layout_margin="8dp"
                 android:drawableLeft="@drawable/ic_location_on_green_24dp"
                 android:drawableStart="@drawable/ic_location_on_green_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Starting Point" />
 
             <Spinner
@@ -46,7 +46,7 @@
                 android:layout_margin="8dp"
                 android:drawableLeft="@drawable/ic_location_on_red_24dp"
                 android:drawableStart="@drawable/ic_location_on_red_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Ending Point" />
 
             <Spinner

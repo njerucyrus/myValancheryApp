@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="FullName"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:inputType="textPersonName"
                     android:id="@+id/txt_fullname_admin"
                     android:drawableStart="@drawable/ic_person_black_24dp"
@@ -41,7 +41,7 @@
                     android:drawablePadding="8dp"
                     android:inputType="phone"
                     android:hint="Phone Number"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -49,7 +49,7 @@
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood_group_admin"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:entries="@array/blood_groups"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"/>
@@ -63,7 +63,7 @@
                     android:drawableStart="@drawable/ic_location_on_black_24dp"
                     android:drawableLeft="@drawable/ic_location_on_black_24dp"
                     android:drawablePadding="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Physical address"
                     android:inputType="text"
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                     android:drawableLeft="@drawable/ic_info_outline_black_24dp"
                     android:drawablePadding="8dp"
                     android:hint="Other Details"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -103,7 +103,7 @@
                 <ImageView
                     android:visibility="visible"
                     android:padding="8dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:layout_margin="8dp"
                     android:id="@+id/img_uploaded_profile_donor"
                     android:layout_width="150dp"
@@ -121,7 +121,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/button_ui_primary"
                 android:text="Done"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/colorWhite"
                 android:layout_gravity="center"
                 android:layout_width="128dp"

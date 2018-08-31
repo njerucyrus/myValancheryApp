@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="NB: Select At least 1 image and maximum of 5  images"
                 android:textColor="@color/colorSecondaryText"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Selected Image(s)"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
@@ -67,7 +67,7 @@
                     android:id="@+id/txt_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Travel Name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -80,7 +80,7 @@
                     android:id="@+id/txt_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Place Name"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
@@ -93,7 +93,7 @@
                 android:drawableLeft="@drawable/ic_location_on_black_24dp"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_location_on_black_24dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="SELECT LOCATION ON MAP" />
 
             <TextView
@@ -113,7 +113,7 @@
                     android:id="@+id/txt_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Phone Number"
                     android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
@@ -127,7 +127,7 @@
                     android:id="@+id/txt_more_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="More Details"
                     android:inputType="textMultiLine" />
             </android.support.design.widget.TextInputLayout>
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@drawable/button_ui_primary"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Submit"
                 android:textColor="@color/colorWhite" />
 

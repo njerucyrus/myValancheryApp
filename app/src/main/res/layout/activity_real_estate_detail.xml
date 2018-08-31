@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/slider_dots"
             android:background="@color/colorLightGrey"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="start"
             android:padding="8dp"
             android:text="Name"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="INR 1600" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Location" />
 
         </LinearLayout>
@@ -89,8 +89,8 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/colorSecondaryText"
                     android:text="Water"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -100,8 +100,8 @@
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/colorPrimaryText"
                     android:text="Yes"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -117,8 +117,8 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/colorSecondaryText"
                     android:text="Electricity"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -128,8 +128,8 @@
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/colorPrimaryText"
                     android:text="No"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -144,20 +144,29 @@
             android:id="@+id/desc_lbl"
             android:layout_below="@+id/layout_desc"
             android:layout_margin="8dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/century_gothic"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed"
             android:text="Details"
             android:textColor="@color/colorPrimaryText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_margin="8dp"
-            android:id="@+id/tv_desc"
-            android:text="Some Desc"
+        <ScrollView
+            android:layout_marginBottom="28dp"
+            android:layout_below="@+id/desc_lbl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/desc_lbl" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="8dp"
+                android:id="@+id/tv_desc"
+                android:text="Some Desc"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </ScrollView>
+
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -180,7 +189,7 @@
                     android:layout_margin="8dp"
                     android:drawableLeft="@drawable/ic_phone_black_48dp"
                     android:drawableStart="@drawable/ic_phone_black_48dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Make a Call"
                     android:textColor="@color/colorPrimaryText" />
 

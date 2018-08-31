@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/spinner_blood_group"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:layout_margin="8dp"
             android:entries="@array/blood_groups"
             android:layout_width="match_parent"

@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="NB: Select At least 1 image and maximum of 5  images"
                 android:textColor="@color/colorSecondaryText"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Selected Image(s)"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="Restaurant Name"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_restaurant_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -74,7 +74,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Place Name"
                     android:inputType="text"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_restaurant_place_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -86,7 +86,7 @@
                 android:drawableStart="@drawable/ic_location_on_black_24dp"
                 android:drawableLeft="@drawable/ic_location_on_black_24dp"
                 android:drawablePadding="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="SELECT LOCATION ON MAP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -106,7 +106,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Phone Number"
                     android:inputType="phone"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_restaurant_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
                     android:hint="More Details"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_restaurant_more_details"
                     android:inputType="textMultiLine"
                     android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                 android:background="@drawable/button_ui_primary"
                 android:text="Submit"
                 android:textColor="@color/colorWhite"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

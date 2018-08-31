@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/century_gothic"
+        android:fontFamily="sans-serif-condensed"
         android:textSize="16sp"
         android:textColor="@color/colorWhite"
         android:text="Education Title"

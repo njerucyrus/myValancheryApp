@@ -14,7 +14,7 @@
             android:id="@+id/tv_title"
             android:layout_margin="8dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:textColor="@color/colorPrimaryText"
             android:text="Title"
             android:layout_width="wrap_content"

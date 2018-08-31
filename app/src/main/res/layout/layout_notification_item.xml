@@ -18,7 +18,7 @@
             <TextView
                 android:id="@+id/tv_notification_content"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="16sp"
                 android:textColor="@color/colorPrimaryText"
                 android:maxLines="3"
@@ -30,7 +30,7 @@
                 android:layout_gravity="end"
                 android:text="just now"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="16sp"
                 android:maxLines="3"
                 android:layout_width="wrap_content"

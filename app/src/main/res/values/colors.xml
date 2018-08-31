@@ -10,6 +10,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorLightGrey">#37474f</color>
-    <color name="colorBg">#EFEBE9</color>
+    <color name="colorBg">#FFFFFF</color>
+    <!--<color name="colorBg">#EFEBE9</color>-->
     <color name="colorRed">#F44336</color>
 </resources>

@@ -18,7 +18,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:textSize="16sp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/colorPrimaryText"
                 android:text="Amount"
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:text="Purpose"
                 android:textSize="16sp"
                 android:textColor="@color/colorPrimaryText"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_below="@+id/txt_txn_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -45,7 +45,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="Date"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

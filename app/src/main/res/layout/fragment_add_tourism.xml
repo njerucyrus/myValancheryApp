@@ -17,7 +17,7 @@
                 android:drawableLeft="@drawable/ic_add_a_photo_black_24dp"
                 android:text="Upload Photo"
                 android:drawablePadding="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:id="@+id/btn_upload_tourism_place_photo"
                 android:layout_margin="8dp"
                 android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Place Name"
                     android:id="@+id/txt_place_name"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -50,7 +50,7 @@
                     android:id="@+id/txt_place_desc"
                     android:inputType="textMultiLine"
 
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>

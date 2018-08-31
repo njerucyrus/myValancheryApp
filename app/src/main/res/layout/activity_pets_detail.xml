@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/slider_dots"
             android:background="@color/colorLightGrey"
-            android:fontFamily="@font/century_gothic"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="start"
             android:padding="8dp"
             android:text="Name"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="INR 1600" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Location" />
 
         </LinearLayout>
@@ -90,8 +90,8 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/colorSecondaryText"
                     android:text="Breed"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -101,8 +101,8 @@
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/colorPrimaryText"
                     android:text="Some Breed"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -118,8 +118,8 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/colorSecondaryText"
                     android:text="Age"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -129,8 +129,8 @@
                     android:layout_marginLeft="8dp"
                     android:textColor="@color/colorPrimaryText"
                     android:text="Some age"
-                    android:fontFamily="@font/century_gothic"
-                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -162,7 +162,7 @@
                     android:layout_margin="8dp"
                     android:drawableLeft="@drawable/ic_phone_black_48dp"
                     android:drawableStart="@drawable/ic_phone_black_48dp"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Make a Call"
                     android:textColor="@color/colorPrimaryText" />
 

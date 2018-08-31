@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="NB: Select At least 1 image and maximum of 5  images"
                 android:textColor="@color/colorSecondaryText"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Selected Images"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp" />
@@ -63,7 +63,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Amount"
                     android:inputType="number"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -77,7 +77,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Bread"
                     android:inputType="text"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_bread"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -90,7 +90,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Age"
                     android:inputType="numberDecimal"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -105,7 +105,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Phone Number"
                     android:inputType="phone"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -118,7 +118,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Location"
                     android:inputType="text"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -131,7 +131,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Heading"
                     android:inputType="textMultiLine"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_heading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -144,7 +144,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:fontFamily="@font/century_gothic"
+                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/txt_pets_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -154,7 +154,7 @@
                 android:id="@+id/btn_submit_pets"
                 android:layout_margin="8dp"
                 android:background="@drawable/button_ui_primary"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/colorWhite"
                 android:text="Submit"
                 android:layout_width="match_parent"

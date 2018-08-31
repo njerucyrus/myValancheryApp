@@ -40,7 +40,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:fontFamily="@font/century_gothic"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Name"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimaryText" />
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="1dp"
-                        android:fontFamily="@font/century_gothic"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Member of Parliament"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimaryText" />
@@ -81,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Constituency"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -92,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Name"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Party"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -126,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Name"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -159,7 +159,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Mobile"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -170,7 +170,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Name"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -193,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Phone"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -204,7 +204,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Name"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -238,7 +238,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Email"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -249,7 +249,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Name"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -272,7 +272,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="4dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Fax"
                             android:textAlignment="center"
                             android:textColor="@color/colorSecondaryText" />
@@ -283,7 +283,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:fontFamily="@font/century_gothic"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Fax"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryText" />
@@ -351,7 +351,7 @@
                         android:drawableLeft="@drawable/ic_phone_black_24dp"
                         android:drawablePadding="8dp"
                         android:drawableStart="@drawable/ic_phone_black_24dp"
-                        android:fontFamily="@font/century_gothic"
+                        android:fontFamily="sans-serif-condensed"
                         android:padding="8dp"
                         android:text="Make a call"
                         android:textColor="@color/colorPrimaryText"

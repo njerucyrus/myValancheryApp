@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/century_gothic"
+                android:fontFamily="sans-serif-condensed"
                 android:text="SB Admin Panel"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
@@ -67,7 +67,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/colorPrimaryText"
-                                android:fontFamily="@font/century_gothic"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Create New Account" />
 
                         </LinearLayout>
@@ -100,7 +100,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/colorPrimaryText"
-                                android:fontFamily="@font/century_gothic"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Deposit Entry" />
 
                         </LinearLayout>
@@ -139,7 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/colorPrimaryText"
-                                android:fontFamily="@font/century_gothic"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Withdraw Entry" />
 
                         </LinearLayout>
@@ -169,7 +169,7 @@
 
                             <TextView
                                 android:textColor="@color/colorPrimaryText"
-                                android:fontFamily="@font/century_gothic"
+                                android:fontFamily="sans-serif-condensed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -207,7 +207,7 @@
 
                             <TextView
                                 android:textColor="@color/colorPrimaryText"
-                                android:fontFamily="@font/century_gothic"
+                                android:fontFamily="sans-serif-condensed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
