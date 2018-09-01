@@ -241,7 +241,7 @@ public class MedicalShopListAdapter extends RecyclerView.Adapter<MedicalShopList
             mProgress.setCanceledOnTouchOutside(false);
             mProgress.show();
 
-            CollectionReference ref = db.collection("labs");
+            CollectionReference ref = db.collection("medical_shops");
             ref.document(medicalShop.getDocKey())
                     .delete()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
